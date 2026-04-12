@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Urban Safari</title>
+    <meta name="description" content="Get help with Urban Safari. Find answers to common questions or contact our support team.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d6a4f;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2d6a4f;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #1b4332;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #40916c;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: #1b4332;
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .contact-email {
+            display: inline-block;
+            background: #2d6a4f;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .contact-email:hover {
+            background: #1b4332;
+        }
+
+        /* FAQ Section */
+        .faq-section h2 {
+            color: #1b4332;
+            margin-bottom: 30px;
+            font-size: 1.75rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 25px 0;
+        }
+
+        .faq-item:first-of-type {
+            border-top: 1px solid #eee;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #1b4332;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            color: #555;
+        }
+
+        /* Troubleshooting */
+        .troubleshooting {
+            margin-top: 50px;
+        }
+
+        .troubleshooting h2 {
+            color: #1b4332;
+            margin-bottom: 30px;
+            font-size: 1.75rem;
+        }
+
+        .tip {
+            background: #fff;
+            border-left: 4px solid #2d6a4f;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .tip h3 {
+            color: #1b4332;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .tip p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: #1b4332;
+            color: #b7e4c7;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-links a {
+            color: #b7e4c7;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-section {
+                padding: 30px 20px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 12px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">Urban Safari</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="support.html">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>How Can We Help?</h1>
+            <p>Find answers to common questions or reach out to our team.</p>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <section class="contact-section">
+                <h2>Contact Support</h2>
+                <p>Have a question or running into an issue? We're here to help.</p>
+                <a href="mailto:support@itsybits.io" class="contact-email">support@itsybits.io</a>
+            </section>
+
+            <section class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">How do I join a game?</div>
+                    <div class="faq-answer">Open the Urban Safari app and enter the game code provided by your event organizer. You'll then be able to join or create a team.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What is a Tech Captain?</div>
+                    <div class="faq-answer">The Tech Captain is the team member who manages the team within the app. They can invite team members, submit challenges, and manage team settings.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I play on multiple devices?</div>
+                    <div class="faq-answer">Yes! Team members can use their own devices. Use the rejoin code to access your team from a different device or if you need to reinstall the app.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Why won't my photo or video upload?</div>
+                    <div class="faq-answer">Make sure you have a stable internet connection. Large video files may take longer to upload. If the problem persists, try restarting the app.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How are points calculated?</div>
+                    <div class="faq-answer">Each challenge has a point value displayed on the challenge card. Complete the challenge correctly to earn those points. Some challenges may have bonus points for creativity!</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">The app is asking for camera permissions. Is this required?</div>
+                    <div class="faq-answer">Yes, camera access is needed to complete photo and video challenges. Urban Safari only uses your camera when you're actively taking photos or videos for challenges.</div>
+                </div>
+            </section>
+
+            <section class="troubleshooting">
+                <h2>Troubleshooting Tips</h2>
+
+                <div class="tip">
+                    <h3>App is running slowly</h3>
+                    <p>Try closing other apps running in the background and ensure you have a stable internet connection.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>Can't find my team</h3>
+                    <p>Use your rejoin code to reconnect to your team. If you don't have your rejoin code, contact your Tech Captain or event organizer.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>Challenge submission failed</h3>
+                    <p>Check your internet connection and try again. Your submission is saved locally and will upload when connection is restored.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>Need to report a bug?</h3>
+                    <p>Email us at support@itsybits.io with details about what happened, your device model, and the game code if applicable.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>&copy; 2024 itsybits. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
