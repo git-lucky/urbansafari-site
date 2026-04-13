@@ -1,0 +1,214 @@
+---
+import Poster from '@/layouts/Poster.astro';
+import Mascot from '@/components/Mascot.astro';
+---
+
+<Poster>
+  <div class="poster-wrap">
+
+    <!-- Accent blob -->
+    <div class="blob" aria-hidden="true"></div>
+
+    <!-- Logo -->
+    <img
+      class="logo rise rise-1"
+      src="/urban-safari-logo.png"
+      alt="Urban Safari"
+      width="140"
+      height="140"
+    />
+
+    <!-- Eyebrow -->
+    <p class="eyebrow rise rise-2">Demo Experience</p>
+
+    <!-- Headline -->
+    <h1 class="headline rise rise-3">Try Urban Safari Free</h1>
+
+    <!-- Subhead -->
+    <p class="subhead rise rise-4">
+      City-wide team building your crew will actually talk about.
+    </p>
+
+    <!-- Mascot -->
+    <div class="mascot-wrap rise rise-5">
+      <Mascot pose="atlas-celebrate" size="lg" drift />
+    </div>
+
+    <!-- QR code card -->
+    <div class="qr-card rise rise-5">
+      <img
+        src="/emailPoster/qr-demo.png"
+        alt="QR code — scan to join the Urban Safari demo"
+        width="220"
+        height="220"
+        class="qr-img"
+      />
+    </div>
+
+    <!-- Demo URL -->
+    <p class="demo-url">hunt.urbansafari.app/join/demo123</p>
+
+    <!-- Footer note -->
+    <p class="poster-footer">No app download required · Works on any device</p>
+
+  </div>
+</Poster>
+
+<style>
+  /* ── wrapper ── */
+  .poster-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    width: min(100%, 520px);
+    padding: 2.5rem 2rem 2rem;
+    background: var(--cream);
+  }
+
+  /* ── accent blob ── */
+  .blob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── all children above blob ── */
+  .poster-wrap > * { position: relative; z-index: 1; }
+
+  /* ── logo ── */
+  .logo {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* ── eyebrow inherits global .eyebrow ── */
+  .eyebrow { margin-block: 0; }
+
+  /* ── headline ── */
+  .headline {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--step-4);
+    color: var(--forest);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-block: 0;
+    max-width: 14ch;
+  }
+
+  /* ── subhead ── */
+  .subhead {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    color: var(--forest-soft);
+    line-height: 1.45;
+    max-width: 36ch;
+    margin-block: 0;
+  }
+
+  /* ── mascot ── */
+  .mascot-wrap {
+    margin-block: 0.25rem;
+  }
+
+  /* ── QR card ── */
+  .qr-card {
+    padding: 1rem;
+    background: var(--paper);
+    border: var(--stamp-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--stamp-shadow);
+    display: inline-flex;
+  }
+
+  .qr-img {
+    display: block;
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+  }
+
+  /* ── demo URL ── */
+  .demo-url {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: 0.02em;
+    margin-block: 0;
+  }
+
+  /* ── footer note ── */
+  .poster-footer {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--forest-soft);
+    margin-block: 0.5rem 0;
+    opacity: 0.8;
+  }
+
+  /* ─────────────────────────────────────── */
+  /*  PRINT — primary output target          */
+  /* ─────────────────────────────────────── */
+  @media print {
+    @page {
+      size: letter;
+      margin: 0.5in;
+    }
+
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    /* Hide grain overlay */
+    :global(.grain::before) { display: none !important; }
+
+    body {
+      display: block;
+      padding: 0;
+      background: var(--cream) !important;
+    }
+
+    .poster-wrap {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      gap: 0.75rem;
+    }
+
+    /* Absolute pt units for reliable cross-browser print sizing */
+    .headline   { font-size: 36pt; }
+    .subhead    { font-size: 12pt; }
+    .demo-url   { font-size: 10pt; }
+    .poster-footer { font-size: 9pt; }
+    .logo       { width: 80px; }
+
+    /* Preserve stamp card styling */
+    .qr-card {
+      border: 2.5px solid #0F2419 !important;
+      box-shadow: 5px 5px 0 0 #0F2419 !important;
+      background: #FFFDF7 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .poster-wrap,
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
