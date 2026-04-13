@@ -12,7 +12,7 @@ import Mascot from '@/components/Mascot.astro';
     <!-- Brand mark: mascot + wordmark -->
     <div class="brand rise rise-1">
       <img src="/mascot/atlas-wave.png" alt="" width="64" height="64" class="brand-mascot" aria-hidden="true" />
-      <span class="brand-word">Urban&nbsp;<span class="brand-gold">Safari</span></span>
+      <span class="brand-word brand-gold">Urban&nbsp;Safari</span>
     </div>
 
     <!-- Eyebrow -->
@@ -107,10 +107,15 @@ import Mascot from '@/components/Mascot.astro';
 
   .brand-gold {
     color: var(--gold);
+    font-weight: 800;
   }
 
-  /* ── eyebrow inherits global .eyebrow ── */
-  .eyebrow { margin-block: 0; }
+  /* ── eyebrow ── */
+  .eyebrow {
+    margin-block: 0;
+    font-size: 1rem;
+    color: var(--forest);
+  }
 
   /* ── headline ── */
   .headline {
@@ -159,7 +164,7 @@ import Mascot from '@/components/Mascot.astro';
   /* ── demo URL ── */
   .demo-url {
     font-family: var(--font-mono);
-    font-size: 0.875rem;
+    font-size: var(--step-1);
     font-weight: 700;
     color: var(--forest);
     letter-spacing: 0.02em;
@@ -208,7 +213,8 @@ import Mascot from '@/components/Mascot.astro';
     /* Absolute pt units for reliable cross-browser print sizing */
     .headline    { font-size: 36pt; }
     .subhead     { font-size: 12pt; }
-    .demo-url    { font-size: 10pt; }
+    .demo-url    { font-size: 13pt; }
+    .eyebrow     { font-size: 11pt; }
     .poster-footer { font-size: 9pt; }
     .brand-word  { font-size: 16pt; }
     .brand-mascot { width: 40px; height: 40px; }
