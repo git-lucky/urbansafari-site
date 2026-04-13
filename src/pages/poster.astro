@@ -9,20 +9,17 @@ import Mascot from '@/components/Mascot.astro';
     <!-- Accent blob -->
     <div class="blob" aria-hidden="true"></div>
 
-    <!-- Logo -->
-    <img
-      class="logo rise rise-1"
-      src="/urban-safari-logo.png"
-      alt="Urban Safari"
-      width="140"
-      height="140"
-    />
+    <!-- Brand mark: mascot + wordmark -->
+    <div class="brand rise rise-1">
+      <img src="/mascot/atlas-wave.png" alt="" width="64" height="64" class="brand-mascot" aria-hidden="true" />
+      <span class="brand-word">Urban&nbsp;<span class="brand-gold">Safari</span></span>
+    </div>
 
     <!-- Eyebrow -->
     <p class="eyebrow rise rise-2">Demo Experience</p>
 
     <!-- Headline -->
-    <h1 class="headline rise rise-3">Try Urban Safari Free</h1>
+    <h1 class="headline rise rise-3">Try Urban Safari</h1>
 
     <!-- Subhead -->
     <p class="subhead rise rise-4">
@@ -86,11 +83,30 @@ import Mascot from '@/components/Mascot.astro';
   /* ── all children above blob ── */
   .poster-wrap > * { position: relative; z-index: 1; }
 
-  /* ── logo ── */
-  .logo {
-    width: 100px;
-    height: auto;
+  /* ── brand mark ── */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .brand-mascot {
+    width: 52px;
+    height: 52px;
     object-fit: contain;
+  }
+
+  .brand-word {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--step-2);
+    color: var(--forest);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .brand-gold {
+    color: var(--gold);
   }
 
   /* ── eyebrow inherits global .eyebrow ── */
@@ -190,11 +206,12 @@ import Mascot from '@/components/Mascot.astro';
     }
 
     /* Absolute pt units for reliable cross-browser print sizing */
-    .headline   { font-size: 36pt; }
-    .subhead    { font-size: 12pt; }
-    .demo-url   { font-size: 10pt; }
+    .headline    { font-size: 36pt; }
+    .subhead     { font-size: 12pt; }
+    .demo-url    { font-size: 10pt; }
     .poster-footer { font-size: 9pt; }
-    .logo       { width: 80px; }
+    .brand-word  { font-size: 16pt; }
+    .brand-mascot { width: 40px; height: 40px; }
 
     /* Preserve stamp card styling */
     .qr-card {
