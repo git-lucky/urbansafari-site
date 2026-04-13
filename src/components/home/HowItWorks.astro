@@ -1,0 +1,127 @@
+---
+import Mascot from '@/components/Mascot.astro';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Tell us the brief',
+    body: 'Date, team size, city, vibe. One 15-minute call and we\'ve got it.',
+    pose: 'atlas-booking',
+  },
+  {
+    n: '02',
+    title: 'We build the expedition',
+    body: 'Your custom game (challenges, routes, tech) is ready to go when you are. No review cycles, no logistics on your plate.',
+    pose: 'atlas-wrench',
+  },
+  {
+    n: '03',
+    title: 'Your team plays',
+    body: 'Teams race through city challenges, photo missions, trivia, and creative tasks. Live leaderboard, live energy.',
+    pose: 'atlas-running',
+  },
+  {
+    n: '04',
+    title: 'Everyone leaves grinning',
+    body: 'Awards ceremony, highlight reel, a group photo that actually means something. Work on Monday feels different.',
+    pose: 'atlas-trophy',
+  },
+];
+---
+
+<section id="how" class="section how">
+  <div class="wrap">
+    <header class="how-head">
+      <p class="eyebrow">The expedition</p>
+      <h2>Four steps. Zero babysitting.</h2>
+      <p class="lead">
+        You show up. We run the day. Your team walks away with a story they'll still
+        be telling at next year's kickoff.
+      </p>
+    </header>
+
+    <ol class="step-grid">
+      {steps.map((step, i) => (
+        <li class="step">
+          <div class="step-mascot">
+            <Mascot pose={step.pose} size="md" tilt={i % 2 === 0 ? -3 : 3} />
+          </div>
+          <p class="step-num">{step.n}</p>
+          <h3>{step.title}</h3>
+          <p class="step-body">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how-head {
+    max-width: 48ch;
+    margin-bottom: clamp(3rem, 6vw, 4.5rem);
+  }
+  .how-head .eyebrow { margin-bottom: 0.85rem; display: block; }
+  .how-head h2 { margin-bottom: 1rem; }
+
+  .step-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    counter-reset: step;
+    position: relative;
+  }
+  .step-grid::before {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: 90px;
+    height: 0;
+    border-top: 2.5px dashed var(--forest-soft);
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+  }
+  .step-mascot {
+    width: 160px;
+    background: var(--paper);
+    border-radius: 50%;
+    padding: 6px;
+    border: 2px solid var(--ink);
+    margin-bottom: 1rem;
+  }
+  .step-mascot :global(.mascot) {
+    width: 100%;
+  }
+  .step-num {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--moss);
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.25rem;
+  }
+  .step h3 {
+    font-size: var(--step-2);
+    margin-bottom: 0.5rem;
+  }
+  .step-body {
+    color: var(--forest-soft);
+    font-size: 0.98rem;
+  }
+
+  @media (max-width: 900px) {
+    .step-grid { grid-template-columns: repeat(2, 1fr); }
+    .step-grid::before { display: none; }
+  }
+  @media (max-width: 520px) {
+    .step-grid { grid-template-columns: 1fr; }
+  }
+</style>

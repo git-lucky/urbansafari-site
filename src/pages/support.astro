@@ -1,0 +1,195 @@
+---
+import Base from '@/layouts/Base.astro';
+import Mascot from '@/components/Mascot.astro';
+import { supportFaq, troubleshooting } from '@/content/faq';
+---
+
+<Base
+  title="Support"
+  description="Stuck during a Safari? Answers to the most common questions and a fast path to reach a human."
+>
+  <section class="support-hero band-sand">
+    <div class="wrap support-hero-grid">
+      <div>
+        <p class="eyebrow">We've got you</p>
+        <h1>How can we help?</h1>
+        <p class="lead">
+          Most in-game hiccups fix themselves in thirty seconds. When they
+          don't, a real human is one email away.
+        </p>
+      </div>
+      <div class="support-mascot">
+        <Mascot pose="atlas-phone" size="lg" tilt={4} drift />
+      </div>
+    </div>
+  </section>
+
+  <section class="support-contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <div>
+          <p class="eyebrow">Talk to a person</p>
+          <h2>Email support</h2>
+          <p>Questions, bug reports, anything tricky. Write to us.</p>
+        </div>
+        <a href="mailto:support@itsybits.io" class="btn btn-coral">
+          support@itsybits.io
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="support-faq section">
+    <div class="wrap">
+      <header class="support-head">
+        <p class="eyebrow">FAQ</p>
+        <h2>While you're here…</h2>
+      </header>
+
+      <div class="support-list">
+        {supportFaq.map((item, i) => (
+          <details class="support-item" open={i === 0}>
+            <summary>
+              <span>{item.q}</span>
+              <span class="toggle" aria-hidden="true">＋</span>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="support-tips section band-cream-deep">
+    <div class="wrap">
+      <header class="support-head">
+        <p class="eyebrow">Quick fixes</p>
+        <h2>Troubleshooting, minus the menu diving.</h2>
+      </header>
+
+      <ul class="tip-grid">
+        {troubleshooting.map((t) => (
+          <li class="tip">
+            <h3>{t.q}</h3>
+            <p>{t.a}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <style>
+    .support-hero {
+      padding-block: clamp(3.5rem, 7vw, 5rem);
+      border-bottom: 2px solid var(--ink);
+    }
+    .support-hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .support-hero h1 {
+      font-size: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+      margin-block: 0.5rem 1rem;
+    }
+    .support-mascot { display: grid; place-items: center; }
+    @media (max-width: 700px) {
+      .support-hero-grid { grid-template-columns: 1fr; }
+      .support-mascot { order: -1; }
+    }
+
+    .support-contact {
+      padding-block: clamp(2.5rem, 5vw, 3.5rem);
+    }
+    .contact-card {
+      background: var(--paper);
+      border: var(--stamp-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--stamp-shadow);
+      padding: 2rem clamp(1.5rem, 4vw, 2.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .contact-card p { color: var(--forest-soft); }
+    .contact-card h2 { font-size: var(--step-3); margin-block: 0.3rem 0.5rem; }
+
+    .support-head {
+      max-width: 48ch;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+    .support-head .eyebrow { display: block; margin-bottom: 0.85rem; }
+
+    .support-list {
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .support-item {
+      background: var(--paper);
+      border: var(--stamp-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--stamp-shadow);
+    }
+    .support-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.1rem 1.4rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--forest);
+    }
+    .support-item summary::-webkit-details-marker { display: none; }
+    .toggle {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 2px solid var(--ink);
+      color: var(--forest);
+      font-weight: 700;
+      transition: transform 0.24s, background 0.24s, color 0.24s;
+    }
+    .support-item[open] .toggle {
+      transform: rotate(45deg);
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .support-item p {
+      padding: 0 1.4rem 1.25rem;
+      color: var(--forest-soft);
+    }
+
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .tip {
+      background: var(--paper);
+      border-left: 4px solid var(--moss);
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 2px 0 rgba(15, 36, 25, 0.08);
+    }
+    .tip h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .tip p { color: var(--forest-soft); font-size: 0.95rem; }
+  </style>
+</Base>

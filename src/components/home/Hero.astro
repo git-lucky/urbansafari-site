@@ -1,0 +1,218 @@
+---
+import Mascot from '@/components/Mascot.astro';
+import { counts, hasCityCount, hasRating } from '@/content/proof';
+---
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <svg class="hero-topo" viewBox="0 0 1200 800" preserveAspectRatio="none">
+      <defs>
+        <pattern id="topo" width="40" height="40" patternUnits="userSpaceOnUse">
+          <circle cx="20" cy="20" r="1.2" fill="var(--forest-soft)" opacity="0.22" />
+        </pattern>
+      </defs>
+      <rect width="1200" height="800" fill="url(#topo)" />
+    </svg>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow rise rise-1">Team building · built for humans</p>
+
+      <h1 class="rise rise-2">
+        Your team's<br/>
+        <span class="underline-smear">next great story.</span>
+      </h1>
+
+      <p class="lead rise rise-3">
+        City-wide expeditions that leave teams closer, louder, and
+        actually happy they were invited.
+      </p>
+
+      <div class="hero-ctas rise rise-4">
+        <a href="#contact" class="btn btn-coral">
+          Book a Safari
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="#tiers" class="btn">See the four tiers</a>
+      </div>
+
+      <ul class="hero-bona rise rise-5" aria-label="Why teams pick us">
+        <li><span>10&ndash;200+</span> players per run</li>
+        <li><span>Any city</span> you want</li>
+        <li><span>Zero logistics</span> on your plate</li>
+      </ul>
+    </div>
+
+    <div class="hero-art">
+      <div class="mascot-stage">
+        <Mascot pose="atlas-cartographer" size="xl" tilt={-4} drift />
+        {hasCityCount && (
+          <div class="sticker sticker-2" aria-hidden="true">
+            📍 teams in {counts.citiesPlayed} cities
+          </div>
+        )}
+        {hasRating && (
+          <div class="sticker sticker-3" aria-hidden="true">
+            ⭐ {counts.averageRating} / 5 from the last {counts.eventsRun} events
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding-block: clamp(4rem, 10vw, 8rem) clamp(4rem, 8vw, 6rem);
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    border-bottom: 2px solid var(--ink);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-topo { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+  }
+  .blob-1 {
+    width: 360px; height: 360px;
+    top: -120px; right: -80px;
+    background: var(--coral-soft);
+  }
+  .blob-2 {
+    width: 420px; height: 420px;
+    bottom: -180px; left: -160px;
+    background: var(--sunset);
+    opacity: 0.22;
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 2rem + 5vw, 6rem);
+    line-height: 0.95;
+    margin-block: 1rem 1.5rem;
+  }
+
+  .underline-smear {
+    position: relative;
+    color: var(--ink);
+    display: inline-block;
+  }
+  .underline-smear::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    right: -6px;
+    bottom: 0.02em;
+    height: 0.35em;
+    background: var(--coral);
+    z-index: -1;
+    transform: skew(-4deg) rotate(-1deg);
+    border-radius: 4px;
+  }
+
+  .hero-ctas {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-bona {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    font-size: 0.92rem;
+    color: var(--forest-soft);
+  }
+  .hero-bona li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .hero-bona li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px; height: 7px;
+    background: var(--coral);
+    border-radius: 50%;
+  }
+  .hero-bona span { color: var(--forest); font-weight: 700; font-family: var(--font-display); }
+
+  /* art column */
+  .hero-art { display: grid; place-items: center; }
+  .mascot-stage {
+    position: relative;
+    width: min(100%, 480px);
+    aspect-ratio: 1 / 1;
+  }
+  .mascot-stage :global(.mascot) {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 85%;
+    height: 85%;
+  }
+  .sticker {
+    position: absolute;
+    background: var(--paper);
+    border: var(--stamp-border);
+    border-radius: 14px;
+    padding: 0.55rem 0.9rem;
+    box-shadow: var(--stamp-shadow);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transform: rotate(var(--r, -4deg));
+    animation: sway 7s ease-in-out infinite;
+  }
+  .sticker-2 {
+    --r: 5deg;
+    bottom: 8%; left: -4%;
+    background: var(--moss);
+    color: var(--cream);
+    animation-delay: 1.2s;
+  }
+  .sticker-3 {
+    --r: 3deg;
+    top: 12%; right: -6%;
+    background: var(--cream);
+    animation-delay: 2.1s;
+    max-width: 14ch;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { order: -1; }
+    .mascot-stage { width: min(100%, 340px); }
+    .sticker-3 { display: none; }
+  }
+</style>

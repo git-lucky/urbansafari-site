@@ -1,0 +1,247 @@
+/* ------------------------------------------------------------------ */
+/*  Urban Safari — design tokens                                       */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* palette */
+  --ink:          #0F2419;
+  --forest:       #1F3A2B;
+  --forest-soft:  #3B5D48;
+  --forest-50:    #EAF1E9;
+  --cream:        #FAF5E9;
+  --cream-deep:   #F3EBD4;
+  --sand:         #EDDFC3;
+  --sand-deep:    #E1CDA2;
+  --gold:         #EAB72D;
+  --gold-soft:    #F3D97E;
+  --coral:        #EAB72D;    /* alias kept so existing refs keep working */
+  --coral-soft:   #F3D97E;
+  --sunset:       #F2A93B;    /* warmer gold, used for Est 2024 sticker */
+  --moss:         #6B7A35;
+  --moss-soft:    #B5BE82;
+  --paper:        #FFFDF7;
+
+  /* type */
+  --font-display: 'Cabinet Grotesk', 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* scale */
+  --step-0:  clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+  --step-1:  clamp(1.1rem, 1.03rem + 0.3vw, 1.25rem);
+  --step-2:  clamp(1.35rem, 1.2rem + 0.6vw, 1.6rem);
+  --step-3:  clamp(1.7rem, 1.4rem + 1.3vw, 2.2rem);
+  --step-4:  clamp(2.4rem, 1.9rem + 2.4vw, 3.4rem);
+  --step-5:  clamp(3.2rem, 2.4rem + 3.8vw, 5rem);
+  --step-6:  clamp(4rem,  3rem  + 5.5vw,  7rem);
+
+  /* spacing */
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section: clamp(4rem, 8vw, 7rem);
+
+  /* shape */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --stamp-border: 2.5px solid var(--ink);
+  --stamp-shadow: 5px 5px 0 0 var(--ink);
+  --stamp-shadow-coral: 5px 5px 0 0 var(--coral);
+  --stamp-shadow-sunset: 5px 5px 0 0 var(--sunset);
+}
+
+/* ------------------------------------------------------------------ */
+/*  reset                                                              */
+/* ------------------------------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+img, svg, video { max-width: 100%; height: auto; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+::selection { background: var(--gold); color: var(--ink); }
+
+/* ------------------------------------------------------------------ */
+/*  typography                                                         */
+/* ------------------------------------------------------------------ */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--forest);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+}
+h1 { font-size: var(--step-6); }
+h2 { font-size: var(--step-5); }
+h3 { font-size: var(--step-3); }
+h4 { font-size: var(--step-2); }
+p  { max-width: 62ch; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--moss);
+  font-weight: 700;
+}
+
+.lead {
+  font-size: var(--step-2);
+  color: var(--forest-soft);
+  max-width: 42ch;
+  line-height: 1.4;
+}
+
+/* ------------------------------------------------------------------ */
+/*  layout utilities                                                   */
+/* ------------------------------------------------------------------ */
+
+.wrap {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section);
+  position: relative;
+}
+
+.band-sand      { background: var(--sand); }
+.band-cream-deep{ background: var(--cream-deep); }
+.band-forest    { background: var(--forest); color: var(--cream); }
+.band-coral     { background: var(--gold); color: var(--ink); }
+
+.band-forest h1, .band-forest h2, .band-forest h3 { color: var(--paper); }
+.band-forest .eyebrow { color: var(--gold); }
+.band-coral h1, .band-coral h2, .band-coral h3 { color: var(--ink); }
+.band-coral .eyebrow { color: var(--ink); opacity: 0.7; }
+
+/* ------------------------------------------------------------------ */
+/*  buttons                                                            */
+/* ------------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  border: var(--stamp-border);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  font-size: 1.05rem;
+  transition: transform 0.18s cubic-bezier(.2,.9,.3,1.3), box-shadow 0.18s, background 0.18s, color 0.18s;
+  box-shadow: var(--stamp-shadow);
+  background: var(--paper);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.btn:hover, .btn:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 var(--ink);
+  outline: none;
+}
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--ink);
+}
+.btn-coral   { background: var(--gold);   color: var(--ink); }
+.btn-forest  { background: var(--forest); color: var(--paper); }
+.btn-ghost   { background: transparent; box-shadow: none; }
+.btn-ghost:hover { box-shadow: var(--stamp-shadow); }
+
+.btn .arrow { transition: transform 0.18s; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ------------------------------------------------------------------ */
+/*  reveal animations (page load + scroll)                             */
+/* ------------------------------------------------------------------ */
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-6px) rotate(1deg); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg); }
+}
+
+.rise { animation: rise 0.9s cubic-bezier(.2,.9,.3,1) both; }
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.18s; }
+.rise-3 { animation-delay: 0.32s; }
+.rise-4 { animation-delay: 0.48s; }
+.rise-5 { animation-delay: 0.66s; }
+
+.drift { animation: drift 6s ease-in-out infinite; }
+.sway  { animation: sway 4.5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  grain / noise overlay                                              */
+/* ------------------------------------------------------------------ */
+
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ------------------------------------------------------------------ */
+/*  dashed trail (used in How It Works)                                */
+/* ------------------------------------------------------------------ */
+
+.trail {
+  background-image: radial-gradient(circle, var(--forest-soft) 1.5px, transparent 1.6px);
+  background-size: 12px 12px;
+  background-repeat: repeat-x;
+  background-position: 0 50%;
+}
+
+/* ------------------------------------------------------------------ */
+/*  focus ring                                                         */
+/* ------------------------------------------------------------------ */
+
+:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

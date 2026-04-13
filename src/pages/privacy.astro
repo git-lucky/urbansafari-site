@@ -1,0 +1,185 @@
+---
+import Base from '@/layouts/Base.astro';
+---
+
+<Base
+  title="Privacy"
+  description="How Urban Safari collects, uses, and protects the information our players and customers share with us."
+  noIndex={false}
+>
+  <article class="legal">
+    <div class="wrap">
+      <header class="legal-head">
+        <p class="eyebrow">Legal</p>
+        <h1>Privacy Policy</h1>
+        <p class="legal-stamp">Last updated · December 7, 2024</p>
+      </header>
+
+      <div class="prose">
+        <p>
+          itsybits (“we”, “our”, “us”) builds and operates the Urban Safari app.
+          This policy covers what we collect when you play, why we collect it,
+          and what we will (and won't) do with it. Written in plain English
+          because legalese serves nobody.
+        </p>
+
+        <h2>What we collect</h2>
+
+        <h3>Your email</h3>
+        <p>
+          Collected at sign-in so we know it's you and so your team can function
+          as a team. That's it.
+        </p>
+
+        <h3>Photos and videos you submit</h3>
+        <p>
+          When you complete a photo or video challenge, we store the media with
+          your team. Teammates and hosts can see it; that's the point.
+        </p>
+
+        <h3>Anonymous usage data (via PostHog)</h3>
+        <p>We track, in aggregate and without identifying you personally:</p>
+        <ul>
+          <li>Which screens you visit in the app</li>
+          <li>Which features you use</li>
+          <li>App lifecycle events (open, close, foreground, background)</li>
+        </ul>
+        <p>It helps us figure out what's working and what's busted.</p>
+
+        <h3>Crash data (via Sentry)</h3>
+        <p>
+          When something breaks, we collect the crash report so we can fix it.
+          That includes:
+        </p>
+        <ul>
+          <li>Device type and OS version</li>
+          <li>App version</li>
+          <li>Error logs and stack traces</li>
+          <li>IP address</li>
+        </ul>
+
+        <h2>How we use it</h2>
+        <ul>
+          <li><strong>To run the game.</strong> Your email and media power core gameplay.</li>
+          <li><strong>To improve the app.</strong> Usage data tells us what to build next.</li>
+          <li><strong>To squash bugs.</strong> Crash reports help us keep your day smooth.</li>
+        </ul>
+
+        <div class="callout">
+          <p><strong>What we don't do:</strong></p>
+          <ul>
+            <li>Sell your personal information. Ever.</li>
+            <li>Use your data for advertising or cross-app tracking.</li>
+            <li>Share your information with data brokers.</li>
+          </ul>
+        </div>
+
+        <h2>Where it lives</h2>
+        <p>
+          Your data is stored with Supabase, a reputable cloud database provider.
+          We use standard technical and organizational safeguards to keep
+          unauthorized people out.
+        </p>
+
+        <h2>How long we keep it</h2>
+        <p>
+          As long as we need it to run the service. Photos and videos are
+          retained for the duration of your game event. You can ask us to delete
+          your data at any time. See contact info below.
+        </p>
+
+        <h2>Third-party services</h2>
+        <ul>
+          <li><strong>Supabase</strong> · database and file storage</li>
+          <li><strong>PostHog</strong> · anonymous product analytics</li>
+          <li><strong>Sentry</strong> · error tracking and crash reporting</li>
+        </ul>
+        <p>Each has its own privacy policy governing how they handle data.</p>
+
+        <h2>Children's privacy</h2>
+        <p>
+          Urban Safari is not for kids under 13, and we don't knowingly collect
+          their information. If you think we have, tell us and we'll fix it.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>You can always:</p>
+        <ul>
+          <li>Ask to see the personal data we have about you</li>
+          <li>Ask us to correct anything inaccurate</li>
+          <li>Ask us to delete it</li>
+          <li>Withdraw your consent at any time</li>
+        </ul>
+        <p>Email us at the address below and we'll handle it.</p>
+
+        <h2>Policy changes</h2>
+        <p>
+          If we update this policy, we'll post the new version here and update
+          the “last updated” date at the top.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Privacy questions or data requests: <a href="mailto:support@itsybits.io">support@itsybits.io</a>
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .legal {
+      padding-block: clamp(3.5rem, 8vw, 6rem);
+      background: var(--cream);
+    }
+    .legal-head {
+      max-width: 720px;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    .legal-head .eyebrow { display: block; margin-bottom: 0.85rem; }
+    .legal-head h1 {
+      font-size: clamp(3rem, 2.5rem + 2vw, 5rem);
+      margin-bottom: 0.5rem;
+    }
+    .legal-stamp {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.8rem;
+      color: var(--forest-soft);
+    }
+    .prose {
+      max-width: 720px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .prose h2 {
+      font-size: var(--step-3);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+    .prose h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--forest);
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .prose p, .prose ul { margin-bottom: 1rem; }
+    .prose ul { padding-left: 1.25rem; list-style: disc; }
+    .prose ul li { margin-bottom: 0.4rem; }
+    .prose a { color: var(--forest); font-weight: 700; border-bottom: 2px solid var(--gold); }
+
+    .callout {
+      background: var(--sand);
+      border-left: 5px solid var(--moss);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.5rem 0;
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout ul { list-style: "· "; padding-left: 1rem; }
+  </style>
+</Base>

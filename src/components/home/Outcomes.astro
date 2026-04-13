@@ -1,0 +1,139 @@
+---
+import Mascot from '@/components/Mascot.astro';
+
+const outcomes = [
+  {
+    headline: 'The 200-person offsite that doesn\'t fall apart.',
+    body: 'Our platform and crew are built for city-wide hunts where dozens of teams play in parallel. You get one point of contact; everyone else gets a day that feels effortless.',
+    pose: 'atlas-flag',
+    proof: [
+      'Live leaderboard across teams',
+      'On-call hosts in every zone',
+      'Weather and logistics contingencies built in',
+    ],
+  },
+  {
+    headline: 'Coworkers who actually know each other afterward.',
+    body: 'Nothing bonds a team faster than laughing together on a city sidewalk, solving something weird and wonderful. People come back from a Safari with inside jokes, not small talk.',
+    pose: 'atlas-polaroid',
+    proof: [
+      'Mixed-role teams by design',
+      'Photo & video missions to revisit later',
+      'A highlight reel that keeps the feeling alive',
+    ],
+  },
+  {
+    headline: 'You, looking like the person who gets it.',
+    body: 'The best part of booking Urban Safari is that you don\'t have to lift a finger the day-of. Your team thinks you\'re a genius. We\'ll let them keep thinking that.',
+    pose: 'atlas-clapper',
+    proof: [
+      'White-glove planning from first call to wrap',
+      'A dedicated lead who remembers your team',
+      'Post-event recap, metrics, and media',
+    ],
+  },
+];
+---
+
+<section id="outcomes" class="section outcomes">
+  <div class="wrap">
+    <header class="outcomes-head">
+      <p class="eyebrow">What you actually get</p>
+      <h2>Three outcomes we stake our name on.</h2>
+    </header>
+
+    <div class="outcome-list">
+      {outcomes.map((o, i) => (
+        <article class="outcome" data-index={i + 1}>
+          <div class="outcome-side">
+            <Mascot pose={o.pose} size="lg" tilt={i % 2 === 0 ? -4 : 4} />
+          </div>
+          <div class="outcome-body">
+            <span class="outcome-num">0{i + 1}</span>
+            <h3>{o.headline}</h3>
+            <p>{o.body}</p>
+            <ul>
+              {o.proof.map((p) => (<li>{p}</li>))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .outcomes-head { max-width: 48ch; margin-bottom: clamp(3rem, 6vw, 4.5rem); }
+  .outcomes-head .eyebrow { margin-bottom: 0.85rem; display: block; }
+
+  .outcome-list { display: flex; flex-direction: column; gap: clamp(3rem, 6vw, 5rem); }
+
+  .outcome {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .outcome:nth-child(even) {
+    grid-template-columns: 1fr 280px;
+  }
+  .outcome:nth-child(even) .outcome-side { order: 2; }
+
+  .outcome-side {
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    background: var(--sand);
+    border: var(--stamp-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--stamp-shadow);
+    aspect-ratio: 1 / 1;
+  }
+
+  .outcome-num {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--moss);
+    letter-spacing: 0.14em;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .outcome h3 {
+    font-size: var(--step-4);
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .outcome p {
+    color: var(--forest-soft);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    max-width: 54ch;
+  }
+  .outcome ul {
+    display: grid;
+    gap: 0.6rem;
+  }
+  .outcome ul li {
+    padding-left: 1.3rem;
+    position: relative;
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+  .outcome ul li::before {
+    content: "⌯";
+    position: absolute;
+    left: 0;
+    color: var(--moss);
+    font-weight: 700;
+  }
+
+  @media (max-width: 820px) {
+    .outcome, .outcome:nth-child(even) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .outcome:nth-child(even) .outcome-side { order: 0; }
+    .outcome-side { max-width: 240px; aspect-ratio: 1/1; }
+  }
+</style>

@@ -1,52 +1,47 @@
-# Deploying Urban Safari to Vercel
+# Deploying Urban Safari to Cloudflare Pages
 
 ## Prerequisites
 - Access to the `urbansafari.app` GitHub repo
-- A Vercel account (vercel.com)
-- Access to the domain registrar for `urbansafari.app`
+- A Cloudflare account with Pages access
+- Access to the DNS records for `urbansafari.app`
 
 ---
 
-## Step 1 — Deploy to Vercel
+## Step 1 — Connect the repo
 
-1. Go to [vercel.com](https://vercel.com) and sign in
-2. Click **Add New → Project**
-3. Find and import the `urbansafari.app` GitHub repo
-4. Vercel will auto-detect Next.js — leave all settings as default
-5. Click **Deploy**
+1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git**.
+2. Authorize Cloudflare to read the repo and pick `urbansafari.app`.
+3. Choose the `main` branch for production.
 
-You'll get a live preview URL like `urbansafari-app.vercel.app` within a minute.
+## Step 2 — Build settings
 
----
+| Field             | Value                |
+|-------------------|----------------------|
+| Framework preset  | Astro                |
+| Build command     | `pnpm build`         |
+| Build output dir  | `dist`               |
+| Root directory    | `/` (project root)   |
+| Node version      | `20` or newer        |
 
-## Step 2 — Add Custom Domain
+Cloudflare auto-detects the framework preset — verify the above values match before the first build.
 
-1. In your Vercel project dashboard, go to **Settings → Domains**
-2. Type `urbansafari.app` and click **Add**
-3. Also add `www.urbansafari.app` and set it to redirect to the root domain
-4. Vercel will show you the DNS records you need to set
+## Step 3 — First deploy
 
----
+Click **Save and Deploy**. The first build provisions a `*.pages.dev` URL you can sanity-check.
 
-## Step 3 — Update DNS at Your Registrar
+## Step 4 — Custom domain
 
-Add the following records at your domain registrar (exact values shown in Vercel):
+1. In the Pages project settings, add `urbansafari.app` and `www.urbansafari.app`.
+2. Cloudflare will auto-create the DNS records if the zone is already on Cloudflare; otherwise it will show the CNAME target to set at your registrar.
+3. Redirect `www` → apex via a Page Rule or the Bulk Redirects UI.
 
-| Type | Name | Value |
-|------|------|-------|
-| A | `@` | `76.76.21.21` |
-| CNAME | `www` | `cname.vercel-dns.com` |
+## Step 5 — Verify
 
-> DNS changes can take a few minutes to a few hours to propagate.
+- [ ] `https://urbansafari.app` loads with a valid TLS cert.
+- [ ] `/privacy` and `/support` both render.
+- [ ] `/not-a-real-page` returns the custom 404.
+- [ ] `curl -sI https://urbansafari.app | grep -i server` reports `cloudflare`.
 
----
+## Future deploys
 
-## Step 4 — Verify
-
-Once DNS propagates, visit [https://urbansafari.app](https://urbansafari.app) — it should load the new site with a valid SSL certificate automatically provisioned by Vercel.
-
----
-
-## Future Deploys
-
-Every push to the `main` branch automatically redeploys the site. No manual steps needed.
+Every push to `main` triggers a production deploy. Pull requests get preview URLs automatically.

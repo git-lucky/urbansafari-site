@@ -1,0 +1,87 @@
+---
+import { clientLogos, hasLogos } from '@/content/proof';
+---
+
+{hasLogos && (
+  <section class="trusted band-sand" aria-labelledby="trusted-head">
+    <div class="wrap">
+      <p id="trusted-head" class="trusted-head">
+        Played by teams at
+      </p>
+      <ul class="logo-row" aria-hidden="true">
+        {clientLogos.map((logo) => (
+          <li class="logo-chip">
+            {logo.src
+              ? <img src={logo.src} alt={logo.name} class="logo-img" />
+              : <span class="logo-glyph">{logo.glyph}</span>
+            }
+            <span class="logo-name">{logo.name}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="trusted-note">
+        And growing. Ask us for the full roster.
+      </p>
+    </div>
+  </section>
+)}
+
+<style>
+  .trusted {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    border-bottom: 2px solid var(--ink);
+  }
+  .trusted-head {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.78rem;
+    color: var(--forest);
+    text-align: center;
+    margin-bottom: 1.75rem;
+    opacity: 0.75;
+  }
+  .logo-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.25rem;
+  }
+  .logo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem 0.5rem 0.55rem;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--forest);
+    transition: transform 0.24s;
+  }
+  .logo-chip:hover { transform: translateY(-2px); }
+  .logo-glyph {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+  }
+  .logo-img {
+    height: 24px;
+    width: auto;
+  }
+  .trusted-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: var(--forest-soft);
+    font-size: 0.92rem;
+  }
+</style>

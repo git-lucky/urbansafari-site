@@ -1,0 +1,127 @@
+---
+import Mascot from '@/components/Mascot.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer band-forest">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="brand-row">
+        <Mascot pose="atlas-waving" size="sm" label="Atlas waving goodbye" />
+        <div>
+          <p class="footer-wordmark">Urban&nbsp;Safari</p>
+          <p class="footer-tag">
+            City-wide expeditions that leave teams closer, louder,
+            and actually happy they were invited.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <div>
+        <p class="footer-head">Safari</p>
+        <ul>
+          <li><a href="/#tiers">Experience tiers</a></li>
+          <li><a href="/#how">How it works</a></li>
+          <li><a href="/#outcomes">Outcomes</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-head">Get in touch</p>
+        <ul>
+          <li><a href="tel:4054374597">(405) 437-4597</a></li>
+          <li><a href="mailto:hello@urbansafari.app">hello@urbansafari.app</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-head">Fine print</p>
+        <ul>
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/support">Support</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="wrap footer-legal">
+    <span>© {year} Urban Safari Game Experiences.</span>
+    <span class="footer-motto">Made by a team that still high-fives after meetings.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--section);
+    padding-block: clamp(3.5rem, 8vw, 5.5rem) 2.5rem;
+    border-top: 3px solid var(--ink);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .brand-row {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--paper);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-tag {
+    color: color-mix(in srgb, var(--paper) 80%, transparent);
+    max-width: 34ch;
+    font-size: 0.98rem;
+  }
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+  .footer-head {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sunset);
+    margin-bottom: 0.85rem;
+  }
+  .footer-nav li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-nav a {
+    color: color-mix(in srgb, var(--paper) 85%, transparent);
+    transition: color 0.18s;
+  }
+  .footer-nav a:hover { color: var(--coral-soft); }
+
+  .footer-legal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--paper) 20%, transparent);
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--paper) 70%, transparent);
+  }
+  .footer-motto {
+    font-style: italic;
+    font-family: var(--font-display);
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import Base from '@/layouts/Base.astro';
+import Mascot from '@/components/Mascot.astro';
+---
+
+<Base
+  title="Off the map"
+  description="This page isn't on our route. Head back to base camp."
+  noIndex={true}
+>
+  <section class="lost">
+    <div class="wrap lost-grid">
+      <div>
+        <p class="eyebrow">Error · 404</p>
+        <h1>This trail has no pin.</h1>
+        <p class="lead">
+          Atlas wandered off the map and couldn't find this page. Happens to the
+          best of us.
+        </p>
+        <div class="lost-ctas">
+          <a href="/" class="btn btn-coral">Back to base camp →</a>
+          <a href="/#contact" class="btn">Tell us what you were looking for</a>
+        </div>
+      </div>
+      <div class="lost-art">
+        <Mascot pose="atlas-lost" size="xl" tilt={-8} drift />
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .lost {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      min-height: 70vh;
+      display: grid;
+      place-items: center;
+    }
+    .lost-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .lost h1 {
+      font-size: clamp(3rem, 2rem + 5vw, 6rem);
+      line-height: 0.95;
+      margin-block: 0.75rem 1.25rem;
+    }
+    .lost-ctas {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .lost-art { display: grid; place-items: center; }
+    @media (max-width: 820px) {
+      .lost-grid { grid-template-columns: 1fr; }
+      .lost-art { order: -1; }
+    }
+  </style>
+</Base>

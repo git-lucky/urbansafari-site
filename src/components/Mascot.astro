@@ -1,0 +1,142 @@
+---
+/*
+ * <Mascot /> — Atlas the elephant.
+ *
+ * Every pose used on the site must match an entry in /MASCOT_SPEC.md.
+ * Poses with a real illustration rendered to /public/mascot/{pose}.png
+ * must be listed in RENDERED_POSES below. Any pose not in that set
+ * falls back to a dashed-circle placeholder.
+ */
+
+interface Props {
+  pose: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  label?: string;
+  tilt?: number;
+  drift?: boolean;
+  class?: string;
+}
+
+const RENDERED_POSES = new Set<string>([
+  'atlas-cartographer',
+]);
+
+const {
+  pose,
+  size = 'md',
+  label,
+  tilt = 0,
+  drift = false,
+  class: className = '',
+} = Astro.props;
+
+const sizeMap: Record<string, string> = {
+  xs:  '56px',
+  sm:  '96px',
+  md:  '160px',
+  lg:  '240px',
+  xl:  '340px',
+};
+
+const dimension = sizeMap[size];
+const displayLabel = label ?? pose;
+const hasAsset = RENDERED_POSES.has(pose);
+const assetSrc = `/mascot/${pose}.png`;
+---
+
+<figure
+  class={`mascot mascot-${size} ${drift ? 'drift' : ''} ${className}`}
+  data-pose={pose}
+  style={`--mascot-size:${dimension}; --mascot-tilt:${tilt}deg;`}
+  aria-hidden={label ? undefined : 'true'}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+>
+  {hasAsset ? (
+    <img
+      class="mascot-img"
+      src={assetSrc}
+      alt={label ?? ''}
+      width="1024"
+      height="1024"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : (
+    <div class="mascot-box">
+      <span class="mascot-slug">{displayLabel}</span>
+      <span class="mascot-hint">atlas · placeholder</span>
+    </div>
+  )}
+</figure>
+
+<style>
+  .mascot {
+    width: var(--mascot-size);
+    aspect-ratio: 1 / 1;
+    transform: rotate(var(--mascot-tilt));
+    display: inline-block;
+  }
+  .mascot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .mascot-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2.5px dashed var(--forest-soft);
+    border-radius: 50%;
+    background:
+      radial-gradient(
+        circle at 35% 30%,
+        var(--cream) 0%,
+        var(--sand) 70%,
+        var(--sand-deep) 100%
+      );
+    padding: 0.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .mascot-box::before {
+    content: "🐘";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: calc(var(--mascot-size) * 0.38);
+    opacity: 0.35;
+    filter: grayscale(0.3);
+  }
+  .mascot-slug {
+    font-family: var(--font-mono);
+    font-size: calc(var(--mascot-size) * 0.075);
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--cream);
+    padding: 0.15em 0.45em;
+    border-radius: 6px;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+    line-height: 1.1;
+    max-width: 90%;
+  }
+  .mascot-hint {
+    font-family: var(--font-mono);
+    font-size: calc(var(--mascot-size) * 0.055);
+    color: var(--forest-soft);
+    opacity: 0.7;
+    margin-top: 0.3em;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+</style>
