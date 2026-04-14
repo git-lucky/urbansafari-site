@@ -6,7 +6,7 @@ export interface FaqItem {
 export const preSaleFaq: FaqItem[] = [
   {
     q: 'How big can a team be?',
-    a: 'Anywhere from 10 to 200+. The platform and our hosts are built for multi-city expeditions with hundreds of players competing in parallel.',
+    a: 'Anywhere from 10 to 200+. The platform and our hosts are built for expeditions with hundreds of players competing in real time.',
   },
   {
     q: 'Which cities do you run in?',
@@ -14,7 +14,7 @@ export const preSaleFaq: FaqItem[] = [
   },
   {
     q: 'Can we customize the game for our company?',
-    a: 'Yes, on every tier above Scout. Guided Expedition adds company trivia and branded moments; the Urban Safari tier is fully custom (challenges, photo overlays, and the whole expedition written around your team).',
+    a: 'Every game is custom built for your city. No two expeditions are the same. If you book the Urban Safari package, you can also layer in company branding: custom challenges, branded moments, and content written around your team.',
   },
   {
     q: 'How far out should we book?',

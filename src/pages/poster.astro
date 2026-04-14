@@ -1,6 +1,5 @@
 ---
 import Poster from '@/layouts/Poster.astro';
-import Mascot from '@/components/Mascot.astro';
 ---
 
 <Poster>
@@ -26,20 +25,18 @@ import Mascot from '@/components/Mascot.astro';
       City-wide team building your crew will actually talk about.
     </p>
 
-    <!-- Mascot -->
-    <div class="mascot-wrap rise rise-5">
-      <Mascot pose="atlas-celebrate" size="lg" drift />
-    </div>
-
-    <!-- QR code card -->
-    <div class="qr-card rise rise-5">
-      <img
-        src="/emailPoster/qr-demo.png"
-        alt="QR code — scan to join the Urban Safari demo"
-        width="220"
-        height="220"
-        class="qr-img"
-      />
+    <!-- QR code card with peeking mascot -->
+    <div class="qr-section rise rise-5">
+      <img src="/mascot/atlas-binoculars.png" alt="" class="qr-peek" aria-hidden="true" />
+      <div class="qr-card">
+        <img
+          src="/emailPoster/qr-demo.png"
+          alt="QR code — scan to join the Urban Safari demo"
+          width="220"
+          height="220"
+          class="qr-img"
+        />
+      </div>
     </div>
 
     <!-- Demo URL -->
@@ -139,9 +136,20 @@ import Mascot from '@/components/Mascot.astro';
     margin-block: 0;
   }
 
-  /* ── mascot ── */
-  .mascot-wrap {
-    margin-block: 0.25rem;
+  /* ── QR section (peek + card) ── */
+  .qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .qr-peek {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    margin-bottom: -22px;
+    position: relative;
+    z-index: 2;
   }
 
   /* ── QR card ── */
@@ -152,6 +160,8 @@ import Mascot from '@/components/Mascot.astro';
     border-radius: var(--radius-md);
     box-shadow: var(--stamp-shadow);
     display: inline-flex;
+    position: relative;
+    z-index: 1;
   }
 
   .qr-img {

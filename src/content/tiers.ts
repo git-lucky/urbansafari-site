@@ -29,13 +29,13 @@ export const tiers: Tier[] = [
   {
     slug: 'remote-expedition',
     name: 'Remote Expedition',
-    tagline: 'We join your  — virtually.',
+    tagline: 'We join you  — virtually.',
     description:
-      'The guided version for hybrid and remote teams. We kick off live on video, stay on standby all day, and keep every team in sync no matter where they are.',
+      'The guided version for remote teams. We kick off live on video, stay on standby all day, and keep every team in sync no matter where they are.',
     includes: [
       'Live remote kickoff and orientation',
       'Real-time support from a Safari host',
-      'Leaderboard updates across cities',
+      'Leaderboard updates across all teams',
       'Works for teams spread across time zones',
     ],
     mascotPose: 'atlas-headset',

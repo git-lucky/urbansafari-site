@@ -1,0 +1,42 @@
+<svg viewBox="0 0 128 128" width="60" height="60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#FFD700" />
+      <stop offset="60%" stop-color="#DAA520" />
+      <stop offset="100%" stop-color="#8B4513" />
+    </radialGradient>
+    <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="10%" stop-color="#FFFFFF" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.1" />
+      <stop offset="90%" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="mossGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#839A4D" />
+      <stop offset="100%" stop-color="#6B7A35" />
+    </radialGradient>
+  </defs>
+
+  <circle cx="64" cy="64" r="60" fill="url(#goldGradient)" stroke="#5A3A0A" stroke-width="2" />
+  <circle cx="64" cy="64" r="58" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1" />
+  <circle cx="64" cy="64" r="48" fill="#FFF8E7" stroke="#333333" stroke-width="1.5" />
+
+  <line x1="64" y1="18" x2="64" y2="28" stroke="#333333" stroke-width="3" />
+  <text x="64" y="27" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#333333" text-anchor="middle">N</text>
+
+  <line x1="64" y1="110" x2="64" y2="100" stroke="#333333" stroke-width="2" stroke-opacity="0.6" />
+  <text x="64" y="103" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#333333" fill-opacity="0.6" text-anchor="middle">S</text>
+
+  <line x1="110" y1="64" x2="100" y2="64" stroke="#333333" stroke-width="2" stroke-opacity="0.6" />
+  <text x="103" y="66.5" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#333333" fill-opacity="0.6" text-anchor="middle">E</text>
+
+  <line x1="18" y1="64" x2="28" y2="64" stroke="#333333" stroke-width="2" stroke-opacity="0.6" />
+  <text x="25" y="66.5" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#333333" fill-opacity="0.6" text-anchor="middle">W</text>
+
+  <path d="M64 64 L58 110 L64 105 L70 110 Z" fill="url(#mossGradient)" />
+  <path d="M64 64 L72 18 L64 23 L56 18 Z" fill="#E8001D" />
+
+  <circle cx="64" cy="64" r="4" fill="#5A3A0A" />
+  <circle cx="64" cy="64" r="2" fill="#DAA520" />
+
+  <ellipse cx="64" cy="48" rx="40" ry="25" fill="url(#shineGradient)" transform="rotate(-15 64 48)" />
+</svg>

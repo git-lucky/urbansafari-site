@@ -1,5 +1,4 @@
 ---
-import Mascot from '@/components/Mascot.astro';
 import { counts, hasCityCount, hasRating } from '@/content/proof';
 ---
 
@@ -46,8 +45,15 @@ import { counts, hasCityCount, hasRating } from '@/content/proof';
     </div>
 
     <div class="hero-art">
-      <div class="mascot-stage">
-        <Mascot pose="atlas-cartographer-outfit" size="xl" tilt={-4} drift />
+      <div class="photo-stage">
+        <img
+          src="/team-pic.jpg"
+          alt="Urban Safari team in action"
+          class="team-photo"
+          width="960"
+          height="640"
+          loading="eager"
+        />
         {hasCityCount && (
           <div class="sticker sticker-2" aria-hidden="true">
             📍 teams in {counts.citiesPlayed} cities
@@ -104,8 +110,6 @@ import { counts, hasCityCount, hasRating } from '@/content/proof';
     gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
   }
-
-  .eyebrow { color: var(--gold); }
 
   h1 {
     font-size: clamp(2.8rem, 2rem + 5vw, 6rem);
@@ -167,17 +171,18 @@ import { counts, hasCityCount, hasRating } from '@/content/proof';
 
   /* art column */
   .hero-art { display: grid; place-items: center; }
-  .mascot-stage {
+  .photo-stage {
     position: relative;
-    width: min(100%, 480px);
-    aspect-ratio: 1 / 1;
+    width: min(100%, 520px);
   }
-  .mascot-stage :global(.mascot) {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 85%;
-    height: 85%;
+  .team-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+    border: var(--stamp-border);
+    box-shadow: 8px 8px 0 0 var(--ink);
+    transform: rotate(-2deg);
   }
   .sticker {
     position: absolute;
@@ -213,7 +218,7 @@ import { counts, hasCityCount, hasRating } from '@/content/proof';
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; }
     .hero-art { order: -1; }
-    .mascot-stage { width: min(100%, 340px); }
+    .photo-stage { width: min(100%, 360px); }
     .sticker-3 { display: none; }
   }
 </style>
