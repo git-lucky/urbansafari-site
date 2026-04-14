@@ -23,13 +23,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: pnpm
+          cache: 'npm'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - run: pnpm install --verbose
-      - run: pnpm build
+      - run: npm ci
+      - run: npm run build
 
       - uses: cloudflare/wrangler-action@v3
         with:
