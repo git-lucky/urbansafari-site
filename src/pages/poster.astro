@@ -44,6 +44,11 @@ import Poster from '@/layouts/Poster.astro';
     <!-- Footer note -->
     <p class="poster-footer">No app download required · Works on any device</p>
 
+    <!-- Website link -->
+    <p class="poster-footer-link">
+      Plan your team's next adventure at <a href="https://urbansafari.app" class="footer-url">urbansafari.app</a>
+    </p>
+
   </div>
 </Poster>
 
@@ -129,7 +134,7 @@ import Poster from '@/layouts/Poster.astro';
   .subhead {
     font-family: var(--font-body);
     font-size: var(--step-0);
-    color: var(--forest-soft);
+    color: #333;
     line-height: 1.45;
     max-width: 36ch;
     margin-block: 0;
@@ -169,15 +174,35 @@ import Poster from '@/layouts/Poster.astro';
     color: var(--forest);
     letter-spacing: 0.02em;
     margin-block: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
   }
 
   /* ── footer note ── */
   .poster-footer {
     font-family: var(--font-body);
-    font-size: 0.78rem;
-    color: var(--forest-soft);
+    font-size: 0.85rem;
+    color: #333;
     margin-block: 0.5rem 0;
-    opacity: 0.8;
+  }
+
+  /* ── footer website link ── */
+  .poster-footer-link {
+    font-family: var(--font-body);
+    font-size: 1.56rem;
+    color: #000;
+    margin-block: 0;
+  }
+
+  .footer-url {
+    color: var(--forest);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
   }
 
   /* ─────────────────────────────────────── */
@@ -212,10 +237,17 @@ import Poster from '@/layouts/Poster.astro';
 
     /* Absolute pt units for reliable cross-browser print sizing */
     .headline    { font-size: 36pt; }
-    .subhead     { font-size: 12pt; }
+    .subhead     { font-size: 12pt; color: #333 !important; }
     .demo-url    { font-size: 13pt; }
     .eyebrow     { font-size: 11pt; }
-    .poster-footer { font-size: 9pt; }
+    .poster-footer { font-size: 10pt; color: #333 !important; }
+    .poster-footer-link { font-size: 18pt; }
+    .footer-url {
+      color: #0F2419 !important;
+      text-decoration: none !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     .brand-word  { font-size: 16pt; }
     .brand-mascot { width: 40px; height: 40px; }
 

@@ -11,7 +11,7 @@ const links = [
   <div class="wrap nav-row">
     <a href="/" class="brand" aria-label="Urban Safari, home">
       <span class="brand-mark" aria-hidden="true">
-        <img src="/mascot/atlas-wave.png" alt="" width="44" height="44" />
+        <img src="/mascot/atlas-cartographer-outfit.png" alt="" width="80" height="80" />
       </span>
       <span class="brand-word brand-gold">Urban&nbsp;Safari</span>
     </a>
@@ -77,11 +77,17 @@ const links = [
     color: var(--forest);
     letter-spacing: -0.02em;
   }
-.brand-gold { color: var(--gold); }
+.brand-gold { 
+    font-size: 1.65rem;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--forest) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   .brand-mark {
     display: inline-block;
-    width: 44px;
-    height: 44px;
+    width: 80px;
+    height: 80px;
     transition: transform 0.3s;
   }
   .brand-mark img {

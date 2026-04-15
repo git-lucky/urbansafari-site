@@ -13,7 +13,7 @@ import Mascot from '@/components/Mascot.astro';
       <div>
         <p class="eyebrow">Error · 404</p>
         <h1>This trail has no pin.</h1>
-        <p class="lead">
+        <p class="lead lost-text">
           Atlas wandered off the map and couldn't find this page. Happens to the
           best of us.
         </p>
@@ -53,6 +53,7 @@ import Mascot from '@/components/Mascot.astro';
       gap: 1rem;
     }
     .lost-art { display: grid; place-items: center; }
+    .lost-text { color: #333; }
     @media (max-width: 820px) {
       .lost-grid { grid-template-columns: 1fr; }
       .lost-art { order: -1; }
