@@ -1,0 +1,398 @@
+---
+import Base from '@/layouts/Base.astro';
+import Mascot from '@/components/Mascot.astro';
+import { priorityCities, type CityMarket } from '@/content/cities';
+import { tiers } from '@/content/tiers';
+
+export function getStaticPaths() {
+  return priorityCities.map((city) => ({
+    params: { slug: city.slug },
+    props: { city },
+  }));
+}
+
+interface Props {
+  city: CityMarket;
+}
+
+const { city } = Astro.props;
+const cityLabel = `${city.name}, ${city.state}`;
+const title = `${cityLabel} team building scavenger hunts`;
+const description = `${city.description} Plan a city-wide Urban Safari for teams of 10 to 200+ in ${cityLabel}.`;
+const inquirySubject = encodeURIComponent(`Urban Safari inquiry for ${cityLabel}`);
+const inquiryBody = encodeURIComponent(
+  `Hi! I'd like to learn more about booking an Urban Safari in ${cityLabel}.\n\nTeam size:\nPreferred date:\nTier we're curious about:\nAnything else:`
+);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Urban Safari team building in ${cityLabel}`,
+    serviceType: 'Corporate team building scavenger hunt',
+    provider: {
+      '@type': 'Organization',
+      name: 'Urban Safari',
+      url: Astro.site?.toString(),
+      telephone: '+1-405-437-4597',
+      email: 'hello@urbansafari.app',
+    },
+    areaServed: {
+      '@type': 'City',
+      name: city.name,
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: city.state,
+        addressCountry: 'US',
+      },
+    },
+    url: canonicalUrl,
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: new URL('/', Astro.site).toString(),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Cities',
+        item: new URL('/cities/', Astro.site).toString(),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: cityLabel,
+        item: canonicalUrl,
+      },
+    ],
+  },
+];
+---
+
+<Base title={title} description={description} structuredData={structuredData}>
+  <section class="city-hero band-sand">
+    <div class="wrap city-hero-grid">
+      <div class="city-copy">
+        <p class="eyebrow">{city.region}</p>
+        <h1>{city.headline}</h1>
+        <p class="lead">{city.description}</p>
+        <div class="city-ctas">
+          <a href={`mailto:hello@urbansafari.app?subject=${inquirySubject}&body=${inquiryBody}`} class="btn btn-coral">
+            Plan {city.name}
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/#tiers" class="btn">See tiers</a>
+        </div>
+      </div>
+
+      <aside class="city-card" aria-label={`${city.name} event planning highlights`}>
+        <Mascot pose="atlas-binoculars" size="md" tilt={3} drift />
+        <h2>{cityLabel}</h2>
+        <ul>
+          <li>10-200+ players</li>
+          <li>Hosted or self-guided</li>
+          <li>Custom route and challenges</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section city-plan">
+    <div class="wrap plan-grid">
+      <div>
+        <p class="eyebrow">How it can look</p>
+        <h2>A local route, not a generic template.</h2>
+        <p>
+          We start with your meeting place, timing, team size, and finish line.
+          Then we build a route that gives your group enough structure to stay
+          together and enough surprise to make the day feel alive.
+        </p>
+      </div>
+      <div class="plan-list-wrap">
+        <h3>Route ideas in {city.name}</h3>
+        <ul class="check-list">
+          {city.routeIdeas.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section city-details band-cream-deep">
+    <div class="wrap details-grid">
+      <article>
+        <p class="eyebrow">Planning notes</p>
+        <h2>Built around your group.</h2>
+        <ul class="detail-list">
+          {city.planningNotes.map((item) => (
+            <li>
+              <span aria-hidden="true">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article>
+        <p class="eyebrow">Nearby teams</p>
+        <h2>Serving the wider {city.region} area.</h2>
+        <p>
+          If your office, hotel, or venue is nearby, we can still use {city.name}
+          as the anchor market and tailor the game to where your people are.
+        </p>
+        <ul class="nearby-list">
+          {city.nearby.map((nearby) => (
+            <li>{nearby}</li>
+          ))}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section city-tiers">
+    <div class="wrap">
+      <header class="tiers-head">
+        <p class="eyebrow">Choose your format</p>
+        <h2>Four ways to run your {city.name} Safari.</h2>
+      </header>
+      <div class="format-grid">
+        {tiers.map((tier) => (
+          <article class="format">
+            <h3>{tier.name}</h3>
+            <p class="format-tag">{tier.tagline}</p>
+            <p>{tier.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="city-contact band-forest">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="eyebrow">Ready when you are</p>
+        <h2>Tell us about your {city.name} team.</h2>
+        <p>
+          Send your date, team size, and starting location. We will recommend
+          the right tier and map out what the day could feel like.
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a href={`mailto:hello@urbansafari.app?subject=${inquirySubject}&body=${inquiryBody}`} class="btn btn-coral">
+          Email Urban Safari
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="tel:4054374597" class="btn phone-btn">(405) 437-4597</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .city-hero {
+      padding-block: clamp(3.5rem, 7vw, 5.5rem);
+      border-bottom: 2px solid var(--ink);
+    }
+    .city-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .city-copy h1 {
+      font-size: clamp(2.5rem, 1.8rem + 3.2vw, 5rem);
+      max-width: 14ch;
+      margin-block: 0.6rem 1rem;
+    }
+    .city-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .city-card {
+      background: var(--paper);
+      border: var(--stamp-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--stamp-shadow);
+      padding: 1.5rem;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+    }
+    .city-card h2 {
+      font-size: var(--step-3);
+      margin-block: 0.5rem 1rem;
+    }
+    .city-card ul {
+      display: grid;
+      gap: 0.55rem;
+      width: 100%;
+      color: var(--forest-soft);
+      font-weight: 700;
+    }
+    .city-card li {
+      padding: 0.65rem 0.85rem;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+    }
+
+    .plan-grid,
+    .details-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+    .city-plan h2,
+    .city-details h2,
+    .city-contact h2 {
+      font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+      margin-block: 0.55rem 1rem;
+    }
+    .city-plan p,
+    .city-details p {
+      color: var(--forest-soft);
+    }
+    .plan-list-wrap,
+    .city-details article {
+      background: var(--paper);
+      border: var(--stamp-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--stamp-shadow);
+      padding: clamp(1.3rem, 3vw, 2rem);
+    }
+    .plan-list-wrap h3 {
+      font-size: var(--step-3);
+      margin-bottom: 1.25rem;
+    }
+
+    .check-list,
+    .detail-list {
+      display: grid;
+      gap: 0.8rem;
+    }
+    .check-list li,
+    .detail-list li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .check-list li::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 12px;
+      height: 12px;
+      margin-top: 0.45rem;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--ink);
+    }
+    .detail-list span {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--paper);
+      font-size: 0.75rem;
+      margin-top: 0.1rem;
+    }
+
+    .nearby-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+    .nearby-list li {
+      padding: 0.45rem 0.75rem;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-pill);
+      background: var(--cream);
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .tiers-head {
+      max-width: 54ch;
+      margin-bottom: clamp(2rem, 5vw, 3.25rem);
+    }
+    .tiers-head .eyebrow { display: block; margin-bottom: 0.85rem; }
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .format {
+      background: var(--paper);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.15rem;
+      box-shadow: 0 2px 0 rgba(15, 36, 25, 0.08);
+    }
+    .format h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.35rem;
+    }
+    .format p {
+      color: var(--forest-soft);
+      font-size: 0.95rem;
+    }
+    .format-tag {
+      color: var(--moss) !important;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+
+    .city-contact {
+      padding-block: clamp(3.5rem, 7vw, 5.5rem);
+      border-block: 3px solid var(--ink);
+    }
+    .city-contact p {
+      color: color-mix(in srgb, var(--paper) 82%, transparent);
+    }
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: flex-end;
+      align-self: center;
+    }
+    .phone-btn {
+      color: #000;
+    }
+
+    @media (max-width: 980px) {
+      .format-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .city-hero-grid,
+      .plan-grid,
+      .details-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-actions {
+        justify-content: flex-start;
+      }
+    }
+    @media (max-width: 560px) {
+      .format-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</Base>

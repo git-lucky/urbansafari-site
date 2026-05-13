@@ -8,6 +8,7 @@ interface Props {
   description: string;
   ogImage?: string;
   noIndex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -15,11 +16,17 @@ const {
   description,
   ogImage = '/og-default.jpg',
   noIndex = false,
+  structuredData,
 } = Astro.props;
 
 const siteName = 'Urban Safari';
 const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const structuredDataItems = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
 ---
 
 <!doctype html>
@@ -45,6 +52,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    {structuredDataItems.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
 
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link

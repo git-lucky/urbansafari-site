@@ -1,0 +1,179 @@
+---
+import Base from '@/layouts/Base.astro';
+import Mascot from '@/components/Mascot.astro';
+import { priorityCities } from '@/content/cities';
+
+const groupedCities = priorityCities.reduce<Record<string, typeof priorityCities>>((groups, city) => {
+  groups[city.region] = groups[city.region] ?? [];
+  groups[city.region].push(city);
+  return groups;
+}, {});
+---
+
+<Base
+  title="Team building scavenger hunts by city"
+  description="Urban Safari builds corporate scavenger hunts and team building games in priority markets including Oklahoma City, Tulsa, Dallas, Austin, Houston, Denver, Nashville, and more."
+>
+  <section class="cities-hero band-sand">
+    <div class="wrap cities-hero-grid">
+      <div>
+        <p class="eyebrow">Priority cities</p>
+        <h1>Local team building pages for our most active markets.</h1>
+        <p class="lead">
+          Urban Safari can run in any walkable city. These markets get dedicated
+          city pages so teams searching locally can find the right starting point.
+        </p>
+        <div class="city-ctas">
+          <a href="/#contact" class="btn btn-coral">
+            Book a Safari
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/#tiers" class="btn">Compare tiers</a>
+        </div>
+      </div>
+      <div class="cities-mascot">
+        <Mascot pose="atlas-cartographer" size="lg" tilt={-3} drift />
+      </div>
+    </div>
+  </section>
+
+  <section class="section city-directory">
+    <div class="wrap">
+      <header class="directory-head">
+        <p class="eyebrow">Markets</p>
+        <h2>Find your city.</h2>
+      </header>
+
+      <div class="region-list">
+        {Object.entries(groupedCities).map(([region, cities]) => (
+          <section class="region" aria-labelledby={`region-${region.toLowerCase().replaceAll(' ', '-')}`}>
+            <h3 id={`region-${region.toLowerCase().replaceAll(' ', '-')}`}>{region}</h3>
+            <ul>
+              {cities.map((city) => (
+                <li>
+                  <a href={`/cities/${city.slug}/`}>
+                    <span>{city.name}, {city.state}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="city-anywhere band-forest">
+    <div class="wrap anywhere-grid">
+      <div>
+        <p class="eyebrow">Everywhere else</p>
+        <h2>Not listed? We can still build the game.</h2>
+      </div>
+      <p>
+        Tell us the city, team size, and timing. We scout the route, write the
+        challenges, and recommend the right format for your group.
+      </p>
+      <a href="/#contact" class="btn btn-coral">
+        Start planning
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <style>
+    .cities-hero {
+      padding-block: clamp(3.5rem, 7vw, 5.5rem);
+      border-bottom: 2px solid var(--ink);
+    }
+    .cities-hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .cities-hero h1 {
+      font-size: clamp(2.6rem, 2rem + 3.2vw, 5rem);
+      max-width: 12ch;
+      margin-block: 0.6rem 1rem;
+    }
+    .city-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .cities-mascot {
+      display: grid;
+      place-items: center;
+    }
+
+    .directory-head {
+      max-width: 44ch;
+      margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    }
+    .directory-head .eyebrow { display: block; margin-bottom: 0.85rem; }
+
+    .region-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .region {
+      background: var(--paper);
+      border: var(--stamp-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--stamp-shadow);
+      padding: 1.35rem;
+    }
+    .region h3 {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+    }
+    .region ul {
+      display: grid;
+      gap: 0.55rem;
+    }
+    .region a {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0.45rem;
+      color: var(--forest);
+      font-weight: 700;
+      border-bottom: 1px solid color-mix(in srgb, var(--forest-soft) 22%, transparent);
+    }
+    .region a:hover,
+    .region a:focus-visible {
+      color: var(--ink);
+      border-bottom-color: var(--gold);
+    }
+
+    .city-anywhere {
+      padding-block: clamp(3.5rem, 7vw, 5rem);
+      border-block: 3px solid var(--ink);
+    }
+    .anywhere-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+    }
+    .city-anywhere h2 {
+      font-size: clamp(2rem, 1.4rem + 2vw, 3.3rem);
+      margin-top: 0.4rem;
+    }
+    .city-anywhere p {
+      color: color-mix(in srgb, var(--paper) 82%, transparent);
+    }
+
+    @media (max-width: 860px) {
+      .cities-hero-grid,
+      .anywhere-grid {
+        grid-template-columns: 1fr;
+      }
+      .cities-mascot { order: -1; }
+      .city-anywhere .btn { justify-self: start; }
+    }
+  </style>
+</Base>
