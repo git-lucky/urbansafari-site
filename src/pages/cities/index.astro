@@ -1,6 +1,5 @@
 ---
 import Base from '@/layouts/Base.astro';
-import Mascot from '@/components/Mascot.astro';
 import { priorityCities } from '@/content/cities';
 
 const groupedCities = priorityCities.reduce<Record<string, typeof priorityCities>>((groups, city) => {
@@ -31,8 +30,14 @@ const groupedCities = priorityCities.reduce<Record<string, typeof priorityCities
           <a href="/#tiers" class="btn">Compare tiers</a>
         </div>
       </div>
-      <div class="cities-mascot">
-        <Mascot pose="atlas-cartographer" size="lg" tilt={-3} drift />
+      <div class="cities-photo">
+        <img
+          src="/team-pic.jpg"
+          alt="Urban Safari team in action"
+          width="960"
+          height="640"
+          loading="eager"
+        />
       </div>
     </div>
   </section>
@@ -103,9 +108,16 @@ const groupedCities = priorityCities.reduce<Record<string, typeof priorityCities
       gap: 1rem;
       margin-top: 2rem;
     }
-    .cities-mascot {
+    .cities-photo {
       display: grid;
       place-items: center;
+    }
+    .cities-photo img {
+      width: min(100%, 440px);
+      border: var(--stamp-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--stamp-shadow);
+      transform: rotate(-2deg);
     }
 
     .directory-head {
@@ -172,7 +184,7 @@ const groupedCities = priorityCities.reduce<Record<string, typeof priorityCities
       .anywhere-grid {
         grid-template-columns: 1fr;
       }
-      .cities-mascot { order: -1; }
+      .cities-photo { order: -1; }
       .city-anywhere .btn { justify-self: start; }
     }
   </style>
