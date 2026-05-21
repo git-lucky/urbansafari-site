@@ -2,6 +2,7 @@
 import { footerCityLinks } from '@/content/cities';
 
 const year = new Date().getFullYear();
+const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
 ---
 
 <footer class="site-footer band-forest">
@@ -17,6 +18,28 @@ const year = new Date().getFullYear();
           </p>
         </div>
       </div>
+
+      <a
+        class="footer-review"
+        href={reviewUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="/google-review-qr.svg"
+          alt="Scan to review Urban Safari on Google"
+          width="66"
+          height="66"
+          class="footer-review-qr"
+        />
+        <span class="footer-review-text">
+          <span class="footer-review-stars" aria-hidden="true">★★★★★</span>
+          <span class="footer-review-label">
+            Review us on Google
+            <span class="footer-review-arrow">→</span>
+          </span>
+        </span>
+      </a>
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
@@ -91,6 +114,52 @@ const year = new Date().getFullYear();
     max-width: 34ch;
     font-size: 0.98rem;
   }
+
+  .footer-review {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 1.6rem;
+  }
+  .footer-review-qr {
+    width: 66px;
+    height: 66px;
+    flex-shrink: 0;
+    padding: 5px;
+    border-radius: 8px;
+    background: var(--paper);
+    border: var(--stamp-border);
+    box-shadow: var(--stamp-shadow);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .footer-review:hover .footer-review-qr {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .footer-review-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .footer-review-stars {
+    color: var(--gold);
+    font-size: 0.95rem;
+    line-height: 1;
+    letter-spacing: 0.14em;
+  }
+  .footer-review-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: color-mix(in srgb, var(--paper) 85%, transparent);
+    transition: color 0.18s;
+  }
+  .footer-review:hover .footer-review-label { color: var(--gold); }
+  .footer-review-arrow {
+    display: inline-block;
+    transition: transform 0.18s ease;
+  }
+  .footer-review:hover .footer-review-arrow { transform: translateX(3px); }
   .footer-nav {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
