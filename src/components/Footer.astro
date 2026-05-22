@@ -1,7 +1,7 @@
 ---
 import { footerCityLinks } from '@/content/cities';
 
-const year = new Date().getFullYear();
+const year = 2025;
 const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
 ---
 
@@ -36,7 +36,6 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
           <span class="footer-review-stars" aria-hidden="true">★★★★★</span>
           <span class="footer-review-label">
             Review us on Google
-            <span class="footer-review-arrow">→</span>
           </span>
         </span>
       </a>
@@ -72,7 +71,7 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
           {footerCityLinks.map((city) => (
             <li><a href={`/cities/${city.slug}/`}>{city.name}</a></li>
           ))}
-          <li><a href="/cities/">All priority cities</a></li>
+          <li><a href="/cities/">All major cities</a></li>
         </ul>
       </div>
     </nav>
@@ -155,11 +154,6 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
     transition: color 0.18s;
   }
   .footer-review:hover .footer-review-label { color: var(--gold); }
-  .footer-review-arrow {
-    display: inline-block;
-    transition: transform 0.18s ease;
-  }
-  .footer-review:hover .footer-review-arrow { transform: translateX(3px); }
   .footer-nav {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));

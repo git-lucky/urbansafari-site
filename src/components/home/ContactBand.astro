@@ -25,6 +25,17 @@
       <p class="contact-note">
         We read every email. The founder picks up the phone more often than not.
       </p>
+
+      <a
+        class="powered-by"
+        href="https://huntstack.tech"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="powered-by-label">Powered by</span>
+        <span class="powered-by-mark"
+          ><span class="ps-hunt">hunt</span><span class="ps-stack">stack_</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -76,6 +87,32 @@
     color: #000;
   }
   .phone-btn .arrow { color: #000; }
+
+  .powered-by {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-top: 2rem;
+  }
+  .powered-by-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--paper) 55%, transparent);
+  }
+  .powered-by-mark {
+    font-family: 'Open Sans', var(--font-body);
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    transition: transform 0.18s ease;
+  }
+  .ps-hunt { color: #8e8e8e; }
+  .ps-stack { color: var(--paper); }
+  .powered-by:hover .powered-by-mark { transform: translateY(-2px); }
 
   @media (max-width: 820px) {
     .contact-copy { max-width: 100%; }
