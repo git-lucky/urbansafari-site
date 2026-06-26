@@ -18,27 +18,6 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
           </p>
         </div>
       </div>
-
-      <a
-        class="footer-review"
-        href={reviewUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="/google-review-qr.svg"
-          alt="Scan to review Urban Safari on Google"
-          width="99"
-          height="99"
-          class="footer-review-qr"
-        />
-        <span class="footer-review-text">
-          <span class="footer-review-stars" aria-hidden="true">★★★★★</span>
-          <span class="footer-review-label">
-            Review us on Google
-          </span>
-        </span>
-      </a>
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
@@ -86,8 +65,8 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
           </li>
         </ul>
       </div>
-      <div>
-        <p class="footer-head">Safari</p>
+      <details class="footer-collapse">
+        <summary class="footer-head">Safari</summary>
         <ul>
           <li><a href="/#tiers">Experience tiers</a></li>
           <li><a href="/#how">How it works</a></li>
@@ -97,22 +76,60 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
           <li><a href="/terms">Terms</a></li>
           <li><a href="/support">Support</a></li>
         </ul>
-      </div>
-      <div class="footer-locations">
-        <p class="footer-head">Locations</p>
+      </details>
+      <details class="footer-locations footer-collapse">
+        <summary class="footer-head">Cities</summary>
         <ul class="city-links">
           {footerCityLinks.map((city) => (
             <li><a href={`/cities/${city.slug}/`}>{city.name}</a></li>
           ))}
           <li><a href="/cities/">All major cities</a></li>
         </ul>
-      </div>
+      </details>
     </nav>
   </div>
 
+  <div class="wrap footer-review-row">
+    <a
+      class="footer-review"
+      href={reviewUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/google-review-qr.svg"
+        alt="Scan to review Urban Safari on Google"
+        width="99"
+        height="99"
+        class="footer-review-qr"
+      />
+      <span class="footer-review-text">
+        <span class="footer-review-stars" aria-hidden="true">★★★★★</span>
+        <span class="footer-review-label">
+          Review us on Google
+        </span>
+      </span>
+    </a>
+  </div>
+
   <div class="wrap footer-legal">
-    <span>© {year} Urban Safari Game Experiences.</span>
+    <span class="footer-copy">© {year} Urban Safari Game Experiences.</span>
     <span class="footer-motto">Made by a team that still high-fives after meetings.</span>
+    <a
+      class="powered-by"
+      href="https://huntstack.tech"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="powered-by-label">Powered by</span>
+      <img
+        src="/huntstack-logo-lockup-transparent.png"
+        alt="HuntStack"
+        class="powered-by-lockup"
+        width="1202"
+        height="292"
+      />
+    </a>
   </div>
 </footer>
 
@@ -147,11 +164,16 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
     font-size: 0.98rem;
   }
 
+  .footer-review-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.75rem;
+  }
   .footer-review {
-    display: inline-flex;
+    display: flex;
+    width: fit-content;
     align-items: center;
     gap: 1.35rem;
-    margin-top: 1.6rem;
   }
   .footer-review-qr {
     width: 99px;
@@ -226,6 +248,33 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
   }
 
   .footer-locations .footer-head { margin-bottom: 1rem; }
+
+  /* Collapsible footer sections (Safari, Cities) */
+  .footer-collapse summary.footer-head {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: fit-content;
+    margin-bottom: 0;
+    transition: color 0.18s ease;
+  }
+  .footer-collapse summary::-webkit-details-marker { display: none; }
+  .footer-collapse summary::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: -3px;
+    transition: transform 0.18s ease;
+  }
+  .footer-collapse[open] summary::after { transform: rotate(-135deg); margin-top: 1px; }
+  .footer-collapse summary:hover { color: var(--gold); }
+  .footer-collapse[open] > ul { margin-top: 1rem; }
+
   .city-links {
     columns: 2;
     column-gap: 2rem;
@@ -236,19 +285,58 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
   }
 
   .footer-legal {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem 1.5rem;
     padding-top: 2.5rem;
     margin-top: 2.5rem;
     border-top: 1px solid color-mix(in srgb, var(--paper) 20%, transparent);
     font-size: 0.85rem;
     color: color-mix(in srgb, var(--paper) 70%, transparent);
   }
+  .footer-copy { grid-column: 1; justify-self: start; }
   .footer-motto {
+    grid-column: 3;
+    justify-self: end;
+    text-align: right;
     font-style: italic;
     font-family: var(--font-display);
+  }
+
+  .powered-by {
+    grid-column: 2;
+    justify-self: center;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--paper) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--paper) 12%, transparent);
+    transition: transform 0.18s ease, box-shadow 0.18s ease,
+      border-color 0.18s ease, background 0.18s ease;
+  }
+  .powered-by-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--paper) 55%, transparent);
+    transition: color 0.18s ease;
+  }
+  .powered-by-lockup {
+    height: 1.5rem;
+    width: auto;
+    display: block;
+  }
+  .powered-by:hover {
+    transform: translateY(-1px);
+    background: color-mix(in srgb, var(--paper) 12%, transparent);
+    border-color: color-mix(in srgb, var(--paper) 24%, transparent);
+    box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.45);
+  }
+  .powered-by:hover .powered-by-label {
+    color: color-mix(in srgb, var(--paper) 85%, transparent);
   }
 
   .footer-coin { margin-top: -20px; }
@@ -264,5 +352,19 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
     }
     .footer-tag { margin-inline: auto; }
     .footer-coin { margin-top: -20px; }
+
+    .footer-legal {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+      gap: 1.25rem;
+    }
+    .footer-copy { grid-column: 1; justify-self: center; }
+    .footer-motto {
+      grid-column: 1;
+      justify-self: center;
+      text-align: center;
+    }
+    .powered-by { grid-column: 1; justify-self: center; }
   }
 </style>

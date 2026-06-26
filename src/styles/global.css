@@ -132,6 +132,13 @@ p  { max-width: 62ch; }
 .band-coral h1, .band-coral h2, .band-coral h3 { color: var(--ink); }
 .band-coral .eyebrow { color: var(--ink); opacity: 0.7; }
 
+/* When a page ends on a dark band, butt the footer against it so the cream
+   body background doesn't show as a gap between the two dark sections. */
+main:has(> .band-forest:last-child) + .site-footer {
+  margin-top: 0;
+  border-top: 0;
+}
+
 /* ------------------------------------------------------------------ */
 /*  buttons                                                            */
 /* ------------------------------------------------------------------ */
