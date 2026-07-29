@@ -2,7 +2,7 @@ import { priorityCities } from '@/content/cities';
 
 const site = 'https://urbansafari.app';
 
-const staticPaths = ['/', '/cities/', '/poster/', '/privacy/', '/support/'];
+const staticPaths = ['/', '/cities/', '/privacy/', '/terms/', '/support/'];
 const cityPaths = priorityCities.map((city) => `/cities/${city.slug}/`);
 
 function url(path: string) {

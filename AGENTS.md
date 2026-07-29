@@ -1,5 +1,3 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Urban Safari site
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+This is an Astro 5 site (not Next.js). See `README.md` and `DEPLOY.md` for stack, scripts, and deploy details. `pnpm dev` runs the dev server; `pnpm build` produces `dist/`.
