@@ -55,15 +55,15 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     --card-padding: clamp(1.75rem, 3vw, 2.5rem);
     min-width: 0;
     background: linear-gradient(145deg, #FFFEFB, var(--paper) 60%, #F4F7F0);
-    box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 4px rgb(31 58 43 / 5%), 0 12px 28px -10px rgb(31 58 43 / 20%);
-    border: 1.5px solid #D7E3D8;
+    box-shadow: 7px 7px 0 0 #1B6B45, 0 16px 24px -12px rgb(31 58 43 / 28%), inset 0 1px 0 #FFFFFF;
+    border: 3.5px solid #1B6B45;
     border-radius: 26px;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .faq-item[open], .faq-item:focus-within {
-    border-color: #9FBBA6;
-    box-shadow: inset 0 1px 0 #FFFFFF, 0 4px 8px rgb(31 58 43 / 6%), 0 20px 38px -12px rgb(31 58 43 / 25%);
+    border-color: #1B6B45;
+    box-shadow: 10px 10px 0 0 #1B6B45, 0 22px 30px -14px rgb(31 58 43 / 30%), inset 0 1px 0 #FFFFFF;
   }
   .faq-item summary {
     position: relative;
@@ -94,7 +94,8 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     height: 72px;
     border-radius: 22px;
     background: linear-gradient(145deg, #F1F6EE, var(--forest-50) 55%, #DDE8DB);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 90%), 0 4px 9px rgb(31 58 43 / 9%);
+    box-shadow: 3px 3px 0 0 #A9BEA9, inset 0 1px 0 rgb(255 255 255 / 90%);
+    border: 2px solid #77987D;
     color: #1B6B45;
   }
   .faq-q { max-width: 28ch; }
@@ -135,9 +136,9 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
 
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .faq-item:hover {
-      border-color: #9FBBA6;
-      transform: translateY(-3px);
-      box-shadow: inset 0 1px 0 #FFFFFF, 0 4px 8px rgb(31 58 43 / 6%), 0 20px 38px -12px rgb(31 58 43 / 25%);
+      border-color: #1B6B45;
+      transform: translate(-3px, -3px);
+      box-shadow: 10px 10px 0 0 #1B6B45, 0 22px 30px -14px rgb(31 58 43 / 30%), inset 0 1px 0 #FFFFFF;
     }
   }
 
