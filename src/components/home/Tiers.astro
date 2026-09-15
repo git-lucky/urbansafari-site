@@ -42,7 +42,7 @@ import { tiers } from '@/content/tiers';
               </li>
             ))}
           </ul>
-          <PlanLink label="Choose this package" packageSlug={tier.slug} class="btn btn-ghost tier-cta" />
+          <PlanLink label="Choose this package" packageSlug={tier.slug} class="btn btn-forest tier-cta" />
         </article>
       ))}
     </div>
@@ -213,13 +213,6 @@ import { tiers } from '@/content/tiers';
     align-self: flex-start;
     padding: 0.7rem 1.2rem;
     font-size: 0.95rem;
-  }
-  .tier-featured :global(.tier-cta) {
-    border-color: var(--ink);
-    color: var(--ink);
-  }
-  .tier-featured :global(.tier-cta):hover {
-    box-shadow: 3px 3px 0 0 var(--gold);
   }
 
   .tiers-footnote {

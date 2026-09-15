@@ -1,6 +1,6 @@
 ---
 interface Props { city?: string; label?: string; packageSlug?: string; class?: string; }
-const { city = '', label, packageSlug, class: className = 'btn btn-coral' } = Astro.props;
+const { city = '', label, packageSlug, class: className = 'btn btn-forest' } = Astro.props;
 const params = new URLSearchParams();
 if (city) params.set('city', city);
 if (packageSlug) params.set('package', packageSlug);

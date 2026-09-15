@@ -12,7 +12,7 @@ Three packages: Scout and Remote Expedition use green styling. Guided Expedition
 
 Photography: Strunk IMG_9874 remains the hero. Its location/event credit belongs in the gallery, not the hero. The gallery has thirteen images including yoga submissions 8875/8876; its credit identifies Woo Town, Woodward and Mike/Strunk/the teams. More recent hunts can be added later. Photos display inline without clickable enlargement. Mike rejected IMG_1331 for marketing; do not re-add it or make further expression-based substitutions. Originals and the participant recap are preserved.
 
-Explore packages links to the package-card grid (#packages), below its introduction, with scroll clearance for the sticky navigation.
+Explore packages links to the package-card grid (#packages), below its introduction, with scroll clearance for the sticky navigation. It and all planning buttons (Plan your Safari/city, Choose this package, and Continue to email) use forest-green faces, gold lettering, black borders and solid black offset shadows. The contact call button stays cream.
 
 Homepage order: hero, proof, packages, photo gallery, four steps, Pre-flight questions, contact invitation, What you get outcomes, footer. Footer order: Urban Safari coin/name, Google and Yelp review links, Get in touch / Featured cities / Safari, legal. Five decorative stars sit next to each review logo within the review CTA; they are not an aggregate rating or review count. Exact links, QR codes and official logo provenance are in review-assets.md.
 

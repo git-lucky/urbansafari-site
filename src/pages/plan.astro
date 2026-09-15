@@ -24,7 +24,7 @@ import {tiers} from '@/content/tiers';
       <div class="field-row"><div><label for="plan-size">Approximate team size</label><input id="plan-size" name="size" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 30"/></div><div><label for="plan-date">Preferred date</label><input id="plan-date" name="date" type="date"/></div></div>
       <div class="field-row"><div><label for="plan-name">Your name</label><input id="plan-name" name="name" autocomplete="name" maxlength="100"/></div><div><label for="plan-email">Work email</label><input id="plan-email" name="email" type="email" autocomplete="email" maxlength="200"/></div></div>
       <label for="plan-notes">Anything else we should know?</label><textarea id="plan-notes" name="notes" rows="3" maxlength="3000" placeholder="Your occasion, venue, goals, or questions"></textarea>
-      <button class="btn btn-coral continue" type="submit">Continue to email <span aria-hidden="true">→</span></button>
+      <button class="btn btn-forest continue" type="submit">Continue to email <span aria-hidden="true">→</span></button>
       <p class="field-help">Opens an email draft to Mike with these details. Review it, then send.</p>
       <div id="email-fallback" hidden><p>If your email app didn’t open, copy your details and email <a href="mailto:mike@urbansafari.app">mike@urbansafari.app</a>.</p><button type="button" id="copy-details">Copy my details</button><textarea id="draft-details" aria-label="Your inquiry details" rows="6"></textarea><p id="copy-status" role="status"></p></div>
       <noscript><p>Email <a href="mailto:mike@urbansafari.app">mike@urbansafari.app</a> or call <a href="tel:4054374597">(405) 437-4597</a> to start planning.</p></noscript>
