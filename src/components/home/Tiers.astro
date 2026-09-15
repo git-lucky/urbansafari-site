@@ -15,7 +15,7 @@ import { tiers } from '@/content/tiers';
       </p>
     </header>
 
-    <div class="tier-grid">
+    <div id="packages" class="tier-grid">
       {tiers.map((tier, i) => (
         <article
           class={`tier ${tier.featured ? 'tier-featured' : ''}`}
@@ -63,6 +63,7 @@ import { tiers } from '@/content/tiers';
   .tiers-head h2 { margin-bottom: 1rem; }
 
   .tier-grid {
+    scroll-margin-top: calc(82px + 2rem);
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(1.25rem, 2.5vw, 2rem);
@@ -228,6 +229,10 @@ import { tiers } from '@/content/tiers';
     font-style: italic;
     max-width: 48ch;
     margin-inline: auto;
+  }
+
+  @media (max-width: 1100px) {
+    .tier-grid { scroll-margin-top: calc(50px + 2rem); }
   }
 
   @media (max-width: 960px) {

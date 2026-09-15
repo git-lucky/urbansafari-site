@@ -56,6 +56,6 @@ export const tiers: Tier[] = [
     ],
     mascotPose: 'atlas-flag',
     featured: true,
-    badges: ['Most booked', 'Signature'],
+    badges: ['Signature'],
   },
 ];
