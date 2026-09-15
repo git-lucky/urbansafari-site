@@ -1,5 +1,8 @@
 ---
+import SafariIcon from '@/components/SafariIcon.astro';
 import { preSaleFaq } from '@/content/faq';
+
+const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
 ---
 
 <section id="faq" class="section faq">
@@ -13,9 +16,12 @@ import { preSaleFaq } from '@/content/faq';
       {preSaleFaq.map((item, i) => (
         <details class="faq-item" open={i === 0}>
           <summary>
+            <span class="faq-topic-icon">
+              <SafariIcon name={topicIcons[i] ?? 'chat'} size={40} />
+            </span>
             <span class="faq-q">{item.q}</span>
             <span class="faq-toggle" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" focusable="false">
                 <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
@@ -33,73 +39,96 @@ import { preSaleFaq } from '@/content/faq';
 
 <style>
   .faq-head {
-    max-width: 48ch;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    max-width: 900px;
+    margin-bottom: clamp(3rem, 6vw, 4.5rem);
   }
-  .faq-head .eyebrow { margin-bottom: 0.85rem; display: block; }
+  .faq-head .eyebrow { margin-bottom: 0.85rem; display: block; color: var(--forest-soft); }
+  .faq-head h2 { font-size: clamp(2rem, 4.4vw, 3.75rem); line-height: 1.05; max-width: 24ch; }
 
   .faq-list {
-    max-width: 760px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
   }
   .faq-item {
+    --card-padding: clamp(1.75rem, 3vw, 2.5rem);
+    min-width: 0;
     background: var(--paper);
-    border: var(--stamp-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--stamp-shadow);
+    border: 1.5px solid #D7E3D8;
+    border-radius: 26px;
     overflow: hidden;
-    transition: box-shadow 0.24s;
+    transition: border-color 0.2s;
   }
-  .faq-item[open] { box-shadow: var(--stamp-shadow-coral); }
+  .faq-item:hover, .faq-item[open] { border-color: #9FBBA6; }
   .faq-item summary {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
+    gap: 1.25rem;
+    padding: var(--card-padding);
     cursor: pointer;
     list-style: none;
+    text-align: center;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: var(--step-2);
+    line-height: 1.25;
     color: var(--ink);
-    user-select: none;
   }
   .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-toggle {
+  .faq-item summary:focus-visible {
+    outline: 2px solid #1B6B45;
+    outline-offset: -5px;
+    border-radius: 24px;
+  }
+  .faq-topic-icon {
     display: grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
-    background: var(--cream);
-    border: 2px solid var(--ink);
-    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
+    background: var(--forest-50);
     color: #1B6B45;
-    transition: transform 0.24s;
-    flex-shrink: 0;
   }
-  .faq-item[open] .faq-toggle {
-    transform: rotate(-180deg);
-    background: var(--gold);
-    color: var(--ink);
+  .faq-q { max-width: 28ch; }
+  .faq-toggle {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.1rem;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    color: #1B6B45;
+    transition: transform 0.2s, background 0.2s;
   }
+  .faq-item:hover .faq-toggle { background: var(--forest-50); }
+  .faq-item[open] .faq-toggle { transform: rotate(-180deg); }
   .faq-a {
-    padding: 0 1.5rem 1.5rem;
-    color: var(--ink);
+    padding: 0 var(--card-padding) var(--card-padding);
+    color: var(--forest-soft);
     max-width: none;
     font-size: 1rem;
+    line-height: 1.65;
+    text-align: center;
   }
   .faq-footer {
     margin-top: 2.5rem;
-    font-style: italic;
-    color: var(--ink);
-    font-size: calc(1rem + 3pt);
+    color: var(--forest-soft);
+    font-size: 1.05rem;
   }
   .faq-footer a {
     color: #1B6B45;
     font-weight: 700;
-    border-bottom: 2px solid var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .faq-footer a:focus-visible { outline: 2px solid #1B6B45; outline-offset: 4px; }
+
+  @media (max-width: 640px) {
+    .faq-list { grid-template-columns: 1fr; }
   }
 </style>
