@@ -19,16 +19,24 @@ export async function onRequest(context) {
   // Never reuse one visitor's city for another, including on a no-location fallback.
   response.headers.set('Cache-Control','private, no-store');
   response.headers.delete('ETag');response.headers.delete('Last-Modified');
-  if (!city) return response;
+  const rewriter = new HTMLRewriter()
+    .on('[data-recap-invitation]', {element:e=>{
+      if (url.searchParams.get('recap') === 'wootown') e.removeAttribute('hidden');
+    }});
+  if (!city) return rewriter.transform(response);
   const title = `Corporate team building in ${city.label} · Urban Safari`;
   const description = `Bring your ${city.name} team together with a custom Urban Safari scavenger hunt. Local challenges, live scoring, and an event built around your company.`;
   const text = value => ({element:element=>element.setInnerContent(value)});
-  return new HTMLRewriter()
+  return rewriter
     .on('title',text(title))
     .on('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]',{element:e=>e.setAttribute('content',description)})
     .on('meta[property="og:title"], meta[name="twitter:title"]',{element:e=>e.setAttribute('content',title)})
     .on('[data-city-contact]',text(`Let’s plan your ${city.name} team event.`))
     .on('[data-city-button] [data-plan-label]',text(`Plan ${city.name}`))
-    .on('[data-plan-link]',{element:e=>e.setAttribute('href',`/plan/?city=${encodeURIComponent(city.label)}`)})
+    .on('[data-plan-link]',{element:e=>{
+      const destination = new URL(e.getAttribute('href') || '/plan/', url);
+      destination.searchParams.set('city',city.label);
+      e.setAttribute('href',`${destination.pathname}${destination.search}`);
+    }})
     .transform(response);
 }

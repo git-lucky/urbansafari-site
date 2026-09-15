@@ -1,0 +1,23 @@
+<section class="recap-invitation wrap" data-recap-invitation hidden aria-labelledby="recap-heading">
+  <div class="recap-card">
+    <p class="eyebrow">Woo Town Safari</p>
+    <h2 id="recap-heading">You made the memories.<br />Here’s the encore.</h2>
+    <p>Your leaderboard, game photos, awards, and the full bonus gallery—all in one place.</p>
+    <a href="https://wootown-recap.pages.dev/" class="btn btn-coral">See your game highlights <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+  .recap-invitation { margin-top: clamp(3rem, 6vw, 4.5rem); }
+  .recap-card {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 2px solid var(--gold);
+    border-radius: var(--radius-lg);
+    box-shadow: 6px 6px 0 var(--gold);
+    text-align: center;
+  }
+  .recap-card .eyebrow { margin-bottom: 1rem; }
+  .recap-card h2 { font-size: clamp(2rem, 4vw, 3.5rem); color: var(--cream); }
+  .recap-card > p:not(.eyebrow) { margin: 1.25rem auto 1.75rem; color: var(--cream); max-width: 45ch; }
+  .recap-card .btn { white-space: normal; justify-content: center; }
+</style>

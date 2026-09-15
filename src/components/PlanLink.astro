@@ -1,7 +1,10 @@
 ---
-interface Props { city?: string; label?: string; class?: string; }
-const { city = '', label, class: className = 'btn btn-coral' } = Astro.props;
-const href = `/plan/${city ? `?city=${encodeURIComponent(city)}` : ''}`;
+interface Props { city?: string; label?: string; packageSlug?: string; class?: string; }
+const { city = '', label, packageSlug, class: className = 'btn btn-coral' } = Astro.props;
+const params = new URLSearchParams();
+if (city) params.set('city', city);
+if (packageSlug) params.set('package', packageSlug);
+const href = `/plan/${params.size ? `?${params}` : ''}`;
 ---
 <a href={href} class:list={['plan-link',className]} data-plan-link data-city-button={!label || undefined}>
   <span data-plan-label>{label || (city ? `Plan ${city.replace(/,\s*[^,]+$/, '')}` : 'Plan your Safari')}</span>
