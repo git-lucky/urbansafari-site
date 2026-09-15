@@ -20,7 +20,7 @@ export async function onRequest(context) {
   response.headers.set('Cache-Control','private, no-store');
   response.headers.delete('ETag');response.headers.delete('Last-Modified');
   const rewriter = new HTMLRewriter()
-    .on('[data-recap-invitation]', {element:e=>{
+    .on('[data-recap-invitation], [data-recap-scroll-note]', {element:e=>{
       if (url.searchParams.get('recap') === 'wootown') e.removeAttribute('hidden');
     }});
   if (!city) return rewriter.transform(response);

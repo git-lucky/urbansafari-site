@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
+import RecapScrollNote from '@/components/RecapScrollNote.astro';
 
 interface Props {
   title: string;
@@ -72,6 +73,7 @@ const structuredDataItems = Array.isArray(structuredData)
   </head>
   <body class="grain">
     <a href="#main" class="skip-link">Skip to content</a>
+    {Astro.url.pathname === '/' && <RecapScrollNote />}
     <Nav city={city} />
     <main id="main">
       <slot />
