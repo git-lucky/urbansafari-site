@@ -19,25 +19,25 @@ import { counts, hasCityCount, hasRating } from '@/content/proof';
 
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow rise rise-1" data-city-eyebrow>Engaging Team Building · built for adventure</p>
+      <p class="eyebrow rise rise-1">Engaging Team Building · built for adventure</p>
 
-      <h1 class="rise rise-2" data-city-headline>
+      <h1 class="rise rise-2">
         <span style="color:#000">Your team's</span><br/>
         <span class="underline-smear">next great story.</span>
       </h1>
 
-      <p class="lead rise rise-3" data-city-description>
+      <p class="lead rise rise-3">
         City-wide expeditions that leave teams closer, louder, and happy they were invited.
       </p>
 
       <div class="hero-ctas rise rise-4">
-        <PlanLink />
+        <PlanLink label="Plan your Safari" />
         <a href="#tiers" class="btn">Explore packages</a>
       </div>
 
       <ul class="hero-bona rise rise-5" aria-label="Why teams pick us">
         <li><span>10&ndash;200+</span> players per run</li>
-        <li data-city-proof><span>Built around</span> your city</li>
+        <li><span>Built around</span> your city</li>
         <li><span>Zero logistics</span> on your plate</li>
       </ul>
     </div>
@@ -46,13 +46,13 @@ import { counts, hasCityCount, hasRating } from '@/content/proof';
       <div class="photo-stage">
         <img
           src="/photos/wootown/Strunk-IMG_9874.webp"
-          alt="A tech captain films a teammate’s golf swing beneath the big tree during our Woo Town Safari."
+          alt="A tech captain films a teammate’s golf swing beneath a large tree."
           class="team-photo"
           width="2400"
           height="1600"
           loading="eager"
         />
-        <p class="photo-credit">Woo Town Safari · Woodward, OK · Photo by Strunk</p>
+        <p class="photo-credit">Photo by Strunk</p>
         {hasCityCount && (
           <div class="sticker sticker-2" aria-hidden="true">
             📍 teams in {counts.citiesPlayed} cities

@@ -9,20 +9,6 @@ const reviews = [
 ---
 
 <footer class="site-footer band-forest">
-  <div class="wrap footer-review-row" aria-label="Review Urban Safari">
-    {reviews.map(review => (
-      <a class="footer-review" href={review.href} target="_blank" rel="noopener noreferrer">
-        <img class="footer-review-qr" src={review.qr} alt={`Scan to open Urban Safari on ${review.name}`} width="88" height="88" loading="lazy" />
-        <span class="footer-review-text">
-          <img class="review-platform-logo" src={review.logo} alt="" width="28" height="28" loading="lazy" />
-          <span class="footer-review-label">Review us on {review.name} <span aria-hidden="true">↗</span></span>
-        </span>
-      </a>
-    ))}
-  </div>
-
-  <slot />
-
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <div class="brand-row">
@@ -35,6 +21,21 @@ const reviews = [
           </p>
         </div>
       </div>
+    </div>
+
+    <div class="footer-review-row" aria-label="Review Urban Safari">
+      {reviews.map(review => (
+        <a class="footer-review" href={review.href} target="_blank" rel="noopener noreferrer">
+          <img class="footer-review-qr" src={review.qr} alt={`Scan to open Urban Safari on ${review.name}`} width="88" height="88" loading="lazy" />
+          <span class="footer-review-text">
+            <span class="review-platform-heading">
+              <img class="review-platform-logo" src={review.logo} alt="" width="28" height="28" loading="lazy" />
+              <span class="review-stars" aria-hidden="true">★★★★★</span>
+            </span>
+            <span class="footer-review-label">Review us on {review.name} <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+      ))}
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
@@ -136,12 +137,12 @@ const reviews = [
     border-top: 3px solid var(--ink);
   }
   .footer-grid {
-    margin-top: 2.75rem;
     display: grid;
-    grid-template-columns: 1.5fr 2fr;
+    grid-template-columns: 1fr;
     gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
   }
+  .footer-brand { width: 100%; max-width: 820px; margin-inline: auto; }
   .brand-row {
     display: flex;
     gap: 1.2rem;
@@ -166,6 +167,8 @@ const reviews = [
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     max-width: 820px;
+    width: 100%;
+    margin-inline: auto;
   }
   .footer-review {
     display: flex;
@@ -184,6 +187,8 @@ const reviews = [
     border-radius: 8px;
     background: #fff;
   }
+  .review-platform-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
+  .review-stars { color: #E5D6AF; font-size: 1.05rem; letter-spacing: 0.06em; white-space: nowrap; }
   .footer-review-text { display: grid; gap: 0.65rem; }
   .review-platform-logo { width: 28px; height: 28px; object-fit: contain; background: #fff; border-radius: 6px; padding: 3px; box-sizing: content-box; }
   .footer-review-label { font-size: 1rem; font-weight: 700; color: var(--paper); }

@@ -1,21 +1,22 @@
 ---
+import SafariIcon from '@/components/SafariIcon.astro';
 const outcomes = [
   {
     headline: 'Coworkers who laugh together afterward.',
     body: 'Nothing bonds a team faster than laughing together on a city sidewalk, solving something weird and wonderful. People come back from a Safari with inside jokes, not small talk.',
-    icon: '😄',
+    icon: 'smile',
   },
   {
     headline: 'The 200-person offsite that doesn\'t fall apart.',
     body: 'Our platform and crew are built for city-wide hunts where dozens of teams can play at the same time. You get one point of contact; everyone else gets a day that feels effortless.',
-    icon: '🧭',
+    icon: 'compass',
   },
   {
     headline: 'You, looking like the person who gets it.',
     body: 'The best part of booking Urban Safari is that you don\'t have to lift a finger the day-of. Your team thinks you\'re a genius. We\'ll let them keep thinking that.',
-    icon: '🏆',
+    icon: 'celebrate',
   },
-];
+] as const;
 ---
 
 <section id="outcomes" class="section outcomes">
@@ -28,7 +29,7 @@ const outcomes = [
     <div class="outcome-list">
       {outcomes.map((o) => (
         <article class="outcome">
-          <div class="outcome-icon" aria-hidden="true"><Fragment set:html={o.icon} /></div>
+          <div class="outcome-icon" aria-hidden="true"><SafariIcon name={o.icon} /></div>
           <h3>{o.headline}</h3>
           <p>{o.body}</p>
         </article>
@@ -38,7 +39,7 @@ const outcomes = [
 </section>
 
 <style>
-  .outcomes { background: var(--cream); color: var(--forest); margin-top: 2.75rem; }
+  .outcomes { background: var(--cream); color: var(--forest); }
   .outcomes h2 { color: var(--forest); }
   .outcomes-head { max-width: 48ch; margin-bottom: clamp(3rem, 6vw, 4.5rem); }
   .outcomes-head .eyebrow { margin-bottom: 0.85rem; display: block; }
@@ -58,8 +59,14 @@ const outcomes = [
   }
 
   .outcome-icon {
-    font-size: 3.5rem;
-    line-height: 1;
+    display: grid;
+    place-items: center;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #D4E2D5;
+    border-radius: 24px;
+    background: var(--forest-50);
+    color: #1B6B45;
   }
 
   .outcome h3 {

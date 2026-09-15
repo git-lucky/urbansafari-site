@@ -12,11 +12,11 @@
   --cream-deep:   #F3EBD4;
   --sand:         #EDDFC3;
   --sand-deep:    #E1CDA2;
-  --gold:         #EAB72D;
-  --gold-soft:    #F3D97E;
-  --coral:        #EAB72D;    /* alias kept so existing refs keep working */
-  --coral-soft:   #F3D97E;
-  --sunset:       #F2A93B;    /* warmer gold, used for Est 2024 sticker */
+  --gold:         #CBAA62;
+  --gold-soft:    #E5D6AF;
+  --coral:        #CBAA62;    /* alias kept so existing refs keep working */
+  --coral-soft:   #E5D6AF;
+  --sunset:       #D6B879;    /* warmer gold, used for Est 2024 sticker */
   --moss:         #6B7A35;
   --moss-soft:    #B5BE82;
   --paper:        #FFFDF7;
@@ -138,6 +138,8 @@ main:has(> .band-forest:last-child) + .site-footer {
   margin-top: 0;
   border-top: 0;
 }
+
+main:has(> #outcomes:last-child) + .site-footer { margin-top: 0; }
 
 /* ------------------------------------------------------------------ */
 /*  buttons                                                            */

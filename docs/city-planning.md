@@ -1,19 +1,17 @@
 # City-aware corporate planning
 
-Shipped to https://urbansafari.app/ September14,2026, Cloudflare Pages deployment1041d1cd. Mike explicitly authorized production shipping of the evening's website and portal work. Further changes should target the live website unless he requests previews.
+Production is https://urbansafari.app/ on the existing Cloudflare Pages project `urbansafari-site`, branch `main`. Mike has authorized live shipping. Build with `pnpm build`, push the reviewed source to main, and verify the GitHub Actions deployment and live HTTP response. Do not run Playwright, local servers or previews unless Mike requests them.
 
-The homepage uses Cloudflare request.cf.city and regionCode. Missing or invalid geography keeps the general homepage. No GPS prompt, third-party geolocation lookup, paid AI call or IP retention. Personalized HTML is private/no-store; only / invokes the middleware through public/_routes.json. Explicit /cities/<slug>/ pages preserve the requested city.
+The homepage hero stays generic: headline, description, proof, photo caption and visible hero CTA never name a city. Cloudflare request.cf.city and regionCode personalize planning links, metadata and the later contact section. The navigation CTA may name the city. `/plan/?city=` preserves that city as an editable value, with a pencil that focuses/selects it. Explicit `/cities/<slug>/` pages preserve their requested city.
 
-Primary links say Plan <city> and show Plan any city on hover/focus. /plan/?city= carries a real editable value, with a pencil that focuses/selects it. Any city is accepted; the twenty featured city names are suggestions. Feedback confirms the city for the inquiry without claiming a route has already been mapped. Continue to email composes a draft to mike@urbansafari.app for the visitor to send; the site does not directly submit the inquiry. Copyable fallback is available.
+Missing or invalid geography keeps general copy. No GPS prompt, third-party geolocation lookup, paid AI call or IP retention. Personalized HTML is private/no-store; only `/` invokes the middleware through public/_routes.json.
 
-Three packages: Scout and Remote Expedition use green styling; Guided Expedition and Urban Safari are one combined in-person signature package, with both Most booked and Signature labels. Former guided/premium inclusions are combined and FAQ wording agrees.
+Any city is accepted; the twenty featured cities are suggestions, not a claim that routes are already mapped. Continue to email composes a draft to mike@urbansafari.app for the visitor to send, with a copyable fallback. The site does not directly submit the inquiry.
 
-Thirteen approved edited photographs: Strunk9874 in the hero, twelve in the gallery. Credit identifies Woo Town, Woodward and Mike/Strunk. The gallery says photos from recent hunts will be added. Footer mobile order: Get in touch, Featured cities, Safari, reviews. Featured cities is not an exclusive service area; Plan in another city opens free entry. Review links use the existing Google review URL and Mike's exact Yelp business URL, with local official brand icons and scannable QR links. Asset provenance is in review-assets.md.
+Three packages: Scout and Remote Expedition use green styling. Guided Expedition and Urban Safari are one combined in-person package, with Most booked and Signature labels. Former guided/premium inclusions are combined and FAQ wording agrees. Process and outcome icons use green line drawings on pale sage; gold accents are muted.
 
-Build with pnpm build; deploy the build through the existing urbansafari-site Cloudflare Pages project, production branch main. Two pre-existing local commits (6e143be and6211dd1) clean public build artifacts and improve metadata/alt text; this release preserves them.
+Photography: Strunk IMG_9874 remains the hero. Its location/event credit belongs in the gallery, not the hero. The gallery has thirteen images including yoga submissions 8875/8876; its credit identifies Woo Town, Woodward and Mike/Strunk/the teams. More recent hunts can be added later. Photos display inline without clickable enlargement. Mike rejected IMG_1331 for marketing; do not re-add it or make further expression-based substitutions. Originals and the participant recap are preserved.
+
+Homepage order: hero, proof, packages, photo gallery, four steps, Pre-flight questions, contact invitation, What you get outcomes, footer. Footer order: Urban Safari coin/name, Google and Yelp review links, Get in touch / Featured cities / Safari, legal. Five decorative stars sit next to each review logo within the review CTA; they are not an aggregate rating or review count. Exact links, QR codes and official logo provenance are in review-assets.md.
 
 Actual game map/feed/leaderboard marketing screenshots remain pending a player session Mike opens in Safari. Do not extract team login credentials from the operator session.
-
-Photo exclusion: Mike explicitly rejected IMG_1331 for marketing on September14 (crouching player looking back toward camera). Removed from gallery and public marketing assets; originals preserved. Do not re-add. Final photo selection/order belongs to Mike; do not make further expression-based substitutions. Outcomes moved below footer review links, before legal text. Hero remains Strunk9874; the suggestion to change it was withdrawn.
-
-Both requested yoga photos (game submissions8875/8876) restored to the gallery. Marketing gallery now13images plus unchangedhero; IMG_1331excluded.
