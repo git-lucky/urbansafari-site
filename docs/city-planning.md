@@ -13,3 +13,7 @@ Thirteen approved edited photographs: Strunk9874 in the hero, twelve in the gall
 Build with pnpm build; deploy the build through the existing urbansafari-site Cloudflare Pages project, production branch main. Two pre-existing local commits (6e143be and6211dd1) clean public build artifacts and improve metadata/alt text; this release preserves them.
 
 Actual game map/feed/leaderboard marketing screenshots remain pending a player session Mike opens in Safari. Do not extract team login credentials from the operator session.
+
+Photo exclusion: Mike explicitly rejected IMG_1331 for marketing on September14 (crouching player looking back toward camera). Removed from gallery and public marketing assets; originals preserved. Do not re-add. Final photo selection/order belongs to Mike; do not make further expression-based substitutions. Outcomes moved below footer review links, before legal text. Hero remains Strunk9874; the suggestion to change it was withdrawn.
+
+Both requested yoga photos (game submissions8875/8876) restored to the gallery. Marketing gallery now13images plus unchangedhero; IMG_1331excluded.

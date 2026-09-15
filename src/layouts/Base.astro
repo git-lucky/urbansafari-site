@@ -76,7 +76,9 @@ const structuredDataItems = Array.isArray(structuredData)
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer>
+      <slot name="after-reviews" />
+    </Footer>
 
     <style>
       .skip-link {
