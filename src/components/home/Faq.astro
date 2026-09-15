@@ -54,16 +54,16 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
   .faq-item {
     --card-padding: clamp(1.75rem, 3vw, 2.5rem);
     min-width: 0;
-    background: linear-gradient(145deg, #FFFEFB, var(--paper) 60%, #F4F7F0);
-    box-shadow: 7px 7px 0 0 #1B6B45, 0 16px 24px -12px rgb(31 58 43 / 28%), inset 0 1px 0 #FFFFFF;
-    border: 3.5px solid #1B6B45;
+    background: linear-gradient(145deg, #FFFEFB, var(--paper) 60%, #FFF4D8);
+    box-shadow: 7px 7px 0 0 #B48A32, 0 16px 24px -12px rgb(111 78 20 / 24%), inset 0 1px 0 #FFFFFF;
+    border: 3.5px solid var(--gold);
     border-radius: 26px;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .faq-item[open], .faq-item:focus-within {
-    border-color: #1B6B45;
-    box-shadow: 10px 10px 0 0 #1B6B45, 0 22px 30px -14px rgb(31 58 43 / 30%), inset 0 1px 0 #FFFFFF;
+    border-color: #B48A32;
+    box-shadow: 10px 10px 0 0 #B48A32, 0 22px 30px -14px rgb(111 78 20 / 28%), inset 0 1px 0 #FFFFFF;
   }
   .faq-item summary {
     position: relative;
@@ -93,9 +93,9 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     width: 72px;
     height: 72px;
     border-radius: 22px;
-    background: linear-gradient(145deg, #F1F6EE, var(--forest-50) 55%, #DDE8DB);
-    box-shadow: 3px 3px 0 0 #A9BEA9, inset 0 1px 0 rgb(255 255 255 / 90%);
-    border: 2px solid #77987D;
+    background: linear-gradient(145deg, #FFF0C5, var(--gold-soft) 55%, var(--gold));
+    box-shadow: 3px 3px 0 0 #B48A32, inset 0 1px 0 rgb(255 255 255 / 90%);
+    border: 2px solid #B48A32;
     color: #1B6B45;
   }
   .faq-q { max-width: 28ch; }
@@ -111,7 +111,7 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     color: #1B6B45;
     transition: transform 0.2s, background 0.2s;
   }
-  .faq-item:hover .faq-toggle { background: var(--forest-50); }
+  .faq-item:hover .faq-toggle { background: #FFF0C5; }
   .faq-item[open] .faq-toggle { transform: rotate(-180deg); }
   .faq-a {
     padding: 0 var(--card-padding) var(--card-padding);
@@ -136,9 +136,9 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
 
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .faq-item:hover {
-      border-color: #1B6B45;
+      border-color: #B48A32;
       transform: translate(-3px, -3px);
-      box-shadow: 10px 10px 0 0 #1B6B45, 0 22px 30px -14px rgb(31 58 43 / 30%), inset 0 1px 0 #FFFFFF;
+      box-shadow: 10px 10px 0 0 #B48A32, 0 22px 30px -14px rgb(111 78 20 / 28%), inset 0 1px 0 #FFFFFF;
     }
   }
 
