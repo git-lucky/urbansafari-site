@@ -1,0 +1,13 @@
+---
+interface Props { city?: string; label?: string; class?: string; }
+const { city = '', label, class: className = 'btn btn-coral' } = Astro.props;
+const href = `/plan/${city ? `?city=${encodeURIComponent(city)}` : ''}`;
+---
+<a href={href} class:list={['plan-link',className]} data-plan-link data-city-button={!label || undefined}>
+  <span data-plan-label>{label || (city ? `Plan ${city.replace(/,\s*[^,]+$/, '')}` : 'Plan your Safari')}</span>
+  <span class="arrow" aria-hidden="true">→</span>
+  <span class="plan-tooltip" role="tooltip">Plan any city</span>
+</a>
+<style>
+.plan-link{position:relative}.plan-tooltip{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);padding:7px 12px;border-radius:7px;background:var(--forest);color:var(--paper);font:500 13px/1.4 var(--font-body);white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s}.plan-link:hover .plan-tooltip,.plan-link:focus-visible .plan-tooltip{opacity:1;visibility:visible}
+</style>

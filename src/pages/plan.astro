@@ -1,0 +1,63 @@
+---
+import Base from '@/layouts/Base.astro';
+import {priorityCities} from '@/content/cities';
+---
+<Base title="Plan your team’s Urban Safari" description="Tell Mike about your city, company and team. Start planning a custom corporate scavenger hunt." noIndex>
+<section class="planning section">
+  <div class="wrap planning-layout">
+    <div class="planning-intro">
+      <p class="eyebrow">Your team. Your city.</p>
+      <h1>A good day starts here.</h1>
+      <p class="lead">Tell us a little about your team. We’ll help you build a Safari around your people, your schedule, and your city.</p>
+      <p class="personal-note">Not sure about a date or headcount? A rough idea is plenty.<br/><strong>— Mike, Urban Safari</strong></p>
+    </div>
+    <form id="planning-form" class="planning-form">
+      <h2>Let’s start planning.</h2>
+      <label for="plan-city">Event city <span class="required">required</span></label>
+      <div class="city-field"><input id="plan-city" name="city" required maxlength="100" list="city-suggestions" autocomplete="address-level2" placeholder="City and state"/><button type="button" id="edit-city" aria-label="Edit event city" title="Edit city"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m15 5 4 4M4 20l4-1 12-12a2.8 2.8 0 0 0-4-4L4 15z"/></svg></button></div>
+      <datalist id="city-suggestions">{priorityCities.map(city=><option value={`${city.name}, ${city.state}`} />)}</datalist>
+      <p class="field-help" id="city-feedback" role="status" aria-live="polite">We’ve started with the city you were viewing. You can change it.</p>
+      <label for="plan-company">Company</label><input id="plan-company" name="company" autocomplete="organization" maxlength="150"/>
+      <div class="field-row"><div><label for="plan-size">Approximate team size</label><input id="plan-size" name="size" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 30"/></div><div><label for="plan-date">Preferred date</label><input id="plan-date" name="date" type="date"/></div></div>
+      <div class="field-row"><div><label for="plan-name">Your name</label><input id="plan-name" name="name" autocomplete="name" maxlength="100"/></div><div><label for="plan-email">Work email</label><input id="plan-email" name="email" type="email" autocomplete="email" maxlength="200"/></div></div>
+      <label for="plan-notes">Anything else we should know?</label><textarea id="plan-notes" name="notes" rows="3" maxlength="3000" placeholder="Your occasion, venue, goals, or questions"></textarea>
+      <button class="btn btn-coral continue" type="submit">Continue to email <span aria-hidden="true">→</span></button>
+      <p class="field-help">Opens an email draft to Mike with these details. Review it, then send.</p>
+      <div id="email-fallback" hidden><p>If your email app didn’t open, copy your details and email <a href="mailto:mike@urbansafari.app">mike@urbansafari.app</a>.</p><button type="button" id="copy-details">Copy my details</button><textarea id="draft-details" aria-label="Your inquiry details" rows="6"></textarea><p id="copy-status" role="status"></p></div>
+      <noscript><p>Email <a href="mailto:mike@urbansafari.app">mike@urbansafari.app</a> or call <a href="tel:4054374597">(405) 437-4597</a> to start planning.</p></noscript>
+    </form>
+  </div>
+</section>
+<style>
+.planning{background:var(--cream-deep)}.planning-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:start}.planning-intro{position:sticky;top:145px}.planning-intro h1{font-size:clamp(46px,5.4vw,78px);margin:20px 0 28px;max-width:9ch}.planning-intro .lead{max-width:33ch}.personal-note{margin-top:30px;color:var(--forest-soft);font-size:15px}.personal-note strong{display:block;margin-top:12px}.planning-form{background:var(--paper);border:2px solid var(--forest);border-radius:22px;padding:clamp(23px,3vw,42px);box-shadow:5px 5px 0 var(--sand-deep);min-width:0}.planning-form h2{font-size:32px;margin-bottom:25px}.planning-form label{display:block;font-size:14px;font-weight:700;margin:18px 0 7px}.required{font-size:11px;font-weight:500;color:var(--forest-soft);margin-left:7px}.planning-form input,.planning-form textarea{font:inherit;width:100%;min-width:0;border:1px solid #8d9b86;border-radius:9px;background:#fff;padding:12px;color:var(--ink);min-height:48px}.planning-form input:focus,.planning-form textarea:focus{outline:3px solid var(--gold);outline-offset:2px}.planning-form textarea{resize:vertical}.city-field{display:flex;align-items:center;gap:8px}.city-field input{font-weight:700;background:#fff9e4}.city-field button{display:grid;place-items:center;flex-shrink:0;width:44px;height:48px;border:1px solid var(--forest);border-radius:9px}.field-help{font-size:12px;color:var(--forest-soft);margin-top:9px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field-row>div{min-width:0}.continue{margin-top:24px;width:100%;justify-content:space-between}.planning-form a{text-decoration:underline}#email-fallback{border-top:1px solid var(--sand-deep);margin-top:23px;padding-top:20px;font-size:14px}#copy-details{border:1px solid var(--forest);padding:10px;border-radius:8px;margin:12px 0}#draft-details{font-size:13px}
+@media(max-width:800px){.planning-layout{grid-template-columns:1fr;gap:28px}.planning-intro{position:static}.planning-intro h1{max-width:14ch;font-size:48px;margin-block:16px}.planning-intro .lead{max-width:none}.personal-note{display:none}.planning.section{padding-block:35px 55px}.planning-form{padding:22px}.field-row{grid-template-columns:1fr;gap:0}}
+</style>
+<script>
+  const form=document.querySelector<HTMLFormElement>('#planning-form')!;
+  const city=document.querySelector<HTMLInputElement>('#plan-city')!;
+  const fromLink=new URLSearchParams(location.search).get('city')?.trim().slice(0,100);
+  const feedback=document.querySelector<HTMLElement>('#city-feedback')!;
+  if(fromLink){city.value=fromLink;}else{feedback.textContent='Any city. Tell us where your team will be.';}
+  const updateCity=()=>{
+    const value=city.value.trim();
+    city.setCustomValidity(value ? '' : 'Enter the city for your event.');
+    feedback.textContent=value ? `We’ll use ${value} for your event inquiry. You can change it again.` : 'Enter the city and state for your event.';
+  };
+  city.addEventListener('input',updateCity);
+  document.querySelector('#edit-city')!.addEventListener('click',()=>{city.focus();city.select();});
+  let draft='';
+  form.addEventListener('submit',event=>{
+    event.preventDefault();updateCity();if(!form.reportValidity())return;
+    const data=new FormData(form);const get=(key:string)=>String(data.get(key)||'').trim();
+    draft=`Hi Mike,\n\nI’d like to plan an Urban Safari for our team.\n\nEvent city: ${get('city')}\nCompany: ${get('company')}\nTeam size: ${get('size')}\nPreferred date: ${get('date')}\nName: ${get('name')}\nWork email: ${get('email')}\n\n${get('notes')}`;
+    document.querySelector<HTMLElement>('#email-fallback')!.hidden=false;
+    document.querySelector<HTMLTextAreaElement>('#draft-details')!.value=draft;
+    location.href=`mailto:mike@urbansafari.app?subject=${encodeURIComponent(`Urban Safari inquiry — ${get('city')}`)}&body=${encodeURIComponent(draft)}`;
+  });
+  document.querySelector('#copy-details')!.addEventListener('click',async()=>{
+    const details=document.querySelector<HTMLTextAreaElement>('#draft-details')!;
+    try{await navigator.clipboard.writeText(details.value);document.querySelector('#copy-status')!.textContent='Details copied.';}
+    catch{details.focus();details.select();document.querySelector('#copy-status')!.textContent='Select and copy your details above.';}
+  });
+</script>
+</Base>

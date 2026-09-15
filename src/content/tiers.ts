@@ -1,5 +1,3 @@
-export type TierBadge = 'popular' | 'premium';
-
 export interface Tier {
   slug: string;
   name: string;
@@ -7,8 +5,9 @@ export interface Tier {
   description: string;
   includes: string[];
   mascotPose: string;
-  badge?: TierBadge;
-  badgeLabel?: string;
+  subtitle?: string;
+  featured?: boolean;
+  badges?: string[];
 }
 
 export const tiers: Tier[] = [
@@ -42,34 +41,21 @@ export const tiers: Tier[] = [
   },
   {
     slug: 'guided-expedition',
-    name: 'Guided Expedition',
-    tagline: 'We run the show. Your team just shows up.',
-    description:
-      'A fully facilitated experience with our in-person Safari crew handling every moving piece, from kickoff to the awards ceremony.',
-    includes: [
-      'In-person Safari host running the event',
-      'Full event coordination and logistics',
-      'In-city support team throughout the day',
-      'Awards ceremony and celebration at the finish',
-    ],
-    mascotPose: 'atlas-flag',
-    badge: 'popular',
-    badgeLabel: 'Most booked',
-  },
-  {
-    slug: 'urban-safari',
     name: 'Urban Safari',
-    tagline: 'The full expedition. Bespoke. Unforgettable.',
+    subtitle: 'Guided Expedition',
+    tagline: 'Our signature expedition. Your team just shows up.',
     description:
-      'Guided Expedition, plus custom challenges built around your company, and a highlight reel your team will still be sending each other months later.',
+      'Our fully guided, in-person experience. We build the challenges around your company and handle the day from kickoff to the awards celebration.',
     includes: [
-      'Includes Guided Expedition +',
+      'In-person Safari host and full event coordination',
       'Custom company-specific challenges',
-      'Post-event highlight reel delivered to your company',
+      'In-city support throughout the event',
+      'Awards ceremony and celebration at the finish',
+      'Post-event highlight reel for your team',
       'Dedicated account lead from booking to wrap',
     ],
-    mascotPose: 'atlas-clapper',
-    badge: 'premium',
-    badgeLabel: 'Signature',
+    mascotPose: 'atlas-flag',
+    featured: true,
+    badges: ['Most booked', 'Signature'],
   },
 ];

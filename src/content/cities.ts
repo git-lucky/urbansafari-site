@@ -80,7 +80,7 @@ export const priorityCities: CityMarket[] = [
     description:
       'Urban Safari is based in Oklahoma City and builds OKC corporate scavenger hunts, company outings, and team building games with local route knowledge and polished event support.',
     routeIdeas: ['Downtown and Bricktown routes', 'Arts district photo challenges', 'Custom missions near your office, hotel, or meeting venue'],
-    planningNotes: ['Home-market page for local search visibility in Oklahoma City', 'Great for OKC employers, visiting teams, conferences, and employee appreciation events', 'Works for teams based in OKC, Edmond, Norman, Moore, and nearby suburbs'],
+    planningNotes: ['Local route planning from our Oklahoma City home base', 'Great for OKC employers, visiting teams, conferences, and employee appreciation events', 'Works for teams based in OKC, Edmond, Norman, Moore, and nearby suburbs'],
     nearby: ['Edmond', 'Norman', 'Moore', 'Yukon'],
   },
   {

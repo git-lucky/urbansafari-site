@@ -1,21 +1,18 @@
 ---
+import PlanLink from '@/components/PlanLink.astro';
 ---
 
 <section id="contact" class="contact band-forest">
   <div class="wrap">
     <div class="contact-copy">
       <p class="eyebrow">When's your team adventure?</p>
-      <h2>Let's build a day your team will be quoting in six months.</h2>
+      <h2 data-city-contact>Let's build a day your team will be quoting in six months.</h2>
       <p class="contact-sub">
-        Email or call, whichever suits. We answer fast and we don't funnel you
-        through a form-maze. A real human will reply within one business day.
+        Start with your city, team size, and a date. Mike will help you choose the right format and plan the details.
       </p>
 
       <div class="contact-ctas">
-        <a href="mailto:mike@urbansafari.app?subject=Urban%20Safari%20Inquiry&body=Hi!%20I%27d%20like%20to%20learn%20more%20about%20booking%20a%20Safari.%0A%0ATeam%20size%3A%0APreferred%20date%3A%0ACity%3A%0ATier%20we%27re%20curious%20about%3A%0AAnything%20else%3A" class="btn btn-coral">
-          Send us a note
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
+        <PlanLink />
         <a href="tel:4054374597" class="btn phone-btn">
           <span aria-hidden="true">📞</span>
           (405) 437-4597
@@ -71,7 +68,7 @@
     gap: 1rem;
     margin-bottom: 1.5rem;
   }
-  .contact-ctas .btn {
+  .contact-ctas :global(.btn) {
     font-size: 1.05rem;
     padding: 1rem 1.6rem;
   }

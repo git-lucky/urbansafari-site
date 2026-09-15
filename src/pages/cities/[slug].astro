@@ -1,4 +1,5 @@
 ---
+import PlanLink from '@/components/PlanLink.astro';
 import Base from '@/layouts/Base.astro';
 import Mascot from '@/components/Mascot.astro';
 import { priorityCities, type CityMarket } from '@/content/cities';
@@ -19,10 +20,6 @@ const { city } = Astro.props;
 const cityLabel = `${city.name}, ${city.state}`;
 const title = `${cityLabel} team building scavenger hunts`;
 const description = `${city.description} Plan a city-wide Urban Safari for teams of 10 to 200+ in ${cityLabel}.`;
-const inquirySubject = encodeURIComponent(`Urban Safari inquiry for ${cityLabel}`);
-const inquiryBody = encodeURIComponent(
-  `Hi! I'd like to learn more about booking an Urban Safari in ${cityLabel}.\n\nTeam size:\nPreferred date:\nTier we're curious about:\nAnything else:`
-);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 const structuredData = [
@@ -77,7 +74,7 @@ const structuredData = [
 ];
 ---
 
-<Base title={title} description={description} structuredData={structuredData}>
+<Base city={cityLabel} title={title} description={description} structuredData={structuredData}>
   <section class="city-hero band-sand">
     <div class="wrap city-hero-grid">
       <div class="city-copy">
@@ -85,10 +82,7 @@ const structuredData = [
         <h1>{city.headline}</h1>
         <p class="lead">{city.description}</p>
         <div class="city-ctas">
-          <a href={`mailto:mike@urbansafari.app?subject=${inquirySubject}&body=${inquiryBody}`} class="btn btn-coral">
-            Plan {city.name}
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
+          <PlanLink city={cityLabel} />
           <a href="/#tiers" class="btn">See tiers</a>
         </div>
       </div>
@@ -162,7 +156,7 @@ const structuredData = [
     <div class="wrap">
       <header class="tiers-head">
         <p class="eyebrow">Choose your format</p>
-        <h2>Four ways to run your {city.name} Safari.</h2>
+        <h2>Choose your {city.name} Safari.</h2>
       </header>
       <div class="format-grid">
         {tiers.map((tier) => (
@@ -176,7 +170,7 @@ const structuredData = [
     </div>
   </section>
 
-  <section class="city-contact band-forest">
+  <section id="contact" class="city-contact band-forest">
     <div class="wrap contact-grid">
       <div>
         <p class="eyebrow">Ready when you are</p>
@@ -187,10 +181,7 @@ const structuredData = [
         </p>
       </div>
       <div class="contact-actions">
-        <a href={`mailto:mike@urbansafari.app?subject=${inquirySubject}&body=${inquiryBody}`} class="btn btn-coral">
-          Email Urban Safari
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
+        <PlanLink city={cityLabel} />
         <a href="tel:4054374597" class="btn phone-btn">(405) 437-4597</a>
       </div>
     </div>

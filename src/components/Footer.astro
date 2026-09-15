@@ -2,7 +2,10 @@
 import { footerCityLinks } from '@/content/cities';
 
 const year = new Date().getFullYear();
-const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
+const reviews = [
+  { name: 'Google', href: 'https://g.page/r/Cex4AH2x_-WFEAI/review', logo: '/review-logos/google-g.png', qr: '/google-review-qr.svg' },
+  { name: 'Yelp', href: 'https://www.yelp.com/biz/urban-safari-oklahoma-city-2', logo: '/review-logos/yelp-favicon.svg', qr: '/yelp-review-qr.svg' },
+];
 ---
 
 <footer class="site-footer band-forest">
@@ -65,7 +68,18 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
           </li>
         </ul>
       </div>
-      <details class="footer-collapse">
+      <details class="footer-locations footer-collapse">
+        <summary class="footer-head">Featured cities</summary>
+        <p class="footer-city-note">We can build a hunt in any city.</p>
+        <ul class="city-links">
+          {footerCityLinks.map((city) => (
+            <li><a href={`/cities/${city.slug}/`}>{city.name}</a></li>
+          ))}
+          <li><a href="/cities/">All featured cities</a></li>
+          <li><a href="/plan/">Plan in another city →</a></li>
+        </ul>
+      </details>
+      <details class="footer-safari footer-collapse">
         <summary class="footer-head">Safari</summary>
         <ul>
           <li><a href="/#tiers">Experience tiers</a></li>
@@ -77,39 +91,19 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
           <li><a href="/support">Support</a></li>
         </ul>
       </details>
-      <details class="footer-locations footer-collapse">
-        <summary class="footer-head">Cities</summary>
-        <ul class="city-links">
-          {footerCityLinks.map((city) => (
-            <li><a href={`/cities/${city.slug}/`}>{city.name}</a></li>
-          ))}
-          <li><a href="/cities/">All major cities</a></li>
-        </ul>
-      </details>
     </nav>
   </div>
 
-  <div class="wrap footer-review-row">
-    <a
-      class="footer-review"
-      href={reviewUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src="/google-review-qr.svg"
-        alt="Scan to review Urban Safari on Google"
-        width="99"
-        height="99"
-        class="footer-review-qr"
-      />
-      <span class="footer-review-text">
-        <span class="footer-review-stars" aria-hidden="true">★★★★★</span>
-        <span class="footer-review-label">
-          Review us on Google
+  <div class="wrap footer-review-row" aria-label="Review Urban Safari">
+    {reviews.map(review => (
+      <a class="footer-review" href={review.href} target="_blank" rel="noopener noreferrer">
+        <img class="footer-review-qr" src={review.qr} alt={`Scan to open Urban Safari on ${review.name}`} width="88" height="88" loading="lazy" />
+        <span class="footer-review-text">
+          <img class="review-platform-logo" src={review.logo} alt="" width="28" height="28" loading="lazy" />
+          <span class="footer-review-label">Review us on {review.name} <span aria-hidden="true">↗</span></span>
         </span>
-      </span>
-    </a>
+      </a>
+    ))}
   </div>
 
   <div class="wrap footer-legal">
@@ -165,53 +159,37 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
   }
 
   .footer-review-row {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 820px;
     margin-top: 2.75rem;
   }
   .footer-review {
     display: flex;
-    width: fit-content;
     align-items: center;
-    gap: 1.35rem;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid color-mix(in srgb, var(--paper) 25%, transparent);
+    border-radius: var(--radius-md);
   }
+  .footer-review:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+  .footer-review:hover { border-color: var(--gold); }
   .footer-review-qr {
-    width: 99px;
-    height: 99px;
+    width: 88px;
+    height: 88px;
     flex-shrink: 0;
-    padding: 7.5px;
-    border-radius: 12px;
-    background: var(--paper);
-    border: var(--stamp-border);
-    box-shadow: var(--stamp-shadow);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    border-radius: 8px;
+    background: #fff;
   }
-  .footer-review:hover .footer-review-qr {
-    transform: translate(2px, 2px);
-    box-shadow: 3px 3px 0 0 var(--ink);
-  }
-  .footer-review-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-  }
-  .footer-review-stars {
-    color: var(--gold);
-    font-size: 1.425rem;
-    line-height: 1;
-    letter-spacing: 0.14em;
-  }
-  .footer-review-label {
-    font-family: var(--font-mono);
-    font-size: 1.17rem;
-    letter-spacing: 0.03em;
-    color: color-mix(in srgb, var(--paper) 85%, transparent);
-    transition: color 0.18s;
-  }
+  .footer-review-text { display: grid; gap: 0.65rem; }
+  .review-platform-logo { width: 28px; height: 28px; object-fit: contain; background: #fff; border-radius: 6px; padding: 3px; box-sizing: content-box; }
+  .footer-review-label { font-size: 1rem; font-weight: 700; color: var(--paper); }
   .footer-review:hover .footer-review-label { color: var(--gold); }
   .footer-nav {
     display: grid;
     grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-areas: "contact safari locations";
     gap: clamp(1.5rem, 4vw, 3rem);
   }
   .footer-head {
@@ -236,6 +214,9 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
   }
   .footer-nav a:hover { color: var(--coral-soft); }
 
+  .footer-contact { grid-area: contact; }
+  .footer-safari { grid-area: safari; }
+  .footer-locations { grid-area: locations; }
   .footer-contact a {
     display: inline-flex;
     align-items: center;
@@ -248,6 +229,7 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
   }
 
   .footer-locations .footer-head { margin-bottom: 1rem; }
+  .footer-city-note { color: var(--paper); font-size: 0.9rem; margin-block: 1rem; max-width: 24ch; }
 
   /* Collapsible footer sections (Safari, Cities) */
   .footer-collapse summary.footer-head {
@@ -343,8 +325,10 @@ const reviewUrl = 'https://g.page/r/Cex4AH2x_-WFEAI/review';
 
   @media (max-width: 760px) {
     .footer-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: repeat(2, 1fr); }
-    .footer-locations { grid-column: 1 / -1; }
+    .footer-nav { grid-template-columns: 1fr; grid-template-areas: "contact" "locations" "safari"; gap: 1.75rem; }
+    .footer-review-row { grid-template-columns: 1fr; max-width: 440px; }
+    .footer-review-qr { width: 72px; height: 72px; }
+    .footer-review { gap: 0.85rem; }
     .brand-row {
       flex-direction: column;
       align-items: center;

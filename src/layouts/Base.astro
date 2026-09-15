@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.astro';
 
 interface Props {
   title: string;
+  city?: string;
   description: string;
   ogImage?: string;
   noIndex?: boolean;
@@ -13,6 +14,7 @@ interface Props {
 
 const {
   title,
+  city,
   description,
   ogImage = '/team-pic.jpg',
   noIndex = false,
@@ -70,7 +72,7 @@ const structuredDataItems = Array.isArray(structuredData)
   </head>
   <body class="grain">
     <a href="#main" class="skip-link">Skip to content</a>
-    <Nav />
+    <Nav city={city} />
     <main id="main">
       <slot />
     </main>

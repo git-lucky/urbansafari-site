@@ -1,4 +1,5 @@
 ---
+import PlanLink from '@/components/PlanLink.astro';
 import Mascot from '@/components/Mascot.astro';
 import { tiers } from '@/content/tiers';
 ---
@@ -6,7 +7,7 @@ import { tiers } from '@/content/tiers';
 <section id="tiers" class="section tiers band-cream-deep">
   <div class="wrap">
     <header class="tiers-head">
-      <p class="eyebrow">Four ways to run a Safari</p>
+      <p class="eyebrow">Choose your Safari</p>
       <h2>Pick the expedition that fits.</h2>
       <p class="lead">
         Same playful spirit across every tier. The difference is how much we
@@ -17,15 +18,19 @@ import { tiers } from '@/content/tiers';
     <div class="tier-grid">
       {tiers.map((tier, i) => (
         <article
-          class={`tier ${tier.badge ? `tier-${tier.badge}` : ''}`}
+          class={`tier ${tier.featured ? 'tier-featured' : ''}`}
+          data-package={tier.slug}
           style={`--r:${i % 2 === 0 ? -0.6 : 0.6}deg`}
         >
-          {tier.badge && (
-            <span class={`tier-badge badge-${tier.badge}`}>{tier.badgeLabel}</span>
+          {tier.badges && (
+            <div class="tier-badges">
+              {tier.badges.map(label => <span class="tier-badge">{label}</span>)}
+            </div>
           )}
           <div class="tier-mascot">
             <Mascot pose={tier.mascotPose} size="md" />
           </div>
+          {tier.subtitle && <p class="tier-subtitle">{tier.subtitle}</p>}
           <h3>{tier.name}</h3>
           <p class="tier-tag">{tier.tagline}</p>
           <p class="tier-desc">{tier.description}</p>
@@ -37,10 +42,7 @@ import { tiers } from '@/content/tiers';
               </li>
             ))}
           </ul>
-          <a href="#contact" class="btn btn-ghost tier-cta">
-            Get a quote
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
+          <PlanLink label="Get a quote" class="btn btn-ghost tier-cta" />
         </article>
       ))}
     </div>
@@ -62,7 +64,7 @@ import { tiers } from '@/content/tiers';
 
   .tier-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(1.25rem, 2.5vw, 2rem);
     align-items: stretch;
   }
@@ -87,11 +89,7 @@ import { tiers } from '@/content/tiers';
     box-shadow: 9px 10px 0 0 var(--ink);
   }
 
-  .tier-popular { border-color: var(--gold); box-shadow: 5px 5px 0 0 var(--gold); }
-  .tier-popular:hover { box-shadow: 9px 10px 0 0 var(--gold); }
-  .badge-popular { border-color: var(--gold); }
-
-  .tier-premium {
+  .tier-featured {
     background:
       linear-gradient(to bottom, #FDF1D8 0%, var(--paper) 100%) padding-box,
       linear-gradient(135deg, var(--gold) 0%, var(--sunset) 50%, var(--gold) 100%) border-box;
@@ -100,13 +98,13 @@ import { tiers } from '@/content/tiers';
     transform: translateY(-6px) rotate(var(--r, 0));
   }
 
-  .tier-premium h3 {
-    font-size: calc(var(--step-3) * 2.5 + 4pt);
+  .tier.tier-featured h3 {
+    font-size: clamp(2.4rem, 3.4vw, 3.6rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
     color: #1B6B45;
   }
-  .tier-premium::after {
+  .tier-featured::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -116,34 +114,41 @@ import { tiers } from '@/content/tiers';
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
-  .tier-premium:hover {
+  .tier-featured:hover {
     box-shadow: 9px 10px 0 0 var(--sunset);
     transform: translate(-3px, -12px) rotate(0deg);
   }
 
-  .tier-badge {
+  .tier-badges {
     position: absolute;
-    top: -14px;
-    right: 1.25rem;
+    top: -15px;
+    inset-inline: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .tier-badge {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 0.35rem 0.75rem;
     border: 2px solid var(--ink);
     border-radius: var(--radius-pill);
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--gold);
+    color: var(--ink);
   }
-  .badge-popular { background: var(--gold); color: #000; border-color: #000; }
-  .badge-premium {
-    background: linear-gradient(90deg, var(--sunset), var(--gold));
-    color: #000;
-    border-color: #000;
+  .tier-badge:last-child { background: var(--sunset); }
+  .tier-subtitle {
+    color: var(--forest-soft);
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
   }
 
-  .tier-premium .tier-mascot {
+  .tier-featured .tier-mascot {
     transform: scale(1.1) translateY(8px);
     transform-origin: center bottom;
   }
@@ -198,24 +203,21 @@ import { tiers } from '@/content/tiers';
     font-size: 0.7rem;
     font-weight: 700;
   }
-  .tier-popular .check { background: var(--coral); }
-  .tier-premium .check {
+  .tier-featured .check {
     background: linear-gradient(135deg, var(--sunset), var(--coral));
   }
 
-  .tier-cta {
+  :global(.tier-cta) {
     margin-top: auto;
     align-self: flex-start;
     padding: 0.7rem 1.2rem;
     font-size: 0.95rem;
   }
-  .tier-popular .tier-cta,
-  .tier-premium .tier-cta {
-    border-color: var(--gold);
-    color: var(--gold);
+  .tier-featured :global(.tier-cta) {
+    border-color: var(--ink);
+    color: var(--ink);
   }
-  .tier-popular .tier-cta:hover,
-  .tier-premium .tier-cta:hover {
+  .tier-featured :global(.tier-cta):hover {
     box-shadow: 3px 3px 0 0 var(--gold);
   }
 
@@ -228,11 +230,9 @@ import { tiers } from '@/content/tiers';
     margin-inline: auto;
   }
 
-  @media (max-width: 1100px) {
-    .tier-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 560px) {
-    .tier-grid { grid-template-columns: 1fr; }
-    .tier { transform: rotate(0) !important; }
+  @media (max-width: 960px) {
+    .tier-grid { grid-template-columns: 1fr; max-width: 36rem; margin-inline: auto; gap: 2.5rem; }
+    .tier { transform: rotate(0); }
+    .tier:hover { transform: translateY(-3px); }
   }
 </style>

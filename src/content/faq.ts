@@ -18,7 +18,7 @@ export const preSaleFaq: FaqItem[] = [
   },
   {
     q: 'How far out should we book?',
-    a: 'For Scout and Remote Expedition, a couple of weeks is usually enough. For Guided Expedition or a fully custom Urban Safari, two to four weeks gives us room to scout the city, build the challenges, and make the day feel effortless for you.',
+    a: 'For Scout and Remote Expedition, a couple of weeks is usually enough. For our guided Urban Safari, two to four weeks gives us room to scout the city, build the challenges, and make the day feel effortless for you.',
   },
 ];
 
