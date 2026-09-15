@@ -10,19 +10,19 @@ const steps = [
   {
     n: '02',
     title: 'We build the expedition',
-    body: 'Your custom game (challenges, routes, tech) is ready to go when you are. No logistics on your plate.',
+    body: 'Your custom game is ready to go when you are. No logistics on your plate.',
     icon: 'route',
   },
   {
     n: '03',
     title: 'Your team plays',
-    body: 'Teams race through city challenges, photo missions, trivia, and creative tasks. Live leaderboard, live energy.',
+    body: 'Teams race through city challenges, photo missions, trivia, and creative tasks.',
     icon: 'team',
   },
   {
     n: '04',
     title: 'Everyone leaves grinning',
-    body: 'Awards ceremony, highlight reel, and a group photo that means something. Work on Monday feels different.',
+    body: 'Awards, a highlight reel, and a group photo that means something.',
     icon: 'celebrate',
   },
 ] as const;
@@ -33,16 +33,12 @@ const steps = [
     <header class="how-head">
       <p class="eyebrow">The expedition</p>
       <h2>Four steps. Sit back and enjoy the Safari.</h2>
-      <p class="lead">
-        You show up. We run the day. Your team walks away with a story they'll still
-        be telling at next year's kickoff.
-      </p>
     </header>
 
     <ol class="step-grid">
       {steps.map((step) => (
         <li class="step">
-          <div class="step-icon"><SafariIcon name={step.icon} /></div>
+          <div class="step-icon"><SafariIcon name={step.icon} size={48} /></div>
           <p class="step-num">{step.n}</p>
           <h3>{step.title}</h3>
           <p class="step-body">{step.body}</p>
@@ -54,15 +50,15 @@ const steps = [
 
 <style>
   .how-head {
-    max-width: 48ch;
+    max-width: 900px;
     margin-bottom: clamp(3rem, 6vw, 4.5rem);
   }
-  .how-head .eyebrow { margin-bottom: 0.85rem; display: block; }
-  .how-head h2 { margin-bottom: 1rem; }
+  .how-head .eyebrow { margin-bottom: 0.85rem; display: block; color: var(--forest-soft); }
+  .how-head h2 { font-size: clamp(2rem, 4.4vw, 3.75rem); line-height: 1.05; max-width: 24ch; }
 
   .step-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(1.5rem, 3vw, 2.5rem);
     position: relative;
   }
@@ -72,16 +68,20 @@ const steps = [
     align-items: center;
     text-align: center;
     position: relative;
+    min-width: 0;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border: 1.5px solid #D7E3D8;
+    border-radius: 26px;
+    background: var(--paper);
   }
   .step-icon {
-    width: 80px;
-    height: 80px;
+    width: 88px;
+    height: 88px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--forest-50);
-    border: 1px solid #D4E2D5;
-    border-radius: 24px;
+    border-radius: 25px;
     color: #1B6B45;
     margin-bottom: 1.25rem;
     flex-shrink: 0;
@@ -100,14 +100,12 @@ const steps = [
     color: var(--ink);
   }
   .step-body {
-    color: var(--ink);
+    color: var(--forest-soft);
     font-size: 0.98rem;
+    max-width: 45ch;
   }
 
-  @media (max-width: 900px) {
-    .step-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 520px) {
+  @media (max-width: 640px) {
     .step-grid { grid-template-columns: 1fr; }
   }
 </style>
