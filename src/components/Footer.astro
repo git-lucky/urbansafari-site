@@ -9,6 +9,20 @@ const reviews = [
 ---
 
 <footer class="site-footer band-forest">
+  <div class="wrap footer-review-row" aria-label="Review Urban Safari">
+    {reviews.map(review => (
+      <a class="footer-review" href={review.href} target="_blank" rel="noopener noreferrer">
+        <img class="footer-review-qr" src={review.qr} alt={`Scan to open Urban Safari on ${review.name}`} width="88" height="88" loading="lazy" />
+        <span class="footer-review-text">
+          <img class="review-platform-logo" src={review.logo} alt="" width="28" height="28" loading="lazy" />
+          <span class="footer-review-label">Review us on {review.name} <span aria-hidden="true">↗</span></span>
+        </span>
+      </a>
+    ))}
+  </div>
+
+  <slot />
+
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <div class="brand-row">
@@ -94,20 +108,6 @@ const reviews = [
     </nav>
   </div>
 
-  <div class="wrap footer-review-row" aria-label="Review Urban Safari">
-    {reviews.map(review => (
-      <a class="footer-review" href={review.href} target="_blank" rel="noopener noreferrer">
-        <img class="footer-review-qr" src={review.qr} alt={`Scan to open Urban Safari on ${review.name}`} width="88" height="88" loading="lazy" />
-        <span class="footer-review-text">
-          <img class="review-platform-logo" src={review.logo} alt="" width="28" height="28" loading="lazy" />
-          <span class="footer-review-label">Review us on {review.name} <span aria-hidden="true">↗</span></span>
-        </span>
-      </a>
-    ))}
-  </div>
-
-  <slot />
-
   <div class="wrap footer-legal">
     <span class="footer-copy">© {year} Urban Safari Game Experiences.</span>
     <span class="footer-motto">Made by a team that still high-fives after meetings.</span>
@@ -136,6 +136,7 @@ const reviews = [
     border-top: 3px solid var(--ink);
   }
   .footer-grid {
+    margin-top: 2.75rem;
     display: grid;
     grid-template-columns: 1.5fr 2fr;
     gap: clamp(2rem, 5vw, 4rem);
@@ -165,7 +166,6 @@ const reviews = [
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     max-width: 820px;
-    margin-top: 2.75rem;
   }
   .footer-review {
     display: flex;
