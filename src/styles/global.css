@@ -172,8 +172,8 @@ main:has(> #outcomes:last-child) + .site-footer { margin-top: 0; }
   box-shadow: 2px 2px 0 0 #000;
 }
 .btn-coral   { background: var(--gold);   color: #000; }
-.btn-forest  { background: var(--forest); color: var(--gold); border-color: #000; }
-.btn-forest:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.btn-forest  { background: var(--gold); color: var(--forest); border-color: #000; }
+.btn-forest:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
 .btn-ghost   { background: transparent; box-shadow: none; }
 .btn-ghost:hover { box-shadow: var(--stamp-shadow); }
 
