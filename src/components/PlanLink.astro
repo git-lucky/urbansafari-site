@@ -6,8 +6,8 @@ if (city) params.set('city', city);
 if (packageSlug) params.set('package', packageSlug);
 const href = `/plan/${params.size ? `?${params}` : ''}`;
 ---
-<a href={href} class:list={['plan-link',className]} data-plan-link data-city-button={!label || undefined}>
-  <span data-plan-label>{label || (city ? `Plan ${city.replace(/,\s*[^,]+$/, '')}` : 'Plan your Safari')}</span>
+<a href={href} class:list={['plan-link',className]}>
+  <span>{label || (city ? `Plan ${city.replace(/,\s*[^,]+$/, '')}` : 'Plan your Safari')}</span>
   <span class="arrow" aria-hidden="true">→</span>
   <span class="plan-tooltip" role="tooltip">Plan any city</span>
 </a>

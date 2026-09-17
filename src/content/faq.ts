@@ -10,7 +10,7 @@ export const preSaleFaq: FaqItem[] = [
   },
   {
     q: 'Which cities do you run in?',
-    a: 'Any walkable city your team is in. Tell us where and when, and we\'ll scout the route, build the challenges, and turn your city into the game board.',
+    a: 'We run Safaris nationwide, in any walkable city across the United States. Tell us where and when, and we\'ll scout the route, build the challenges, and turn your city into the game board.',
   },
   {
     q: 'Can we customize the game for our company?',

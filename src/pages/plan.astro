@@ -17,7 +17,7 @@ import {tiers} from '@/content/tiers';
       <label for="plan-city">Event city <span class="required">required</span></label>
       <div class="city-field"><input id="plan-city" name="city" required maxlength="100" list="city-suggestions" autocomplete="address-level2" placeholder="City and state"/><button type="button" id="edit-city" aria-label="Edit event city" title="Edit city"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m15 5 4 4M4 20l4-1 12-12a2.8 2.8 0 0 0-4-4L4 15z"/></svg></button></div>
       <datalist id="city-suggestions">{priorityCities.map(city=><option value={`${city.name}, ${city.state}`} />)}</datalist>
-      <p class="field-help" id="city-feedback" role="status" aria-live="polite">We’ve started with the city you were viewing. You can change it.</p>
+      <p class="field-help" id="city-feedback" role="status" aria-live="polite">Any city. Tell us where your team will be.</p>
       <label for="plan-package">Package</label>
       <select id="plan-package" name="package"><option value="">Help me choose</option>{tiers.map(tier=><option value={tier.slug}>{tier.name}{tier.subtitle ? ` — ${tier.subtitle}` : ''}</option>)}</select>
       <label for="plan-company">Company</label><input id="plan-company" name="company" autocomplete="organization" maxlength="150"/>
@@ -44,7 +44,7 @@ import {tiers} from '@/content/tiers';
   const selectedPackage=params.get('package');
   if(selectedPackage && Array.from(packageSelect.options).some(option=>option.value===selectedPackage)) packageSelect.value=selectedPackage;
   const feedback=document.querySelector<HTMLElement>('#city-feedback')!;
-  if(fromLink){city.value=fromLink;}else{feedback.textContent='Any city. Tell us where your team will be.';}
+  if(fromLink){city.value=fromLink;feedback.textContent='We’ve started with the city you were viewing. You can change it.';}
   const updateCity=()=>{
     const value=city.value.trim();
     city.setCustomValidity(value ? '' : 'Enter the city for your event.');
