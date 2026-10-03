@@ -72,9 +72,9 @@ import { tiers } from '@/content/tiers';
 
   .tier {
     position: relative;
-    --ink: #1B6B45;
-    --stamp-border: 3.5px solid #1B6B45;
-    --stamp-shadow: 7px 7px 0 0 #1B6B45;
+    --ink: var(--forest);
+    --stamp-border: 3.5px solid var(--forest);
+    --stamp-shadow: 7px 7px 0 0 var(--forest);
     background: linear-gradient(to bottom, #FDF1D8 0%, var(--paper) 100%);
     border: var(--stamp-border);
     border-radius: var(--radius-lg);
@@ -103,7 +103,7 @@ import { tiers } from '@/content/tiers';
     font-size: clamp(2.4rem, 3.4vw, 3.6rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
-    color: #1B6B45;
+    color: var(--forest);
   }
   .tier-featured::after {
     content: '';
@@ -183,7 +183,7 @@ import { tiers } from '@/content/tiers';
     gap: 0.6rem;
     margin-bottom: 1.5rem;
     font-size: 0.92rem;
-    color: #0F2419;
+    color: #0E3447;
   }
   .tier-list li {
     display: flex;
@@ -205,6 +205,7 @@ import { tiers } from '@/content/tiers';
     font-weight: 700;
   }
   .tier-featured .check {
+    color: var(--forest);
     background: linear-gradient(135deg, var(--sunset), var(--coral));
   }
 

@@ -3,22 +3,22 @@
 /* ------------------------------------------------------------------ */
 
 :root {
-  /* palette */
-  --ink:          #0F2419;
-  --forest:       #1F3A2B;
-  --forest-soft:  #3B5D48;
-  --forest-50:    #EAF1E9;
+  /* Urban Safari blue and Urban Safari gold; legacy token names retained. */
+  --ink:          #0E3447;
+  --forest:       #174F6B;
+  --forest-soft:  #39657C;
+  --forest-50:    #EAF2F7;
   --cream:        #FAF5E9;
   --cream-deep:   #F3EBD4;
   --sand:         #EDDFC3;
   --sand-deep:    #E1CDA2;
-  --gold:         #CBAA62;
-  --gold-soft:    #E5D6AF;
-  --coral:        #CBAA62;    /* alias kept so existing refs keep working */
-  --coral-soft:   #E5D6AF;
-  --sunset:       #D6B879;    /* warmer gold, used for Est 2024 sticker */
-  --moss:         #6B7A35;
-  --moss-soft:    #B5BE82;
+  --gold:         #E9BE4F;
+  --gold-soft:    #F4DEA0;
+  --coral:        var(--gold);    /* alias kept so existing refs keep working */
+  --coral-soft:   var(--gold-soft);
+  --sunset:       #F2CC6B;    /* warmer gold, used for Est 2024 sticker */
+  --moss:         #326780;
+  --moss-soft:    #B6D1DF;
   --paper:        #FFFDF7;
 
   /* type */
@@ -80,7 +80,7 @@ ul, ol { list-style: none; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  color: #1B6B45;
+  color: var(--forest);
   line-height: 1.02;
   letter-spacing: -0.025em;
   font-weight: 800;
@@ -96,7 +96,7 @@ p  { max-width: 62ch; }
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 0.18em;
-  color: var(--gold);
+  color: var(--forest);
   font-weight: 700;
 }
 
