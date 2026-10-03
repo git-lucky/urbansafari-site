@@ -5,7 +5,6 @@ import RecapInvitation from '@/components/RecapInvitation.astro';
 const year = new Date().getFullYear();
 const reviews = [
   { name: 'Google', href: 'https://g.page/r/Cex4AH2x_-WFEAI/review', logo: '/review-logos/google-g.png', qr: '/google-review-qr.svg' },
-  { name: 'Yelp', href: 'https://www.yelp.com/biz/urban-safari-oklahoma-city-2', logo: '/review-logos/yelp-favicon.svg', qr: '/yelp-review-qr.svg' },
 ];
 ---
 
@@ -167,9 +166,9 @@ const reviews = [
 
   .footer-review-row {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
-    max-width: 820px;
+    max-width: 440px;
     width: 100%;
     margin-inline: auto;
   }
