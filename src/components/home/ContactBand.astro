@@ -51,6 +51,12 @@ import PlanLink from '@/components/PlanLink.astro';
     );
   }
 
+  .contact-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
   .contact h2 {
     font-size: clamp(2rem, 1.5rem + 3vw, 3.5rem);
     line-height: 1;
@@ -66,6 +72,7 @@ import PlanLink from '@/components/PlanLink.astro';
   .contact-ctas {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
   }
