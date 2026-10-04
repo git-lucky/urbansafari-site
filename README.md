@@ -34,7 +34,7 @@ MASCOT_SPEC.md              # Atlas the elephant — pose catalog + style guide
 
 ## Design system quick reference
 
-- Palette: cream, sand, forest, coral, sunset (see `:root` in `global.css`).
+- Palette: Urban Safari blue (`#174F6B`) and Urban Safari gold (`#E9BE4F`), with cream, sand, and paper neutrals. Legacy `--forest` and `--coral` token names remain for compatibility (see `:root` in `global.css`).
 - Headings: Cabinet Grotesk (`--font-display`), chunky and warm.
 - Body: Satoshi (`--font-body`).
 - Mono: JetBrains Mono for eyebrows, numerals, small labels.

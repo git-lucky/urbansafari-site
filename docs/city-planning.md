@@ -14,7 +14,7 @@ Photography: Strunk IMG_9874 remains the hero. Its location/event credit belongs
 
 Explore packages links to the package-card grid (#packages), below its introduction, with scroll clearance for the sticky navigation. It and all planning buttons (Plan your Safari/city, Choose this package, and Continue to email) use gold faces, forest-green lettering, black borders and solid black offset shadows. The contact call button stays cream.
 
-Homepage order: hero, proof, packages, photo gallery, four steps, Pre-flight questions, contact invitation, What you get outcomes, footer. Footer order: Urban Safari coin/name, Google and Yelp review links, Get in touch / Featured cities / Safari, legal. Five decorative stars sit next to each review logo within the review CTA; they are not an aggregate rating or review count. Exact links, QR codes and official logo provenance are in review-assets.md.
+Homepage order: hero, proof, packages, photo gallery, four steps, Pre-flight questions, contact invitation, What you get outcomes, footer. Footer order: Urban Safari coin/name, Google review link, Get in touch / Featured cities / Safari, legal. Five decorative stars sit next to the review logo within the review CTA; they are not an aggregate rating or review count. Exact links, QR codes and official logo provenance are in review-assets.md.
 
 Actual game map/feed/leaderboard marketing screenshots remain pending a player session Mike opens in Safari. Do not extract team login credentials from the operator session.
 

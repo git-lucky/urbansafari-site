@@ -42,7 +42,7 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     max-width: 900px;
     margin-bottom: clamp(3rem, 6vw, 4.5rem);
   }
-  .faq-head .eyebrow { margin-bottom: 0.85rem; display: block; color: #8A651D; }
+  .faq-head .eyebrow { margin-bottom: 0.85rem; display: block; color: #765710; }
   .faq-head h2 { font-size: clamp(2rem, 4.4vw, 3.75rem); line-height: 1.05; max-width: 24ch; }
 
   .faq-list {
@@ -55,15 +55,15 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     --card-padding: clamp(1.75rem, 3vw, 2.5rem);
     min-width: 0;
     background: linear-gradient(145deg, #FFFEFB, var(--paper) 60%, #FFF4D8);
-    box-shadow: 7px 7px 0 0 #B48A32, 0 16px 24px -12px rgb(111 78 20 / 24%), inset 0 1px 0 #FFFFFF;
+    box-shadow: 7px 7px 0 0 #A57D21, 0 16px 24px -12px rgb(111 78 20 / 24%), inset 0 1px 0 #FFFFFF;
     border: 3.5px solid var(--gold);
     border-radius: 26px;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .faq-item[open], .faq-item:focus-within {
-    border-color: #B48A32;
-    box-shadow: 10px 10px 0 0 #B48A32, 0 22px 30px -14px rgb(111 78 20 / 28%), inset 0 1px 0 #FFFFFF;
+    border-color: #A57D21;
+    box-shadow: 10px 10px 0 0 #A57D21, 0 22px 30px -14px rgb(111 78 20 / 28%), inset 0 1px 0 #FFFFFF;
   }
   .faq-item summary {
     position: relative;
@@ -83,7 +83,7 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
   }
   .faq-item summary::-webkit-details-marker { display: none; }
   .faq-item summary:focus-visible {
-    outline: 2px solid #1B6B45;
+    outline: 2px solid var(--forest);
     outline-offset: -5px;
     border-radius: 24px;
   }
@@ -94,9 +94,9 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     height: 72px;
     border-radius: 22px;
     background: linear-gradient(145deg, #FFF0C5, var(--gold-soft) 55%, var(--gold));
-    box-shadow: 3px 3px 0 0 #B48A32, inset 0 1px 0 rgb(255 255 255 / 90%);
-    border: 2px solid #B48A32;
-    color: #1B6B45;
+    box-shadow: 3px 3px 0 0 #A57D21, inset 0 1px 0 rgb(255 255 255 / 90%);
+    border: 2px solid #A57D21;
+    color: var(--forest);
   }
   .faq-q { max-width: 28ch; }
   .faq-toggle {
@@ -108,7 +108,7 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     width: 32px;
     height: 32px;
     border-radius: 10px;
-    color: #1B6B45;
+    color: var(--forest);
     transition: transform 0.2s, background 0.2s;
   }
   .faq-item:hover .faq-toggle { background: #FFF0C5; }
@@ -127,18 +127,18 @@ const topicIcons = ['team', 'compass', 'customize', 'calendar'] as const;
     font-size: 1.05rem;
   }
   .faq-footer a {
-    color: #1B6B45;
+    color: var(--forest);
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 4px;
   }
-  .faq-footer a:focus-visible { outline: 2px solid #1B6B45; outline-offset: 4px; }
+  .faq-footer a:focus-visible { outline: 2px solid var(--forest); outline-offset: 4px; }
 
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .faq-item:hover {
-      border-color: #B48A32;
+      border-color: #A57D21;
       transform: translate(-3px, -3px);
-      box-shadow: 10px 10px 0 0 #B48A32, 0 22px 30px -14px rgb(111 78 20 / 28%), inset 0 1px 0 #FFFFFF;
+      box-shadow: 10px 10px 0 0 #A57D21, 0 22px 30px -14px rgb(111 78 20 / 28%), inset 0 1px 0 #FFFFFF;
     }
   }
 

@@ -53,7 +53,7 @@ const steps = [
     max-width: 900px;
     margin-bottom: clamp(3rem, 6vw, 4.5rem);
   }
-  .how-head .eyebrow { margin-bottom: 0.85rem; display: block; color: #8A651D; }
+  .how-head .eyebrow { margin-bottom: 0.85rem; display: block; color: #765710; }
   .how-head h2 { font-size: clamp(2rem, 4.4vw, 3.75rem); line-height: 1.05; max-width: 24ch; }
 
   .step-grid {
@@ -70,10 +70,10 @@ const steps = [
     position: relative;
     min-width: 0;
     padding: clamp(1.75rem, 3vw, 2.5rem);
-    border: 3.5px solid #1B6B45;
+    border: 3.5px solid var(--forest);
     border-radius: 26px;
-    background: linear-gradient(145deg, #FFFEFB, var(--paper) 60%, #F4F7F0);
-    box-shadow: 7px 7px 0 0 #1B6B45, 0 16px 24px -12px rgb(31 58 43 / 28%), inset 0 1px 0 #FFFFFF;
+    background: linear-gradient(145deg, #FFFEFB, var(--paper) 60%, #F0F5F8);
+    box-shadow: 7px 7px 0 0 var(--forest), 0 16px 24px -12px rgb(23 79 107 / 28%), inset 0 1px 0 #FFFFFF;
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .step-icon {
@@ -82,11 +82,11 @@ const steps = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(145deg, #F1F6EE, var(--forest-50) 55%, #DDE8DB);
-    box-shadow: 3px 3px 0 0 #A9BEA9, inset 0 1px 0 rgb(255 255 255 / 90%);
-    border: 2px solid #77987D;
+    background: linear-gradient(145deg, #EFF5F9, var(--forest-50) 55%, #DCE9F1);
+    box-shadow: 3px 3px 0 0 #A8C3D2, inset 0 1px 0 rgb(255 255 255 / 90%);
+    border: 2px solid #7194A7;
     border-radius: 25px;
-    color: #1B6B45;
+    color: var(--forest);
     margin-bottom: 1.25rem;
     flex-shrink: 0;
   }
@@ -112,7 +112,7 @@ const steps = [
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .step:hover {
       transform: translate(-3px, -3px);
-      box-shadow: 10px 10px 0 0 #1B6B45, 0 22px 30px -14px rgb(31 58 43 / 30%), inset 0 1px 0 #FFFFFF;
+      box-shadow: 10px 10px 0 0 var(--forest), 0 22px 30px -14px rgb(23 79 107 / 30%), inset 0 1px 0 #FFFFFF;
     }
   }
 
