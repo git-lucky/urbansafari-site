@@ -354,3 +354,16 @@ input[aria-invalid=true]{border-color:var(--red)}
 .recap-card .recap-tagline{font-size:clamp(18px,2vw,22px);color:#fff}
 .recap-card .btn{margin-top:22px}
 @media(max-width:640px){.foot-bottom{flex-direction:column;align-items:flex-start}}
+
+/* ---------- "Meet your guide": a photo of Mike before the planner ---------- */
+.guide-band{padding-block:clamp(48px,7vw,88px);border-top:1px solid var(--line)}
+.guide-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.guide-photo{margin:0}
+.guide-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:28px;box-shadow:0 34px 60px -38px rgba(14,52,71,.6)}
+.guide-copy h2{font-size:clamp(32px,4vw,52px);line-height:1.02}
+.guide-lede{margin-top:16px;font-size:clamp(17px,1.5vw,19.5px);max-width:30em}
+.guide-contact{margin-top:12px;color:var(--ink-2);max-width:30em}
+.guide-contact a{font-weight:700;text-underline-offset:3px;overflow-wrap:anywhere}
+.guide-contact a[href^="tel"]{white-space:nowrap}
+.guide-copy .btn{margin-top:26px}
+@media (max-width:860px){.guide-grid{grid-template-columns:minmax(0,1fr)}}
