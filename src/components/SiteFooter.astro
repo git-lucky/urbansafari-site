@@ -22,6 +22,13 @@ const microprint = 'URBANSAFARIEXPEDITION'.repeat(32);
         <p class="foot-contact"><a href={contact.phoneHref}>{contact.phone}</a><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
       </div>
     </div>
+    <a class="footer-review" href={contact.googleReview} target="_blank" rel="noopener noreferrer">
+      <img class="footer-review-qr" src="/google-review-qr.svg" width="88" height="88" alt="Scan to review Urban Safari on Google" loading="lazy" />
+      <span class="footer-review-text">
+        <span class="footer-review-head"><img src="/review-logos/google-g.png" width="24" height="24" alt="" loading="lazy" /><span class="footer-review-stars" aria-hidden="true">★★★★★</span></span>
+        <span class="footer-review-label">Review us on Google <span aria-hidden="true">↗</span></span>
+      </span>
+    </a>
     <nav aria-label="Footer">
       <a href={`${base}#how`}>How a hunt plays</a>
       <a href={`${base}#expeditions`}>Expeditions</a>

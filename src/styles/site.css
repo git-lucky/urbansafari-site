@@ -451,6 +451,16 @@ body.challenge-demo-open{overflow:hidden}
 .foot-contact a{color:rgba(255,255,255,.85);text-decoration:none;padding-block:6px}
 .foot-contact a:hover{color:#fff;text-decoration:underline}
 .foot-note a{color:inherit;text-underline-offset:3px}
+/* Google review card in the footer */
+.footer-review{display:flex;align-items:center;gap:14px;align-self:center;padding:12px 18px 12px 12px;border:1px solid rgba(255,255,255,.25);border-radius:14px;color:#fff;text-decoration:none}
+.footer-review:hover{border-color:var(--foil)}
+.footer-review:focus-visible{outline:3px solid var(--foil);outline-offset:4px}
+.footer-review-qr{width:88px;height:88px;flex:none;border-radius:8px;background:#fff}
+.footer-review-text{display:grid;gap:8px}
+.footer-review-head{display:flex;align-items:center;gap:10px}
+.footer-review-head img{width:24px;height:24px}
+.footer-review-stars{color:var(--foil);letter-spacing:.06em}
+.footer-review-label{font-weight:700;font-size:15px}
 /* planner: email hand-off */
 .result-actions .btn-gold{min-height:44px}
 .send-help{margin-top:8px;font-size:14.5px;color:var(--ink-2)}
