@@ -64,6 +64,6 @@ export const troubleshooting: FaqItem[] = [
   },
   {
     q: 'Want to report a bug?',
-    a: 'Email support@itsybits.io with what happened, the device you\'re on, and your game code if you have it. We read every one.',
+    a: 'Email mike@urbansafari.app with what happened, the device you\'re on, and your game code if you have it. We read every one.',
   },
 ];
