@@ -9,7 +9,8 @@
   /* Tim's Urban Safari tokens */
   --teal:#174F6B;          /* --b1, the leather */
   --teal-deep:#0E3447;     /* --b1-deep */
-  --accent-green:#1D4A28; /* sampled coin enamel: deep hunter green */
+  /* the divider between stacked items: Urban Safari blue tapering out to both ends, a band of gold at the center */
+  --divider:linear-gradient(90deg,transparent,var(--teal) 26%,var(--teal) 41%,var(--gold) 42%,var(--gold) 58%,var(--teal) 59%,var(--teal) 74%,transparent);
   --gold:#E9BE4F;          /* --b2, buttons */
   --foil:#E4C77C;          /* foil lettering on leather */
   --paper:#E7EEE9;         /* --paper */
@@ -118,7 +119,7 @@ ul,ol{margin:0;padding:0}
 .occ-list{list-style:none}
 .occ-list li{position:relative;padding-block:28px;border:0}
 .occ-list li:first-child{padding-top:0}
-.occ-list li+li::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:88px;height:4px;border-radius:50%;background:var(--accent-green)}
+.occ-list li+li::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:min(200px,64%);height:3px;border-radius:50%;background:var(--divider)}
 .occ-list h3{font-size:clamp(22px,2.3vw,28px);color:var(--ink)}
 .occ-list p{margin-top:6px;max-width:36em;color:var(--ink-2)}
 .occ-list a{display:inline-block;margin-top:10px;font:900 15.5px/1.4 var(--display);text-decoration-thickness:2px;text-underline-offset:4px;padding-block:6px}
