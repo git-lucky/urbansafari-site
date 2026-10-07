@@ -25,7 +25,7 @@ export const preSaleFaq: FaqItem[] = [
 export const supportFaq: FaqItem[] = [
   {
     q: 'How do I join a game?',
-    a: 'Open the Urban Safari app and enter the game code your event organizer shared. From there you\'ll join or create a team.',
+    a: 'Scan the QR code from your event organizer, or tap the link in your invitation email. Either one opens your game, and from there you\'ll join or create a team. If neither works, your organizer can give you the game code to enter instead.',
   },
   {
     q: 'What is a Tech Captain?',
