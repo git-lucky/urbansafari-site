@@ -1,0 +1,30 @@
+---
+// Sticky header: the game's geometric elephant left of "Urban Safari".
+// On the homepage the section links are in-page anchors; elsewhere they lead back to it.
+interface Props {
+  home?: boolean;
+  active?: 'cities' | 'plan';
+}
+const { home = false, active } = Astro.props;
+const base = home ? '' : '/';
+const current = (key: Props['active']) => (active === key ? 'page' : undefined);
+---
+<header class="site-head" id="top">
+  <div class="head-in">
+    <a class="wordmark header-brand" href={home ? '#top' : '/'} aria-label={home ? 'Urban Safari, back to top' : 'Urban Safari, home'}>
+      <span class="header-elephant header-elephant-clear"><img src="/img/game-elephant.png" width="52" height="52" alt="" /></span>
+      <span class="header-brand-name">Urban Safari</span>
+    </a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-menu>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      <span>Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href={`${base}#how`}>How a hunt plays</a>
+      <a href={`${base}#expeditions`}>Expeditions</a>
+      <a href={`${base}#occasions`}>Occasions</a>
+      <a href="/cities/" aria-current={current('cities')}>Cities</a>
+      <a href={home ? '#plan' : '/plan/'} class="btn btn-gold nav-cta" aria-current={current('plan')}>Plan an expedition</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,43 @@
+---
+// Footer: the gold-and-green Safari Warrior coin beside Urban Safari, and "See you out there."
+import RecapInvitation from '@/components/RecapInvitation.astro';
+import { contact } from '@/content/contact';
+
+interface Props {
+  home?: boolean;
+}
+const { home = false } = Astro.props;
+const base = home ? '' : '/';
+const year = new Date().getFullYear();
+const microprint = 'URBANSAFARIEXPEDITION'.repeat(32);
+---
+<footer class="site-foot leather" id="site-footer">
+  <div class="wrap"><h2 class="footer-goodbye">See you out there.</h2></div>
+  <div class="wrap foot-in">
+    <div class="footer-brand-group">
+      <a class="footer-coin" href={home ? '#top' : '/'} aria-label={home ? 'Urban Safari, back to top' : 'Urban Safari, home'}><img src="/img/safari-warrior-coin.webp" width="112" height="112" alt="Gold-and-green Safari Warrior coin" loading="lazy" /></a>
+      <div>
+        <a class="wordmark" href={home ? '#top' : '/'}>Urban Safari</a>
+        <p class="foot-line">Team scavenger hunts in your own city.</p>
+        <p class="foot-contact"><a href={contact.phoneHref}>{contact.phone}</a><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+      </div>
+    </div>
+    <nav aria-label="Footer">
+      <a href={`${base}#how`}>How a hunt plays</a>
+      <a href={`${base}#expeditions`}>Expeditions</a>
+      <a href={`${base}#occasions`}>Occasions</a>
+      <a href={home ? '#plan' : '/plan/'}>Plan an expedition</a>
+    </nav>
+  </div>
+  {home && <RecapInvitation />}
+  <p class="microprint" aria-hidden="true">{microprint}</p>
+  <div class="wrap foot-bottom">
+    <nav class="foot-more" aria-label="More from Urban Safari">
+      <a href="/cities/">Cities</a>
+      <a href="/support/">Help and support</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p class="foot-note">© {year} Urban Safari Game Experiences · Powered by <a href="https://huntstack.tech" target="_blank" rel="noopener noreferrer">HuntStack</a></p>
+  </div>
+</footer>

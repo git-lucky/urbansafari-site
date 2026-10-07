@@ -1,0 +1,30 @@
+---
+// Details card for the homepage practice hunt. Local only: no uploads, storage or network calls.
+---
+<dialog class="challenge-dialog" id="challenge-demo" aria-labelledby="demo-title" aria-describedby="demo-scope">
+  <div class="challenge-scroll">
+    <div class="challenge-visual" id="demo-visual">
+      <img id="demo-art" src="/img/team-in-action-900.webp" alt="" />
+      <div class="challenge-grab" aria-hidden="true"></div>
+      <button type="button" class="challenge-close" id="demo-close" aria-label="Close challenge">×</button>
+      <span class="challenge-kind" id="demo-kind">Photo challenge</span>
+    </div>
+    <div class="challenge-body paper">
+      <div class="challenge-meta"><span>Sample challenge</span><strong id="demo-worth">100 points</strong></div>
+      <h2 id="demo-title">Strike your explorer pose</h2>
+      <p id="demo-description"></p>
+      <dl class="challenge-facts"><div><dt>Answer with</dt><dd id="demo-answer-kind"></dd></div><div><dt>Points</dt><dd>Counts once in this practice hunt.</dd></div></dl>
+      <p class="challenge-scope" id="demo-scope">Practice only · Nothing is uploaded or sent.</p>
+      <form id="challenge-demo-form" novalidate>
+        <div id="demo-inputs"></div>
+        <p class="challenge-feedback" id="demo-feedback" role="status"></p>
+      </form>
+      <div class="challenge-complete" id="demo-complete" hidden role="status"><span class="complete-check" aria-hidden="true">✓</span><div><strong id="demo-earned"></strong><p>One more story to take home.</p></div></div>
+    </div>
+  </div>
+  <div class="challenge-actions"><button class="btn btn-gold btn-lg" type="submit" form="challenge-demo-form" id="demo-submit">Submit demo</button><button class="btn btn-quiet" type="button" id="demo-back" hidden>Back to challenges</button></div>
+</dialog>
+
+<script>
+  import '@/scripts/challenge-demo.ts';
+</script>

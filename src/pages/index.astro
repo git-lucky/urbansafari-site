@@ -1,13 +1,11 @@
 ---
 import Base from '@/layouts/Base.astro';
 import Hero from '@/components/home/Hero.astro';
-import TrustedBy from '@/components/home/TrustedBy.astro';
-import HowItWorks from '@/components/home/HowItWorks.astro';
-import Tiers from '@/components/home/Tiers.astro';
-import Outcomes from '@/components/home/Outcomes.astro';
-import PhotoMosaic from '@/components/home/PhotoMosaic.astro';
-import Faq from '@/components/home/Faq.astro';
-import ContactBand from '@/components/home/ContactBand.astro';
+import HowItPlays from '@/components/home/HowItPlays.astro';
+import ExpeditionOptions from '@/components/ExpeditionOptions.astro';
+import Occasions from '@/components/home/Occasions.astro';
+import Planner from '@/components/Planner.astro';
+import ChallengeDialog from '@/components/home/ChallengeDialog.astro';
 ---
 
 <Base
@@ -15,11 +13,29 @@ import ContactBand from '@/components/home/ContactBand.astro';
   description="Custom team building scavenger hunts in cities across the United States. From self-guided to fully hosted, built around your city for teams of 10 to 200+."
 >
   <Hero />
-  <TrustedBy />
-  <Tiers />
-  <PhotoMosaic />
-  <HowItWorks />
-  <Faq />
-  <Outcomes />
-  <ContactBand />
+  <HowItPlays />
+
+  <section class="expeditions paper" id="expeditions" aria-labelledby="exp-title">
+    <div class="wrap">
+      <div class="section-head expedition-intro">
+        <h2 id="exp-title">There’s more than<br />one way to Safari.</h2>
+        <p>A little independence or a guide along for the ride.<br />Choose how you want to head out.</p>
+      </div>
+      <ExpeditionOptions />
+    </div>
+  </section>
+
+  <Occasions />
+
+  <section class="plan paper" id="plan" aria-labelledby="plan-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="plan-title">Plan your expedition</h2>
+        <p>Every great expedition starts with your people. Tell us a little about yours.</p>
+      </div>
+      <Planner />
+    </div>
+  </section>
+
+  <ChallengeDialog />
 </Base>

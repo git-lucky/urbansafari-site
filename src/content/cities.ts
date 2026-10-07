@@ -252,5 +252,3 @@ export const priorityCities: CityMarket[] = [
     nearby: ['Cary', 'Chapel Hill', 'Apex', 'Morrisville'],
   },
 ];
-
-export const footerCityLinks = priorityCities.slice(0, 10);

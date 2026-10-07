@@ -1,0 +1,30 @@
+---
+// Scout / Remote / Guided in open columns with matching visual weight.
+// Homepage links open the planner in place; city pages link to /plan/ with the city prefilled.
+interface Props {
+  /** City label (e.g. "Boston, MA") to carry into /plan/. Omit on the homepage. */
+  city?: string;
+}
+const { city } = Astro.props;
+const options = [
+  { m: 'm-scout', img: 'atlas-cartographer-outfit', w: 560, h: 491, alt: 'Atlas explores with a city map.', caption: 'Explore at your own pace', name: 'Scout', copy: 'A custom hunt you can play on your own schedule. Bring your people and let the clues lead the way.', link: 'Plan a Scout hunt' },
+  { m: 'm-remote', img: 'atlas-headset', w: 560, h: 537, alt: 'Atlas wears a headset.', caption: 'A host along, virtually', name: 'Remote Expedition', copy: 'Get out and explore with a Safari host joining remotely to help along the way.', link: 'Explore Remote' },
+  { m: 'm-guided', img: 'atlas-flag', w: 492, h: 560, alt: 'Atlas holds an expedition flag.', caption: 'A guide by your side', name: 'Guided Expedition', copy: 'A host, a custom adventure, and a day handled for you. Focus on the people you came with.', link: 'Explore Guided' },
+];
+const planHref = (style: string) => `/plan/?${new URLSearchParams({ city: city || '', style })}`;
+---
+<div class="expedition-options">
+  {options.map((o) => (
+    <article class="expedition-option">
+      <div class="mascot"><img class={o.m} src={`/img/${o.img}.webp`} width={o.w} height={o.h} alt={o.alt} loading="lazy" /></div>
+      <p class="expedition-caption">{o.caption}</p>
+      <h3>{o.name}</h3>
+      <p class="expedition-copy">{o.copy}</p>
+      {city ? (
+        <a class="expedition-link" href={planHref(o.name)}>{o.link}</a>
+      ) : (
+        <a class="expedition-link" href="#plan" data-pick-style={o.name}>{o.link}</a>
+      )}
+    </article>
+  ))}
+</div>
