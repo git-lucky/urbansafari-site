@@ -72,7 +72,7 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
                 <img id="pp-card-img" src={practiceChallenges[0].card} alt="" />
                 <span class="pp-card-grab" aria-hidden="true"></span>
                 <button type="button" class="pp-card-close" id="pp-card-close" aria-label="Close challenge"><FaIcon name="xmark" /></button>
-                <span class="pp-card-ring" aria-hidden="true"><b id="pp-card-worth">100</b></span>
+                <span class="pp-card-ring" aria-hidden="true"><svg viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.5" stroke-dasharray="3 3" /></svg><b id="pp-card-worth">100</b></span>
                 <span class="pp-card-stamp" id="pp-card-stamp" aria-hidden="true"></span>
               </div>
               <div class="pp-card-body">
@@ -106,22 +106,18 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
         <li class="dcard" data-kind={d.kind}>
           <div class="dcard-pic">
             <img src={d.img} width="720" height="540" alt={d.alt} />
-            <span class="dcard-chip"><FaIcon name={d.fa} />{d.verb}</span>
-            <span class="dcard-ring" aria-hidden="true"><b>{d.points}</b></span>
+            <span class="dcard-grab" aria-hidden="true"></span>
+            <span class="dcard-ring" aria-hidden="true"><svg viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.5" stroke-dasharray="3 3" /></svg><b>{d.points}</b></span>
             <span class="dcard-stamp" aria-hidden="true"></span>
           </div>
           <div class="dcard-body">
             <h4>{d.title}</h4>
             <p>{d.mission}</p>
-            <div class="dcard-answer" aria-hidden="true">
-              {d.answer === 'photo' && <><span class="d-label">Your answer</span><span class="d-shot"><FaIcon name="camera" />Your team photo</span></>}
-              {d.answer === 'video' && <><span class="d-label">Your answer</span><span class="d-shot d-rec"><span class="d-recdot"></span>0:10</span></>}
-              {d.answer === 'field' && <><span class="d-label">Your answer</span><span class="d-field">{d.label}</span></>}
-              {d.answer === 'picks' && <span class="d-picks">{d.picks?.map((p, i) => <span class="d-pick"><i>{'ABC'[i]}</i>{p}</span>)}</span>}
-              <span class="d-bar"><FaIcon name={d.fa} />{d.verb}</span>
-            </div>
-            <span class="vh dcard-status">Not stamped yet.</span>
+            {d.answer === 'field' && <div class="dcard-answer" aria-hidden="true"><span class="d-label">Your answer</span><span class="d-field">Type your answer</span></div>}
+            {d.answer === 'picks' && <div class="d-picks" aria-hidden="true">{d.picks?.map((p, i) => <span class="d-pick"><i>{'ABC'[i]}</i>{p}</span>)}</div>}
           </div>
+          <div class="dcard-foot"><span class="d-bar"><FaIcon name={d.fa} />{d.verb}</span></div>
+          <span class="vh dcard-status">Not stamped yet.</span>
         </li>
       ))}
     </ul>
