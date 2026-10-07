@@ -1,191 +1,57 @@
 ---
 import Base from '@/layouts/Base.astro';
+import Icon from '@/components/Icon.astro';
 import { priorityCities } from '@/content/cities';
-
-const groupedCities = priorityCities.reduce<Record<string, typeof priorityCities>>((groups, city) => {
-  groups[city.region] = groups[city.region] ?? [];
-  groups[city.region].push(city);
-  return groups;
-}, {});
 ---
 
 <Base
   title="Team building scavenger hunts by city"
   description="Explore team building scavenger hunts in featured cities, or plan a custom Urban Safari in your own city."
+  active="cities"
 >
-  <section class="cities-hero band-sand">
-    <div class="wrap cities-hero-grid">
+  <section class="page-hero paper" aria-labelledby="cities-title">
+    <div class="wrap page-hero-grid">
       <div>
-        <p class="eyebrow">Featured cities</p>
-        <h1>Find your city. Plan your Safari.</h1>
-        <p class="lead">
-          Start with one of these featured cities, or tell us where your team is based.
-          We can build a Safari in any city, with challenges tailored to your local area.
-        </p>
-        <div class="city-ctas">
-          <a href="/plan/" class="btn btn-forest">
-            Plan in another city
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-          <a href="/#tiers" class="btn">Compare tiers</a>
+        <h1 class="page-title" id="cities-title">Find your city. Plan your Safari.</h1>
+        <p class="page-lede">Start with one of these featured cities, or tell us where your team is based. We can build a Safari in any city, with challenges tailored to your local area.</p>
+        <div class="page-actions">
+          <a class="btn btn-gold btn-lg" href="/plan/">Plan in another city</a>
+          <a class="btn btn-quiet btn-lg" href="/#expeditions">Compare expeditions</a>
         </div>
       </div>
-      <div class="cities-photo">
-        <img
-          src="/team-pic.jpg"
-          alt="Urban Safari team in action"
-          width="960"
-          height="640"
-          loading="eager"
-        />
+      <div class="page-art cities-art">
+        <img src="/img/atlas-binoculars.webp" width="560" height="530" alt="Atlas the elephant scanning the horizon through binoculars." />
       </div>
     </div>
   </section>
 
-  <section class="section city-directory">
+  <section class="band band-start" aria-labelledby="directory-title">
     <div class="wrap">
-      <header class="directory-head">
-        <p class="eyebrow">Explore featured cities</p>
-        <h2>Find your city.</h2>
-      </header>
-
-      <div class="region-list">
-        {Object.entries(groupedCities).map(([region, cities]) => (
-          <section class="region" aria-labelledby={`region-${region.toLowerCase().replaceAll(' ', '-')}`}>
-            <h3 id={`region-${region.toLowerCase().replaceAll(' ', '-')}`}>{region}</h3>
-            <ul>
-              {cities.map((city) => (
-                <li>
-                  <a href={`/cities/${city.slug}/`}>
-                    <span>{city.name}, {city.state}</span>
-                    <span aria-hidden="true">→</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+      <div class="section-head"><h2 id="directory-title">Explore featured cities</h2></div>
+      <ul class="city-grid" role="list">
+        {priorityCities.map((city) => (
+          <li>
+            <a class="city-tile" href={`/cities/${city.slug}/`}>
+              <Icon name="pin" class="city-pin" />
+              <span><strong>{city.name}, {city.state}</strong><small>{city.region}</small></span>
+              <svg class="city-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
-  <section class="city-anywhere band-forest">
-    <div class="wrap anywhere-grid">
-      <div>
-        <p class="eyebrow">Everywhere else</p>
-        <h2>Not listed? We can still build the game.</h2>
+  <section class="band band-end" aria-labelledby="anywhere-title">
+    <div class="wrap">
+      <div class="leather leather-card leather-grid">
+        <div>
+          <span class="foil-label">Everywhere else</span>
+          <h2 id="anywhere-title">Not listed? We can still build the game.</h2>
+          <p>Tell us the city, team size, and timing. We scout the route, write the challenges, and recommend the right format for your group.</p>
+        </div>
+        <div class="leather-actions"><a class="btn btn-gold btn-lg" href="/plan/">Plan in another city</a></div>
       </div>
-      <p>
-        Tell us the city, team size, and timing. We scout the route, write the
-        challenges, and recommend the right format for your group.
-      </p>
-      <a href="/plan/" class="btn btn-forest">
-        Plan in another city
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
     </div>
   </section>
-
-  <style>
-    .cities-hero {
-      padding-block: clamp(3.5rem, 7vw, 5.5rem);
-      border-bottom: 2px solid var(--ink);
-    }
-    .cities-hero-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: clamp(2rem, 5vw, 4rem);
-      align-items: center;
-    }
-    .cities-hero h1 {
-      font-size: clamp(2.6rem, 2rem + 3.2vw, 5rem);
-      max-width: 12ch;
-      margin-block: 0.6rem 1rem;
-    }
-    .city-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .cities-photo {
-      display: grid;
-      place-items: center;
-    }
-    .cities-photo img {
-      width: min(100%, 440px);
-      border: var(--stamp-border);
-      border-radius: var(--radius-md);
-      box-shadow: var(--stamp-shadow);
-      transform: rotate(-2deg);
-    }
-
-    .directory-head {
-      max-width: 44ch;
-      margin-bottom: clamp(2rem, 5vw, 3.5rem);
-    }
-    .directory-head .eyebrow { display: block; margin-bottom: 0.85rem; }
-
-    .region-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-    .region {
-      background: var(--paper);
-      border: var(--stamp-border);
-      border-radius: var(--radius-md);
-      box-shadow: var(--stamp-shadow);
-      padding: 1.35rem;
-    }
-    .region h3 {
-      font-size: 1.35rem;
-      margin-bottom: 1rem;
-    }
-    .region ul {
-      display: grid;
-      gap: 0.55rem;
-    }
-    .region a {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      padding-block: 0.45rem;
-      color: var(--forest);
-      font-weight: 700;
-      border-bottom: 1px solid color-mix(in srgb, var(--forest-soft) 22%, transparent);
-    }
-    .region a:hover,
-    .region a:focus-visible {
-      color: var(--ink);
-      border-bottom-color: var(--gold);
-    }
-
-    .city-anywhere {
-      padding-block: clamp(3.5rem, 7vw, 5rem);
-      border-block: 3px solid var(--ink);
-    }
-    .anywhere-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr auto;
-      gap: clamp(1.5rem, 4vw, 3rem);
-      align-items: center;
-    }
-    .city-anywhere h2 {
-      font-size: clamp(2rem, 1.4rem + 2vw, 3.3rem);
-      margin-top: 0.4rem;
-    }
-    .city-anywhere p {
-      color: color-mix(in srgb, var(--paper) 82%, transparent);
-    }
-
-    @media (max-width: 860px) {
-      .cities-hero-grid,
-      .anywhere-grid {
-        grid-template-columns: 1fr;
-      }
-      .cities-photo { order: -1; }
-      .city-anywhere .btn { justify-self: start; }
-    }
-  </style>
 </Base>

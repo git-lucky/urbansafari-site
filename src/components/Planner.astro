@@ -1,0 +1,146 @@
+---
+// Expedition planner: Atlas walks the route as the four required answers come in.
+// Submitting opens an email draft to Mike with the answers (the same no-backend
+// mechanism the previous /plan/ page used). Nothing is sent until the visitor sends it.
+import Icon from '@/components/Icon.astro';
+import { priorityCities } from '@/content/cities';
+import { contact } from '@/content/contact';
+
+interface Props {
+  /** Start with the questions open (the full /plan/ page). */
+  open?: boolean;
+  /** Full page: contact fields, city suggestions, and presets from ?city=, ?style=, ?occasion=. */
+  extended?: boolean;
+}
+const { open = false, extended = false } = Astro.props;
+const hint = 'Answer all four questions. Then we’ll open an email to Mike for you to review and send.';
+---
+<div class="planner">
+  <div class="route" aria-hidden="true">
+    <span class="route-line"></span>
+    <span class="cp" data-cp="0"><span class="cp-box"></span><span class="cp-label">Occasion</span></span>
+    <span class="cp" data-cp="1"><span class="cp-box"></span><span class="cp-label">Style</span></span>
+    <span class="cp" data-cp="2"><span class="cp-box"></span><span class="cp-label">Group</span></span>
+    <span class="cp" data-cp="3"><span class="cp-box"></span><span class="cp-label">City</span></span>
+    <span class="cp cp-flag" data-cp="4"><Icon name="flag" class="cp-box" /><span class="cp-label">Ready</span></span>
+    <img class="runner" src="/img/atlas-running-compass.webp" width="192" height="192" alt="" />
+  </div>
+  <p class="route-status" aria-live="polite" id="route-status">0 of 4 answered</p>
+
+  <details class="planner-fields" id="planner-fields" open={open}>
+    <summary class="planner-toggle">
+      <span><strong>Tell us about your group</strong><span class="planner-toggle-note">Four quick questions to get started.</span></span>
+      <svg class="planner-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+    </summary>
+    <div class="planner-body">
+      <form class="plan-form" id="plan-form" novalidate data-hint={hint} data-email={contact.email} data-presets={extended ? 'url' : undefined}>
+        <fieldset class="q">
+          <legend><span class="q-n">1</span>What's the occasion?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="occasion" value="Company outing" /><span>Company outing</span></label>
+            <label class="opt"><input type="radio" name="occasion" value="Celebration" /><span>Celebration</span></label>
+            <label class="opt"><input type="radio" name="occasion" value="Friends and family" /><span>Friends and family</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend><span class="q-n">2</span>How much should we handle?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="style" value="Scout" /><span>Scout<small>You play on your own schedule</small></span></label>
+            <label class="opt"><input type="radio" name="style" value="Remote Expedition" /><span>Remote Expedition<small>A host joins virtually</small></span></label>
+            <label class="opt"><input type="radio" name="style" value="Guided Expedition" /><span>Guided Expedition<small>The day handled for you</small></span></label>
+            <label class="opt"><input type="radio" name="style" value="Not sure yet" /><span>Not sure yet<small>Help us choose</small></span></label>
+          </div>
+        </fieldset>
+
+        <div class="q-row">
+          <div class="q">
+            <label for="group" class="q-label"><span class="q-n">3</span>About how many people?</label>
+            <input id="group" name="group" type="number" inputmode="numeric" min="2" max="2000" placeholder="For example, 24" aria-describedby="group-err" />
+            <p class="err" id="group-err" hidden>Enter a number of people, 2 or more.</p>
+          </div>
+          <div class="q">
+            <label for="city" class="q-label"><span class="q-n">4</span>Which city?</label>
+            {extended ? (
+              <>
+                <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="City or town" maxlength="100" list="city-suggestions" aria-describedby="city-help" />
+                <datalist id="city-suggestions">{priorityCities.map((c) => <option value={`${c.name}, ${c.state}`} />)}</datalist>
+                <p class="field-help" id="city-help" hidden>We’ve started with the city you were viewing. You can change it.</p>
+              </>
+            ) : (
+              <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="City or town" maxlength="100" />
+            )}
+          </div>
+        </div>
+
+        {extended ? (
+          <details class="extras">
+            <summary>Add a date, a note or your details (optional)</summary>
+            <div class="q-row">
+              <div class="q">
+                <label for="date" class="q-label">Preferred date</label>
+                <input id="date" name="date" type="date" />
+              </div>
+              <div class="q">
+                <label for="company" class="q-label">Company</label>
+                <input id="company" name="company" type="text" autocomplete="organization" maxlength="150" />
+              </div>
+              <div class="q">
+                <label for="name" class="q-label">Your name</label>
+                <input id="name" name="name" type="text" autocomplete="name" maxlength="100" />
+              </div>
+              <div class="q">
+                <label for="email" class="q-label">Work email</label>
+                <input id="email" name="email" type="email" autocomplete="email" maxlength="200" />
+              </div>
+            </div>
+            <div class="q q-note">
+              <label for="note" class="q-label">Anything we should know?</label>
+              <textarea id="note" name="note" rows="3" maxlength="3000" placeholder="A theme, a part of town, someone to celebrate"></textarea>
+            </div>
+          </details>
+        ) : (
+          <details class="extras">
+            <summary>Add a date or a note (optional)</summary>
+            <div class="q-row">
+              <div class="q">
+                <label for="date" class="q-label">Preferred date</label>
+                <input id="date" name="date" type="date" />
+              </div>
+              <div class="q">
+                <label for="note" class="q-label">Anything we should know?</label>
+                <textarea id="note" name="note" rows="3" maxlength="3000" placeholder="A theme, a part of town, someone to celebrate"></textarea>
+              </div>
+            </div>
+          </details>
+        )}
+
+        <div class="form-foot">
+          <button type="submit" class="btn btn-gold btn-lg">Continue to email</button>
+          <p class="form-hint" id="form-hint">{hint}</p>
+        </div>
+      </form>
+
+      <div class="result" id="result" hidden tabindex="-1" aria-labelledby="result-title">
+        <img class="result-mascot" src="/img/atlas-celebrate-clean.webp" width="465" height="560" alt="Atlas the elephant celebrating with both arms up." loading="lazy" />
+        <div class="result-body">
+          <h3 id="result-title">Your request is ready</h3>
+          <p class="demo-note">Your email app should open with this request to {contact.email}. Review it, then press Send.</p>
+          <dl class="summary" id="summary"></dl>
+          <div class="result-actions">
+            <a class="btn btn-gold" id="send-email" href={`mailto:${contact.email}`}>Open the email again</a>
+            <button type="button" class="btn btn-line" data-copy-summary>Copy summary</button>
+            <button type="button" class="btn btn-quiet" data-edit>Change answers</button>
+            <button type="button" class="btn btn-quiet" data-restart>Start over</button>
+          </div>
+          <p class="send-help">If your email app didn’t open, copy your details and email <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
+          <p class="copy-msg" id="copy-msg" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </details>
+</div>
+
+<script>
+  import '@/scripts/planner.ts';
+</script>

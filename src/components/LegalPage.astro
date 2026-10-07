@@ -1,0 +1,58 @@
+---
+// Reading layout for the privacy policy and terms. The legal text stays in the page file;
+// this adds ids to its section headings and a contents list built from them.
+import Base from '@/layouts/Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  updated: string;
+}
+const { title, description, heading, updated } = Astro.props;
+
+const prose = await Astro.slots.render('default');
+const used = new Set<string>();
+const toc: { id: string; html: string }[] = [];
+const withIds = prose.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/g, (_m, attrs: string, inner: string) => {
+  let id = inner
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, 'and')
+    .toLowerCase()
+    .replace(/^\d+\.\s*/, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+  while (used.has(id)) id += '-2';
+  used.add(id);
+  toc.push({ id, html: inner });
+  return `<h2${attrs} id="${id}">${inner}</h2>`;
+});
+---
+<Base title={title} description={description}>
+  <section class="legal-hero paper" aria-labelledby="legal-title">
+    <div class="wrap">
+      <h1 class="page-title" id="legal-title">{heading}</h1>
+      <p class="legal-meta">{updated}</p>
+    </div>
+  </section>
+
+  <section class="legal-body">
+    <div class="wrap legal-grid">
+      <details class="toc" data-toc>
+        <summary>On this page</summary>
+        <nav aria-label={`${heading} sections`}>
+          <ol>
+            {toc.map((item) => <li><a href={`#${item.id}`} set:html={item.html} /></li>)}
+          </ol>
+        </nav>
+      </details>
+      <article class="prose" set:html={withIds} />
+    </div>
+  </section>
+</Base>
+
+<script>
+  // The contents list starts open on wide screens and folded on phones.
+  const toc = document.querySelector<HTMLDetailsElement>('[data-toc]');
+  if (toc && matchMedia('(min-width: 961px)').matches) toc.open = true;
+</script>

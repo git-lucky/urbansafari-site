@@ -1,0 +1,74 @@
+---
+// "How a hunt plays": the four steps, the playable phone preview, and the five kinds of challenge.
+import Icon from '@/components/Icon.astro';
+import { practiceChallenges } from '@/content/practice';
+---
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="wrap section-head how-intro">
+    <h2>A little curiosity.<br />A lot of adventure.</h2>
+    <p>We set the adventure in motion.<br />You bring the people who make it yours.</p>
+  </div>
+  <div class="wrap how-grid">
+    <div class="how-copy">
+      <div class="section-head">
+        <h3 id="how-title" class="how-title">How a hunt plays</h3>
+        <p>Each team plays from one phone. The rest is walking, talking and a fair amount of posing.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-n" aria-hidden="true">1</span>
+          <div><h4>Scan or tap to join</h4><p>Scan the QR code or open the link in your email. Then choose a team name and take a team photo.</p></div>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">2</span>
+          <div><h4>Head out</h4><p>Challenges can be done in any order. Some send you to a place, others ask you to snap, film or answer something.</p></div>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">3</span>
+          <div><h4>Score as you go</h4><p>Every finished challenge adds points and moves your team along the race track, so you always know where you stand.</p></div>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">4</span>
+          <div><h4>Wrap up together</h4><p>At the end, everyone sees the final standings and the photos the teams took.</p></div>
+        </li>
+      </ol>
+    </div>
+
+    <figure class="preview" aria-labelledby="preview-cap">
+      <div class="preview-label">Try a little Safari</div>
+      <div class="device" aria-label="Sample challenge list">
+        <div class="pv-head leather">
+          <div class="pv-title"><span>Your practice Safari</span><small data-demo-count>0 of 5</small></div>
+          <div class="pv-track">
+            <span class="pv-line"></span>
+            <span class="pv-tile t-you" style="--f:0"><img src="/img/team-in-action-900.webp" alt="" loading="lazy" /></span>
+            <span class="pv-flag"><Icon name="flag" /></span>
+            <span class="pv-tag" style="--f:0"><i>YOU</i><b data-demo-score>0</b><small>pts</small></span>
+          </div>
+        </div>
+        <ul class="pv-rows paper">
+          {practiceChallenges.map((c) => (
+            <li><button type="button" class="pv-row" data-demo-kind={c.id} aria-haspopup="dialog"><Icon name={c.icon} class="coin" /><span><b>{c.title}</b><em><Icon name={c.icon} />{c.points}<span class="mini-done" data-mini-done={c.id} hidden>Completed</span></em></span></button></li>
+          ))}
+        </ul>
+      </div>
+      <figcaption id="preview-cap">A playable preview inspired by the game. Try any sample challenge here or below. Your demo points stay on this page until you reset or reload.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap kinds-block">
+    <h3 class="kinds-title">Five kinds of challenge, mixed into every hunt</h3>
+    <p class="kinds-invite">Tap a card, try a sample challenge, and watch your points add up.</p>
+    <div class="demo-scoreboard" aria-label="Practice hunt progress">
+      <p aria-live="polite"><strong><span data-demo-score>0</span> points</strong><span class="scoreboard-count"><span data-demo-count>0 of 5</span> completed</span></p>
+      <div class="demo-progress" aria-hidden="true"><span></span></div>
+      <button type="button" class="btn btn-quiet" id="demo-reset" disabled>Start over</button>
+    </div>
+    <ul class="kinds" role="list">
+      {practiceChallenges.map((c) => (
+        <li><button type="button" class="kind-card" data-demo-kind={c.id} aria-haspopup="dialog"><Icon name={c.icon} class="tile" /><span class="kind-copy"><strong>{c.card}</strong><span>{c.cardLine}</span></span><span class="kind-action" data-kind-state={c.id}>Try it · {c.points} points</span></button></li>
+      ))}
+    </ul>
+    <p class="demo-privacy">Practice only. Photos, videos, answers, and points stay in this preview. Nothing is uploaded.</p>
+  </div>
+</section>

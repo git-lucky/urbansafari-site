@@ -1,30 +1,33 @@
 ---
-import '@/styles/global.css';
-import Nav from '@/components/Nav.astro';
-import Footer from '@/components/Footer.astro';
+import '@/styles/site.css';
+import '@/styles/pages.css';
+import SiteHeader from '@/components/SiteHeader.astro';
+import SiteFooter from '@/components/SiteFooter.astro';
 import RecapScrollNote from '@/components/RecapScrollNote.astro';
 
 interface Props {
   title: string;
-  city?: string;
   description: string;
   ogImage?: string;
   noIndex?: boolean;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  /** Which header link is the current page. */
+  active?: 'cities' | 'plan';
 }
 
 const {
   title,
-  city,
   description,
-  ogImage = '/team-pic.jpg',
+  ogImage = '/img/og-team-in-action.jpg',
   noIndex = false,
   structuredData,
+  active,
 } = Astro.props;
 
 const siteName = 'Urban Safari';
 const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const home = Astro.url.pathname === '/';
 const structuredDataItems = Array.isArray(structuredData)
   ? structuredData
   : structuredData
@@ -60,41 +63,18 @@ const structuredDataItems = Array.isArray(structuredData)
       <script type="application/ld+json" set:html={JSON.stringify(item)} />
     ))}
 
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500&f[]=satoshi@500,700&f[]=jetbrains-mono@500,700&display=swap"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap"
-    />
+    <link rel="preload" href="/fonts/Overpass-Black.ttf" as="font" type="font/ttf" crossorigin />
   </head>
-  <body class="grain">
+  <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    {Astro.url.pathname === '/' && <RecapScrollNote />}
-    <Nav city={city} />
+    {home && <RecapScrollNote />}
+    <SiteHeader home={home} active={active} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
-
-    <style>
-      .skip-link {
-        position: absolute;
-        left: -9999px;
-        top: 0;
-        background: var(--forest);
-        color: var(--paper);
-        padding: 0.75rem 1rem;
-        z-index: 1000;
-        border-radius: 0 0 12px 0;
-      }
-      .skip-link:focus {
-        left: 0;
-      }
-    </style>
+    <SiteFooter home={home} />
+    <script>
+      import '@/scripts/site.ts';
+    </script>
   </body>
 </html>
