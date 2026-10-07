@@ -65,5 +65,5 @@ If `pnpm build` fails locally, CI will fail the same way.
 ```bash
 curl -sI https://urbansafari.app | grep -iE 'HTTP|server'          # 200, server: cloudflare
 curl -s  https://urbansafari.app | grep -o '<meta name="generator"[^>]*>'  # confirms Astro version
-curl -sI https://urbansafari.app/mascot/atlas-cartographer.png | head -2   # 200 + content-type: image/png
+curl -sI https://urbansafari.app/img/atlas-flag.webp | head -2   # 200 + content-type: image/webp
 ```
