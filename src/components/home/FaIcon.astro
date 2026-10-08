@@ -1,0 +1,7 @@
+---
+// A Font Awesome solid icon, drawn at build time (the passport's icon set).
+import { faSvg, type FaName } from '@/content/passportIcons';
+interface Props { name: FaName; class?: string; id?: string }
+const { name, class: className, id } = Astro.props;
+---
+<span class={className} id={id} data-fa={name} set:html={faSvg(name)} />

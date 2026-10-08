@@ -1,7 +1,7 @@
 /* Urban Safari Hybrid 04 · supporting pages.
    Loaded after site.css. Built only from the homepage's tokens and parts:
    paper and leather surfaces, Overpass headings, Geologica body, gold buttons,
-   rounded squares, open columns with thin rules, tapered hunter-green dividers. */
+   rounded squares, open columns with thin rules, tapered gold-and-blue dividers. */
 
 /* ---------- shared ---------- */
 .site-nav a[aria-current="page"]:not(.btn){text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:8px}
@@ -111,7 +111,8 @@
 .plan-intro .page-title{max-width:9ch}
 .plan-intro-copy{max-width:31em}
 .plan-intro-copy .page-lede{margin-top:0}
-.mike-note{margin-top:16px;font-size:15.5px;color:var(--ink-2)}
+.mike-note{display:flex;align-items:center;gap:14px;margin-top:18px}
+.mike-note p{font-size:15.5px;color:var(--ink-2)}
 .mike-note span{display:block;margin-top:6px;font:900 15px/1.3 var(--display);color:var(--teal-deep)}
 .plan-page .planner{margin-top:40px}
 .plan-page input[type=email]{width:100%;min-height:52px;padding:12px 14px;border-radius:12px;border:1.5px solid color-mix(in oklab,var(--teal) 30%,transparent);background:#fff;font:400 17px/1.4 var(--text);color:var(--ink)}
@@ -225,3 +226,9 @@
 @media (prefers-reduced-motion:reduce){
   .city-tile:hover{transform:none}
 }
+
+/* ---------- photos of Mike: the plan page note avatar and the support card ---------- */
+.mike-avatar{flex:none;width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--print),0 0 0 4.5px color-mix(in oklab,var(--teal) 35%,transparent)}
+.help-who{display:flex;align-items:center;gap:22px;min-width:0}
+.help-photo{flex:none;width:112px;height:112px;border-radius:22px;object-fit:cover;box-shadow:0 0 0 2px var(--foil)}
+@media (max-width:640px){.help-who{flex-direction:column;align-items:flex-start;gap:16px}.help-photo{width:96px;height:96px;border-radius:18px}}
